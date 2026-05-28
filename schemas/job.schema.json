@@ -63,6 +63,7 @@
     "asset": {
       "type": "object",
       "additionalProperties": false,
+      "minProperties": 1,
       "properties": {
         "product_unit_number": { "type": "string" },
         "type": { "type": "string" }
@@ -71,6 +72,7 @@
     "scope": {
       "type": "object",
       "additionalProperties": false,
+      "minProperties": 1,
       "properties": {
         "summary": { "type": "string" },
         "line_items": {
@@ -95,6 +97,7 @@
     "labor": {
       "type": "object",
       "additionalProperties": false,
+      "minProperties": 1,
       "properties": {
         "crew_size": { "type": "integer", "minimum": 0 },
         "special_skills": {
@@ -106,6 +109,7 @@
     "equipment": {
       "type": "object",
       "additionalProperties": false,
+      "minProperties": 1,
       "properties": {
         "required": {
           "type": "array",
@@ -116,6 +120,8 @@
     "safety": {
       "type": "object",
       "additionalProperties": false,
+      "required": ["ppe_required"],
+      "minProperties": 1,
       "properties": {
         "requirements": {
           "type": "array",
@@ -135,6 +141,7 @@
     "billing": {
       "type": "object",
       "additionalProperties": false,
+      "minProperties": 1,
       "properties": {
         "reference": { "type": "string" },
         "line_item_total": { "type": "number", "minimum": 0 },
