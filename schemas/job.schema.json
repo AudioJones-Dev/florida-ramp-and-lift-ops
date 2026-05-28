@@ -57,7 +57,7 @@
       "properties": {
         "number": { "type": "string", "minLength": 1 },
         "sap_order_number": { "type": "string" },
-        "source_system": { "type": "string", "default": "WillScot" }
+        "source_system": { "type": "string" }
       }
     },
     "asset": {
@@ -121,7 +121,6 @@
       "type": "object",
       "additionalProperties": false,
       "required": ["ppe_required"],
-      "minProperties": 1,
       "properties": {
         "requirements": {
           "type": "array",
@@ -130,7 +129,12 @@
         "ppe_required": {
           "type": "array",
           "items": { "type": "string" },
-          "default": ["steel-toed boots", "safety glasses", "gloves"]
+          "minItems": 3,
+          "allOf": [
+            { "contains": { "const": "steel-toed boots" } },
+            { "contains": { "const": "safety glasses" } },
+            { "contains": { "const": "gloves" } }
+          ]
         },
         "hazards": {
           "type": "array",
@@ -145,7 +149,7 @@
       "properties": {
         "reference": { "type": "string" },
         "line_item_total": { "type": "number", "minimum": 0 },
-        "currency": { "type": "string", "default": "USD" }
+        "currency": { "type": "string" }
       }
     },
     "completion": {
