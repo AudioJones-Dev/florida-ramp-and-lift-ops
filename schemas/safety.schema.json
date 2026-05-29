@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AudioJones-Dev/florida-ramp-and-lift-ops/schemas/safety.schema.json",
+  "title": "Safety Record",
+  "description": "Per-job safety record. PPE check + hazard review + sign-off are required before status moves out of pending/scheduled. See docs/sop/SAFETY_REQUIREMENTS_SOP.md for narrative.",
+  "type": "object",
+  "required": [
+    "safety_record_id",
+    "job_id",
+    "ppe_checked",
+    "ppe_items_verified",
+    "safety_signoff_by",
+    "safety_signoff_at",
+    "created_at"
+  ],
+  "properties": {
+    "safety_record_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "job_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the parent Job"
+    },
+    "ppe_checked": {
+      "type": "boolean",
+      "description": "Must be true before the job moves out of pending/scheduled"
+    },
+    "ppe_items_verified": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "string",
+        "enum": [
+          "steel_toed_boots",
+          "safety_glasses",
+          "gloves",
+          "hard_hat",
+          "hi_vis_vest",
+          "hearing_protection",
+          "respirator_or_n95",
+          "fall_protection",
+          "insulated_gloves",
+          "lockout_tagout_kit"
+        ]
+      },
+      "contains": {
+        "enum": ["steel_toed_boots", "safety_glasses", "gloves"]
+      },
+      "description": "Must contain at minimum the three mandatory items: steel_toed_boots, safety_glasses, gloves"
+    },
+    "job_specific_hazards": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "examples": [
+          "working_at_height",
+          "electrical",
+          "sharp_edges",
+          "pinch_points",
+          "soft_ground",
+          "uneven_terrain",
+          "power_tools",
+          "heat_dehydration",
+          "sun_exposure",
+          "traffic",
+          "wildlife",
+          "customer_presence",
+          "scaffolding",
+          "dust",
+          "heavy_lift",
+          "load_securing"
+        ]
+      }
+    },
+    "site_walkthrough_completed": {
+      "type": "boolean",
+      "default": false
+    },
+    "stop_work_invoked": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if the crew invoked stop-work during the job"
+    },
+    "stop_work_reason": {
+      "type": ["string", "null"]
+    },
+    "stop_work_resolution": {
+      "type": ["string", "null"]
+    },
+    "incident_occurred": {
+      "type": "boolean",
+      "default": false
+    },
+    "incident_details": {
+      "type": ["object", "null"],
+      "properties": {
+        "incident_type": {
+          "type": "string",
+          "enum": ["injury", "near_miss", "property_damage", "customer_complaint_safety", "other"]
+        },
+        "occurred_at": {"type": "string", "format": "date-time"},
+        "description": {"type": "string"},
+        "photos": {
+          "type": "array",
+          "items": {"type": "string", "format": "uuid", "description": "Upload IDs"}
+        },
+        "notified_lead_at": {"type": ["string", "null"], "format": "date-time"},
+        "notified_admin_at": {"type": ["string", "null"], "format": "date-time"}
+      }
+    },
+    "osha_notes": {
+      "type": ["string", "null"]
+    },
+    "heat_break_taken": {
+      "type": "boolean",
+      "default": false,
+      "description": "Florida-specific: did the crew take heat breaks during the job (when applicable)?"
+    },
+    "safety_signoff_by": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Contractor ID who signed off on safety (typically the lead)"
+    },
+    "safety_signoff_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "safety_signoff_role": {
+      "type": "string",
+      "enum": ["lead", "solo_contractor"],
+      "description": "Apprentices cannot sign off on safety alone"
+    },
+    "end_of_job_walk_completed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Confirmed before truck leaves the site: tools accounted for, hardware accounted for, area clean, no trip hazards, customer briefed"
+    },
+    "created_at": {"type": "string", "format": "date-time"},
+    "created_by": {"type": ["string", "null"]},
+    "updated_at": {"type": ["string", "null"], "format": "date-time"},
+    "updated_by": {"type": ["string", "null"]}
+  },
+  "additionalProperties": false
+}

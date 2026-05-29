@@ -1,34 +1,131 @@
-# Florida Ramp & Lift Operations Intelligence System
+# Florida Ramp & Lift — Operations Intelligence Repo
 
-Local-first, schema-driven operational intelligence for Florida Ramp & Lift field operations.
+**Owner:** AJ Digital LLC / Audio Jones
+**Repo:** `AudioJones-Dev/florida-ramp-and-lift-ops`
+**Phase:** Phase 1 — Documentation-first operational intelligence foundation
+**Internal system name:** **FLR Dynamic Contractor Billing Engine**
 
-## Current focus
+---
 
-- Ingest WillScot/Mobile Mini service report PDFs
-- Deterministically extract structured job data
-- Normalize data into a canonical universal job object
-- Support dispatch, safety, billing, and operational memory workflows
+## Purpose
 
-## Foundational documents
+This repo is the operational intelligence foundation for Florida Ramp & Lift — a real field-operations business handling accessibility installations, ramps, lifts, modular project support, WillScot / Mobile Mini workflows, dispatch, billing, field safety, and crew onboarding.
 
-- `PROJECT_SOURCE.md`
-- `docs/scope/WILSCOT_AUTOMATION_SCOPE.md`
-- `docs/scope/UNIVERSAL_JOB_OBJECT.md`
-- `docs/scope/DATA_DICTIONARY.md`
-- `schemas/job.schema.json`
+**This is not an app yet.** Phase 1 ships only:
 
-## Repository structure
+- Canonical scope and entity definitions (`docs/scope/`)
+- Field-ready SOPs (`docs/sop/`)
+- Specs for the highest-leverage automations (`docs/automation/`)
+- Crew onboarding + safety training docs (`docs/training/`)
+- JSON Schemas for the canonical operational entities (`schemas/`)
+- Reusable AI prompts for extraction, dispatch, billing, and safety (`prompts/`)
+- Sanitized sample data illustrating the WillScot intake (`samples/`)
 
-- `docs/` operational scope, SOPs, automation, and training references
-- `schemas/` canonical structured definitions
-- `prompts/` extraction, dispatch, billing, and safety prompt libraries
-- `samples/wilscot/` source document samples for parser iteration
+Phase 2+ builds the actual mobile-first PWA, automation layer, and CRM pipeline on top of this scaffold.
 
-## Principles
+---
 
-1. Documentation-first
-2. Schema-first
-3. Deterministic parsing where possible
-4. Approval-gated destructive actions
-5. Safety-forward workflows
-6. Auditable operational records
+## Phase 1 scope (this commit)
+
+- Define the **Universal Job Object** — the canonical entity every workflow flows through.
+- Capture the **Data Dictionary** — every operational field in plain English.
+- Lock the **WillScot automation scope** — PDF intake parser + dispatch + billing.
+- Establish **safety, WillScot job handling, and completion-closeout SOPs** crews can actually use on-site.
+- Specify the **PDF intake parser, dispatch summary generator, and billing extraction** automations (input → output → validation → review gates → failure handling).
+- Onboard apprentices and crews with explicit role expectations + PPE checklists.
+- Ratify **JSON Schemas** for job / client / work-order / scope line item / safety / invoice.
+- Stage **AI prompts** for the four canonical automations.
+
+---
+
+## Non-goals (explicitly out of scope for Phase 1)
+
+- ❌ No Firebase
+- ❌ No cloud infrastructure provisioning
+- ❌ No application framework added (no Next.js / Expo / React Native scaffolding)
+- ❌ No real customer PDFs or sensitive client documents committed
+- ❌ No invented operational claims (no fake numbers, no fake zones, no fake roster)
+- ❌ No automated final approval of invoices, billing submission, or client communication without human review
+- ❌ No deployment, no CI, no preview environments
+
+---
+
+## Phase 2+ expansion (future, not built here)
+
+Documented in `docs/scope/` and `PROJECT_SOURCE.md` for forward planning. Will be built incrementally only after Phase 1 documentation is validated against real field workflows.
+
+| Phase | Focus |
+|---|---|
+| 2 | Contractor profiles, job intake PWA, dynamic billing engine, invoice calculator, admin review |
+| 3 | CRM integration, automation triggers, payout exports, analytics dashboard, multi-tenant billing |
+| 4 | AI voice transcription (Whisper), AI operational review, dispatch optimization, predictive billing |
+| 5 | Full operations OS — scheduling, inventory, installer scoring, payroll integrations |
+
+---
+
+## Repo structure
+
+```
+.
+├── README.md                       ← this file
+├── PROJECT_SOURCE.md               ← business thesis + system boundaries
+├── docs/
+│   ├── scope/
+│   │   ├── WILSCOT_AUTOMATION_SCOPE.md
+│   │   ├── UNIVERSAL_JOB_OBJECT.md
+│   │   └── DATA_DICTIONARY.md
+│   ├── sop/
+│   │   ├── SAFETY_REQUIREMENTS_SOP.md
+│   │   ├── WILSCOT_JOB_HANDLING_SOP.md
+│   │   └── COMPLETION_CLOSEOUT_SOP.md
+│   ├── automation/
+│   │   ├── PDF_INTAKE_PARSER_SPEC.md
+│   │   ├── DISPATCH_SUMMARY_SPEC.md
+│   │   └── BILLING_EXTRACTION_SPEC.md
+│   └── training/
+│       ├── APPRENTICE_ONBOARDING.md
+│       ├── CREW_ROLE_EXPECTATIONS.md
+│       └── TOOL_AND_PPE_CHECKLIST.md
+├── schemas/
+│   ├── job.schema.json
+│   ├── client.schema.json
+│   ├── work-order.schema.json
+│   ├── scope-line-item.schema.json
+│   ├── safety.schema.json
+│   └── invoice.schema.json
+├── prompts/
+│   ├── extraction/wilscot-pdf-extraction.prompt.md
+│   ├── dispatch/generate-dispatch-summary.prompt.md
+│   ├── billing/generate-invoice-draft.prompt.md
+│   └── safety/generate-job-safety-checklist.prompt.md
+└── samples/
+    └── wilscot/
+        ├── README.md
+        └── extracted-job-sanitized-example.json
+```
+
+---
+
+## How to read this repo
+
+1. **Start with `PROJECT_SOURCE.md`** — the thesis, the operational problem, the system boundaries.
+2. **Then `docs/scope/UNIVERSAL_JOB_OBJECT.md`** — every workflow flows through this entity.
+3. **Then `docs/scope/WILSCOT_AUTOMATION_SCOPE.md`** — the highest-value workflow.
+4. **Then `docs/sop/*`** — practical, checklist-oriented, field-friendly.
+5. **Then `docs/automation/*` and `schemas/*`** — input/output/validation contracts for each automation.
+6. **Then `prompts/*`** — reusable AI prompts that consume the schemas.
+
+---
+
+## Doctrine alignment
+
+This repo is governed by the AJ Digital canonical doctrine layer (lives in the AJ Digital Obsidian vault, not here). Tier 1 production repo expectations apply per the `/goal` protocol — `AGENTS.md` and `CLAUDE.md` will be added in a follow-up commit once the operational scope is validated.
+
+---
+
+## Standing constraints (do not violate)
+
+- No real customer PDFs or sensitive documents in this repo, ever.
+- No automated final approval of billing, invoicing, or client communication without explicit human review gate.
+- Treat all construction-site work as safety-sensitive — PPE checks and human review are non-negotiable.
+- No Firebase, no cloud infra, no app framework in Phase 1.
