@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AudioJones-Dev/florida-ramp-and-lift-ops/schemas/invoice.schema.json",
+  "title": "Invoice",
+  "description": "Either a contractor invoice (with split-payout calculations) or a client invoice (e.g., to WillScot, with client rate sheet only, no contractor data). The invoice_class field distinguishes. See docs/automation/BILLING_EXTRACTION_SPEC.md.",
+  "type": "object",
+  "required": [
+    "invoice_id",
+    "invoice_class",
+    "totals",
+    "audit_reference",
+    "audit_log",
+    "created_at"
+  ],
+  "properties": {
+    "invoice_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "invoice_class": {
+      "type": "string",
+      "enum": ["contractor", "client"],
+      "description": "Hard separator between contractor-side and client-side invoices"
+    },
+    "invoice_number": {
+      "type": ["string", "null"],
+      "description": "Human-readable invoice number (may follow client-specific format)"
+    },
+    "contractor_id": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "Required when invoice_class = contractor; must be null when invoice_class = client"
+    },
+    "recipient_client_id": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "Required when invoice_class = client; must be null when invoice_class = contractor"
+    },
+    "issuer": {
+      "type": "string",
+      "default": "Florida Ramp & Lift"
+    },
+    "pay_period_start": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Required for contractor invoices"
+    },
+    "pay_period_end": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Required for contractor invoices"
+    },
+    "jobs_included": {
+      "type": "array",
+      "items": {"type": "string", "format": "uuid"},
+      "description": "References to job_ids included in this invoice"
+    },
+    "work_orders_included": {
+      "type": "array",
+      "items": {"type": "string", "format": "uuid"},
+      "description": "References to work_order_ids included in this invoice (typically for client invoices)"
+    },
+    "line_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["description"],
+        "properties": {
+          "job_id": {"type": ["string", "null"], "format": "uuid"},
+          "work_order_id": {"type": ["string", "null"], "format": "uuid"},
+          "line_item_name": {"type": ["string", "null"]},
+          "description": {"type": "string"},
+          "quantity": {"type": ["number", "null"], "minimum": 0},
+          "unit_rate": {"type": ["number", "null"], "minimum": 0},
+          "line_total": {"type": ["number", "null"]},
+          "share_for_contractor": {
+            "type": ["number", "null"],
+            "description": "Contractor's portion of this line (contractor invoices only)"
+          },
+          "trip_charge_share": {
+            "type": ["number", "null"],
+            "description": "Contractor's portion of trip charge for this job (contractor invoices only)"
+          },
+          "adjustment": {
+            "type": ["number", "null"],
+            "description": "Approved adjustment (positive or negative)"
+          },
+          "adjustment_reason": {"type": ["string", "null"]},
+          "subtotal": {"type": ["number", "null"]}
+        }
+      }
+    },
+    "totals": {
+      "type": "object",
+      "required": ["invoice_total"],
+      "properties": {
+        "line_items_total": {"type": ["number", "null"], "minimum": 0},
+        "trip_charges_total": {"type": ["number", "null"], "minimum": 0},
+        "adjustments_total": {"type": ["number", "null"]},
+        "subtotal": {"type": ["number", "null"], "minimum": 0},
+        "surcharges": {"type": ["number", "null"], "minimum": 0},
+        "taxes": {"type": ["number", "null"], "minimum": 0},
+        "invoice_total": {"type": "number", "minimum": 0},
+        "payout_total": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "description": "Net to contractor (contractor invoices only)"
+        }
+      }
+    },
+    "rate_sheet_id": {
+      "type": ["string", "null"],
+      "format": "uuid"
+    },
+    "rate_sheet_class": {
+      "type": ["string", "null"],
+      "enum": ["contractor", "client", null]
+    },
+    "pdf_storage_url": {
+      "type": ["string", "null"]
+    },
+    "audit_reference": {
+      "type": "string",
+      "description": "Unique reference for compliance / reporting"
+    },
+    "admin_review_required": {
+      "type": "boolean",
+      "description": "Client invoices: always true. Contractor invoices: configurable per contractor."
+    },
+    "admin_reviewed_by": {
+      "type": ["string", "null"]
+    },
+    "admin_reviewed_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "admin_review_decision": {
+      "type": ["string", "null"],
+      "enum": ["approved", "rejected", "edited", "held", null]
+    },
+    "admin_review_notes": {
+      "type": ["string", "null"]
+    },
+    "delivery_channels": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["email", "sms_secure_link", "portal", "ap_system", "manual"]
+      }
+    },
+    "delivery_recipient": {
+      "type": ["string", "null"],
+      "description": "Email or phone number invoice was sent to"
+    },
+    "delivery_status": {
+      "type": "string",
+      "enum": ["draft", "pending_review", "approved", "queued", "sent", "delivered", "viewed", "paid", "rejected", "held", "voided"],
+      "default": "draft"
+    },
+    "delivered_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "viewed_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "paid_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "audit_log": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["event", "event_at"],
+        "properties": {
+          "event": {
+            "type": "string",
+            "enum": [
+              "created",
+              "admin_review_requested",
+              "admin_approved",
+              "admin_rejected",
+              "admin_edited",
+              "admin_held",
+              "pdf_generated",
+              "delivery_attempted",
+              "delivery_succeeded",
+              "delivery_failed",
+              "delivered",
+              "viewed",
+              "paid",
+              "voided"
+            ]
+          },
+          "event_at": {"type": "string", "format": "date-time"},
+          "event_by": {"type": ["string", "null"]},
+          "event_details": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "created_at": {"type": "string", "format": "date-time"},
+    "created_by": {"type": ["string", "null"]},
+    "updated_at": {"type": ["string", "null"], "format": "date-time"},
+    "updated_by": {"type": ["string", "null"]}
+  },
+  "additionalProperties": false
+}

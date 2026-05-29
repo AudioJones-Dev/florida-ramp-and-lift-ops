@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AudioJones-Dev/florida-ramp-and-lift-ops/schemas/job.schema.json",
+  "title": "Job",
+  "description": "The canonical Job entity for Florida Ramp & Lift operations. Every workflow flows through this entity. See docs/scope/UNIVERSAL_JOB_OBJECT.md for narrative.",
+  "type": "object",
+  "required": [
+    "job_id",
+    "client_id",
+    "job_type",
+    "status",
+    "site_address",
+    "site_city",
+    "crew_members",
+    "scope_line_items",
+    "safety_record_id",
+    "notes",
+    "created_at",
+    "version"
+  ],
+  "properties": {
+    "job_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "System-generated unique identifier. Never reused."
+    },
+    "client_job_number": {
+      "type": ["string", "null"],
+      "description": "Client's own reference (e.g., WillScot work order number)."
+    },
+    "florida_ramp_internal_number": {
+      "type": ["string", "null"],
+      "description": "Optional internal reference."
+    },
+    "client_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to client.schema.json"
+    },
+    "work_order_id": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "Reference to work-order.schema.json"
+    },
+    "job_type": {
+      "type": "string",
+      "enum": [
+        "ramp_install",
+        "ramp_recovery",
+        "ramp_modification",
+        "ramp_touchup",
+        "vpl_install",
+        "vpl_service",
+        "stair_lift_install",
+        "stair_lift_service",
+        "vehicle_lift_install",
+        "vehicle_lift_service",
+        "repair",
+        "delivery_only"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "scheduled",
+        "in_progress",
+        "submitted",
+        "approved",
+        "invoiced",
+        "paid",
+        "incomplete",
+        "return_needed",
+        "on_hold",
+        "cancelled"
+      ]
+    },
+    "scheduled_date": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "site_address": {
+      "type": "string",
+      "minLength": 1
+    },
+    "site_city": {
+      "type": "string",
+      "minLength": 1
+    },
+    "site_state": {
+      "type": ["string", "null"],
+      "default": "FL"
+    },
+    "site_zip": {
+      "type": ["string", "null"]
+    },
+    "site_access_notes": {
+      "type": ["string", "null"]
+    },
+    "zone_id": {
+      "type": ["string", "null"],
+      "enum": ["zone_1", "zone_2", "zone_3", "zone_4", null]
+    },
+    "trip_charge_classification": {
+      "type": ["string", "null"],
+      "enum": ["first_job_in_zone", "additional_same_day_same_zone", "none_applicable", null]
+    },
+    "trip_charge_amount": {
+      "type": ["number", "null"],
+      "minimum": 0
+    },
+    "crew_size": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4,
+      "description": "0 allowed during pending status (pre-scheduling). Must be >= 1 at scheduled status — enforced at application layer."
+    },
+    "crew_members": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "type": "object",
+        "required": ["contractor_id", "split_pct", "role"],
+        "properties": {
+          "contractor_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "split_pct": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "role": {
+            "type": "string",
+            "enum": ["lead", "helper", "apprentice", "support"]
+          }
+        }
+      },
+      "description": "Sum of split_pct across crew_members must equal 1.0 (validated at submission time, not in schema). Empty array allowed during pending status; required >= 1 at scheduled status — enforced at application layer."
+    },
+    "scope_line_items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "format": "uuid",
+        "description": "Reference to scope-line-item.schema.json"
+      }
+    },
+    "safety_record_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to safety.schema.json"
+    },
+    "uploads": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["upload_id", "kind"],
+        "properties": {
+          "upload_id": {"type": "string", "format": "uuid"},
+          "kind": {
+            "type": "string",
+            "enum": ["photo", "pdf", "work_order", "signed_completion", "voice_note", "video"]
+          },
+          "storage_url": {"type": ["string", "null"]},
+          "original_filename": {"type": ["string", "null"]},
+          "mime_type": {"type": ["string", "null"]},
+          "caption": {"type": ["string", "null"]},
+          "transcript": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "notes": {
+      "type": "string",
+      "description": "Freeform notes. May be empty string but field must be present."
+    },
+    "signed_by": {
+      "type": ["string", "null"],
+      "description": "On-site party who signed off on completion"
+    },
+    "signature_date": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "signature_capture_method": {
+      "type": ["string", "null"],
+      "enum": ["in_person_paper", "in_person_digital", "photo_of_signed_form", "phase_2_in_app_capture", null]
+    },
+    "contractor_invoice_id": {
+      "type": ["string", "null"],
+      "format": "uuid"
+    },
+    "client_invoice_id": {
+      "type": ["string", "null"],
+      "format": "uuid"
+    },
+    "parent_job_id": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "If this job is a return trip for a prior incomplete job"
+    },
+    "created_at": {"type": "string", "format": "date-time"},
+    "created_by": {"type": ["string", "null"]},
+    "updated_at": {"type": ["string", "null"], "format": "date-time"},
+    "updated_by": {"type": ["string", "null"]},
+    "submitted_at": {"type": ["string", "null"], "format": "date-time"},
+    "approved_at": {"type": ["string", "null"], "format": "date-time"},
+    "approved_by": {"type": ["string", "null"]},
+    "invoiced_at": {"type": ["string", "null"], "format": "date-time"},
+    "paid_at": {"type": ["string", "null"], "format": "date-time"},
+    "client_paid_at": {"type": ["string", "null"], "format": "date-time"},
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["status", "status_at"],
+        "properties": {
+          "status": {"type": "string"},
+          "status_at": {"type": "string", "format": "date-time"},
+          "status_by": {"type": ["string", "null"]},
+          "status_reason": {"type": ["string", "null"]}
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

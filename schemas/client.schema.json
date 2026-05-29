@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AudioJones-Dev/florida-ramp-and-lift-ops/schemas/client.schema.json",
+  "title": "Client",
+  "description": "A billing party for Florida Ramp & Lift work (e.g., WillScot, Mobile Mini, direct customer). Multi-tenant by design.",
+  "type": "object",
+  "required": [
+    "client_id",
+    "name",
+    "status",
+    "billing_address",
+    "created_at"
+  ],
+  "properties": {
+    "client_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Display name (e.g., WillScot)"
+    },
+    "legal_name": {
+      "type": ["string", "null"],
+      "description": "Legal entity name for invoicing"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive", "prospect", "archived"]
+    },
+    "client_type": {
+      "type": "string",
+      "enum": ["enterprise", "commercial", "direct_consumer", "internal"],
+      "default": "enterprise"
+    },
+    "billing_address": {
+      "type": "object",
+      "required": ["line1", "city", "state", "zip"],
+      "properties": {
+        "line1": {"type": "string"},
+        "line2": {"type": ["string", "null"]},
+        "city": {"type": "string"},
+        "state": {"type": "string"},
+        "zip": {"type": "string"},
+        "country": {"type": "string", "default": "US"}
+      }
+    },
+    "primary_ap_contact": {
+      "type": ["object", "null"],
+      "properties": {
+        "name": {"type": ["string", "null"]},
+        "title": {"type": ["string", "null"]},
+        "email": {"type": ["string", "null"], "format": "email"},
+        "phone": {"type": ["string", "null"]}
+      }
+    },
+    "rate_sheet_id": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "Reference to the active client-side rate sheet (contractually agreed pricing)."
+    },
+    "billing_rules": {
+      "type": "object",
+      "properties": {
+        "minimum_invoice_amount": {"type": ["number", "null"], "minimum": 0},
+        "invoice_number_prefix": {"type": ["string", "null"]},
+        "requires_admin_review_for_release": {"type": "boolean", "default": true},
+        "delivery_channel": {
+          "type": "string",
+          "enum": ["email", "portal", "ap_system", "manual"],
+          "default": "email"
+        },
+        "delivery_email": {"type": ["string", "null"], "format": "email"},
+        "csv_xml_export_required": {"type": "boolean", "default": false}
+      }
+    },
+    "branding": {
+      "type": "object",
+      "description": "Per-tenant branding for invoices issued to this client",
+      "properties": {
+        "invoice_template_id": {"type": ["string", "null"]},
+        "logo_storage_url": {"type": ["string", "null"]},
+        "header_text": {"type": ["string", "null"]},
+        "footer_text": {"type": ["string", "null"]}
+      }
+    },
+    "notes": {
+      "type": ["string", "null"]
+    },
+    "created_at": {"type": "string", "format": "date-time"},
+    "created_by": {"type": ["string", "null"]},
+    "updated_at": {"type": ["string", "null"], "format": "date-time"},
+    "updated_by": {"type": ["string", "null"]}
+  },
+  "additionalProperties": false
+}

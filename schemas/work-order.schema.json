@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AudioJones-Dev/florida-ramp-and-lift-ops/schemas/work-order.schema.json",
+  "title": "Work Order",
+  "description": "A client-issued document authorizing one or more jobs. Modeled from observed WillScot work orders; generalizes to other modular-services clients.",
+  "type": "object",
+  "required": [
+    "work_order_id",
+    "client_id",
+    "work_order_number",
+    "site_address",
+    "start_date",
+    "description",
+    "created_at"
+  ],
+  "properties": {
+    "work_order_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "client_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to client.schema.json"
+    },
+    "work_order_number": {
+      "type": "string",
+      "description": "Client's own work order number (e.g., WillScot WO #)"
+    },
+    "sap_order_number": {
+      "type": ["string", "null"],
+      "description": "WillScot-specific SAP order number"
+    },
+    "product_unit_number": {
+      "type": ["string", "null"]
+    },
+    "owner": {
+      "type": ["string", "null"]
+    },
+    "prepared_for": {
+      "type": ["string", "null"]
+    },
+    "prepared_by": {
+      "type": ["string", "null"]
+    },
+    "account": {
+      "type": ["string", "null"]
+    },
+    "contact_name": {
+      "type": ["string", "null"]
+    },
+    "contact_title": {
+      "type": ["string", "null"]
+    },
+    "contact_phone": {
+      "type": ["string", "null"]
+    },
+    "contact_email": {
+      "type": ["string", "null"],
+      "format": "email"
+    },
+    "site_address": {
+      "type": "string",
+      "minLength": 1
+    },
+    "product_family": {
+      "type": ["string", "null"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Free-text description from the work order"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "end_date": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "signed_by": {
+      "type": ["string", "null"]
+    },
+    "signature_date": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "source_pdf_storage_url": {
+      "type": ["string", "null"],
+      "description": "Storage reference to the source PDF (not committed to the repo)"
+    },
+    "parser_run_id": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "Reference to the parser run that created this record"
+    },
+    "extraction_confidence": {
+      "type": ["string", "null"],
+      "enum": ["high", "medium", "low", null]
+    },
+    "flags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["flag_id", "severity", "issue"],
+        "properties": {
+          "flag_id": {"type": "string", "format": "uuid"},
+          "severity": {"type": "string", "enum": ["blocker", "warning", "info"]},
+          "field": {"type": ["string", "null"]},
+          "raw_value": {"type": ["string", "null"]},
+          "issue": {"type": "string"},
+          "suggested_action": {"type": ["string", "null"]},
+          "resolved": {"type": "boolean", "default": false},
+          "resolved_at": {"type": ["string", "null"], "format": "date-time"},
+          "resolved_by": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "human_review_required": {
+      "type": "boolean",
+      "default": true
+    },
+    "reviewed_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "reviewed_by": {
+      "type": ["string", "null"]
+    },
+    "created_at": {"type": "string", "format": "date-time"},
+    "created_by": {"type": ["string", "null"]},
+    "updated_at": {"type": ["string", "null"], "format": "date-time"},
+    "updated_by": {"type": ["string", "null"]}
+  },
+  "additionalProperties": false
+}

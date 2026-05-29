@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AudioJones-Dev/florida-ramp-and-lift-ops/schemas/scope-line-item.schema.json",
+  "title": "Scope Line Item",
+  "description": "An atomic billable row on a work order. Maps to a canonical line item name from the rate sheet.",
+  "type": "object",
+  "required": [
+    "line_item_id",
+    "work_order_id",
+    "name",
+    "quantity",
+    "rate_sheet_id",
+    "created_at"
+  ],
+  "properties": {
+    "line_item_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "work_order_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the parent work order"
+    },
+    "job_id": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "Reference to the job this line item is being executed on (may be null until scheduled)"
+    },
+    "name": {
+      "type": "string",
+      "description": "Canonical line item name. Known canonical names listed in docs/scope/WILSCOT_AUTOMATION_SCOPE.md § 4."
+    },
+    "raw_name": {
+      "type": ["string", "null"],
+      "description": "Original free-text name from the source document, if the canonical name was inferred"
+    },
+    "name_match_method": {
+      "type": ["string", "null"],
+      "enum": ["exact", "near_match", "synonym_table", "unmatched", null],
+      "description": "How the canonical name was determined"
+    },
+    "quantity": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Field-adjustable quantity"
+    },
+    "unit_rate": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "description": "Per-unit rate from the active rate sheet. Set by system, not contractor."
+    },
+    "line_total": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "description": "quantity × unit_rate"
+    },
+    "rate_sheet_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Which rate sheet was applied (contractor-side vs client-side rate sheets are separate)"
+    },
+    "rate_sheet_class": {
+      "type": "string",
+      "enum": ["contractor", "client"],
+      "description": "Which class of rate sheet (contractor payout-side or client billing-side)"
+    },
+    "notes": {
+      "type": ["string", "null"]
+    },
+    "added_by_field_adjustment": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if this line was added at field time (not on original work order). Requires admin approval."
+    },
+    "field_adjustment_approval_by": {
+      "type": ["string", "null"]
+    },
+    "field_adjustment_approval_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "field_adjustment_reason": {
+      "type": ["string", "null"]
+    },
+    "created_at": {"type": "string", "format": "date-time"},
+    "created_by": {"type": ["string", "null"]},
+    "updated_at": {"type": ["string", "null"], "format": "date-time"},
+    "updated_by": {"type": ["string", "null"]}
+  },
+  "additionalProperties": false
+}
