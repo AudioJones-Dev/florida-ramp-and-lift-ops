@@ -7,5 +7,6 @@ Root-level `schemas/` contains machine-readable JSON Schemas and remains preserv
 ## Planning Docs
 
 - `canonical-data-schema.md` defines the platform-wide domain objects.
+- `operational-state-machine.md` defines the canonical operating states, transition events, human gates, dashboard effects, and agent triggers.
 - `system-state-machine.md` defines state-driven workflow behavior.
 - `role-permission-matrix.md` defines product-level authority boundaries.
