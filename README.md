@@ -2,7 +2,7 @@
 
 **Owner:** AJ Digital LLC / Audio Jones
 **Repo:** `AudioJones-Dev/florida-ramp-and-lift-ops`
-**Phase:** Phase 1 — Documentation-first operational intelligence foundation
+**Phase:** Phase 2 — Mock-only app scaffold on top of the documentation-first foundation
 **Internal system name:** **FLR Dynamic Contractor Billing Engine**
 
 ---
@@ -11,7 +11,9 @@
 
 This repo is the operational intelligence foundation for Florida Ramp & Lift — a real field-operations business handling accessibility installations, ramps, lifts, modular project support, WillScot / Mobile Mini workflows, dispatch, billing, field safety, and crew onboarding.
 
-**This is not an app yet.** Phase 1 ships only:
+Phase 1 began as a documentation-first foundation. The current branch now adds an initial mock-only Next.js scaffold for the MVP shell while keeping live integrations, production data, secrets, and database connections out of scope.
+
+The documentation foundation includes:
 
 - Canonical scope and entity definitions (`docs/scope/`)
 - Field-ready SOPs (`docs/sop/`)
@@ -42,7 +44,7 @@ Phase 2+ builds the actual mobile-first PWA, automation layer, and CRM pipeline 
 
 - ❌ No Firebase
 - ❌ No cloud infrastructure provisioning
-- ❌ No application framework added (no Next.js / Expo / React Native scaffolding)
+- ❌ No production application behavior beyond the mock-only Next.js scaffold
 - ❌ No real customer PDFs or sensitive client documents committed
 - ❌ No invented operational claims (no fake numbers, no fake zones, no fake roster)
 - ❌ No automated final approval of invoices, billing submission, or client communication without human review
@@ -128,4 +130,4 @@ This repo is governed by the AJ Digital canonical doctrine layer (lives in the A
 - No real customer PDFs or sensitive documents in this repo, ever.
 - No automated final approval of billing, invoicing, or client communication without explicit human review gate.
 - Treat all construction-site work as safety-sensitive — PPE checks and human review are non-negotiable.
-- No Firebase, no cloud infra, no app framework in Phase 1.
+- No Firebase, no cloud infrastructure provisioning, and no production behavior beyond the mock-only scaffold.
