@@ -12,4 +12,5 @@ These documents are planning-level specifications. They do not implement app cod
 - `implementation-readiness-gate.md` defines the required checkpoint before moving from docs/spec-first architecture into app scaffolding or implementation.
 - `mvp-definition.md` defines the exact MVP scope, in/out boundaries, portals, workflows, approval queues, and exclusions before app scaffolding begins.
 - `saas-portal-access-model.md` defines the one-app portal architecture, stakeholder access model, recommended stack, MVP build order, and role-based access doctrine.
+- `web-and-mobile-strategy.md` defines responsive web as the MVP delivery model, contractor mobile-first UX requirements, and the future native mobile boundary.
 - `worksie-integration-strategy.md` defines Worksie-style capabilities as embedded FLR operational modules for MVP, not a standalone OS.
