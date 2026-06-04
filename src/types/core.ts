@@ -208,3 +208,31 @@ export type Approval = ManualRecord & {
   blockingRule: string;
   decisionNotes: string;
 };
+
+export type ContractorAssignmentStatus =
+  | "assigned"
+  | "accepted"
+  | "rejected"
+  | "in_progress"
+  | "submitted";
+
+export type ContractorAssignment = {
+  id: string;
+  jobId: string;
+  jobNumber: string;
+  jobTitle: string;
+  contractorName: string;
+  location: string;
+  siteContact: string;
+  scheduledWindow: string;
+  status: ContractorAssignmentStatus;
+  scope: string;
+  requiredEquipment: string[];
+  requiredDocumentation: string[];
+  documentationStatus: string;
+  ppeRequirements: string[];
+  safetyRequirements: string[];
+  ppeStatus: string;
+  payout: string;
+  notes: string;
+};

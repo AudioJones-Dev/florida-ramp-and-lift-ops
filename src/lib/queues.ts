@@ -98,10 +98,10 @@ const activeAlerts = mockAlerts
 
 const contractorAssignments = mockContractorAssignments.map((assignment) => ({
   id: `queue-assignment-${assignment.id}`,
-  title: assignment.job,
+  title: `${assignment.jobNumber} - ${assignment.jobTitle}`,
   detail: `${assignment.scope}. Documentation: ${assignment.documentationStatus}`,
   owner: "Dispatcher",
-  status: assignment.status.toLowerCase().replace(/\s+/g, "_"),
+  status: assignment.status,
   href: "/contractor",
   assignmentId: assignment.id
 }));

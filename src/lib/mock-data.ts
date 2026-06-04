@@ -6,7 +6,8 @@ import type {
   Customer,
   DocumentationArtifact,
   Invoice,
-  Job
+  Job,
+  ContractorAssignment
 } from "@/types/core";
 
 export const mockDashboardMetrics = {
@@ -417,26 +418,46 @@ export const mockApprovals: Approval[] = [
   }
 ];
 
-export const mockContractorAssignments = [
+export const mockContractorAssignments: ContractorAssignment[] = [
   {
     id: "assignment-1",
-    job: "FLR-1042 - Ramp install",
+    jobId: "job_001",
+    jobNumber: "FLR-1042",
+    jobTitle: "Ramp install",
+    contractorName: "Lead Installer A",
     location: "Residential site, Tampa area",
-    status: "Assigned",
+    siteContact: "M. Reynolds",
+    scheduledWindow: "Today, 10:00 AM - 1:00 PM",
+    status: "assigned",
     scope: "Install modular ramp and submit completion photos",
+    requiredEquipment: ["Modular ramp sections", "Anchoring hardware", "Basic install tools"],
+    requiredDocumentation: ["Before photos", "After photos", "Completion notes", "Safety checklist"],
     documentationStatus: "Photos pending",
-    ppe: "Compliant",
-    payout: "Pending review"
+    ppeRequirements: ["Gloves", "Eye protection", "Work boots"],
+    safetyRequirements: ["Confirm stable surface", "Clear walking path", "Review customer access needs"],
+    ppeStatus: "Compliant",
+    payout: "Pending review",
+    notes: "Submit proof before invoice readiness can move forward."
   },
   {
     id: "assignment-2",
-    job: "FLR-1048 - WilScot takedown",
+    jobId: "job_002",
+    jobNumber: "FLR-1048",
+    jobTitle: "WilScot takedown",
+    contractorName: "Senior Lead B",
     location: "Commercial site, Orlando area",
-    status: "Accepted",
+    siteContact: "Commercial coordinator",
+    scheduledWindow: "This week, dispatch window pending",
+    status: "accepted",
     scope: "Ramp takedown and closeout notes",
+    requiredEquipment: ["Ramp removal tools", "Tie-downs", "Truck access"],
+    requiredDocumentation: ["After photos", "Closeout notes", "Site condition notes"],
     documentationStatus: "Submitted",
-    ppe: "Review needed",
-    payout: "Calculated mock"
+    ppeRequirements: ["Hi-vis vest", "Gloves", "Eye protection"],
+    safetyRequirements: ["Confirm commercial site access", "Check traffic exposure", "Document site condition"],
+    ppeStatus: "Review needed",
+    payout: "Calculated mock",
+    notes: "PPE review should remain visible before final closeout."
   }
 ];
 
