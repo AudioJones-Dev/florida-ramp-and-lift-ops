@@ -7,7 +7,16 @@ export default function CommunicationsPage() {
       title="Communications"
       description="First-class manual communication records before email, SMS, phone, or CRM integrations."
       rows={mockCommunications}
-      fields={["channel", "contact", "summary", "status", "relatedObject"]}
+      fields={["sourceChannel", "contactName", "summary", "status", "relatedObjectType"]}
+      detailPath="/communications"
+      createLabel="New communication"
+      createFields={[
+        { name: "sourceChannel", label: "Source channel", options: ["Phone", "Email", "SMS", "Manual note"] },
+        { name: "contactName", label: "Contact", placeholder: "Contact name" },
+        { name: "summary", label: "Summary", placeholder: "Brief communication summary" },
+        { name: "status", label: "Status", options: ["new", "received", "unanswered", "needs_review"] },
+        { name: "relatedObjectType", label: "Related object", options: ["Customer", "Job", "Invoice"] }
+      ]}
     />
   );
 }

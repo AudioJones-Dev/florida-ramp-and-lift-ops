@@ -7,7 +7,8 @@ export default function ApprovalsPage() {
       title="Approvals"
       description="Human approval queue placeholders. Client-facing invoice release is never automatic in MVP."
       rows={mockApprovals}
-      fields={["request", "source", "status", "approver", "risk"]}
+      fields={["approvalType", "relatedObjectType", "status", "approver", "risk"]}
+      detailPath="/approvals"
     />
   );
 }

@@ -7,7 +7,8 @@ export default function DocumentationPage() {
       title="Documentation"
       description="Mock documentation review queue for job photos, notes, and completion evidence."
       rows={mockDocumentation}
-      fields={["artifact", "job", "submittedBy", "status", "reviewGate"]}
+      fields={["artifactType", "jobNumber", "submittedBy", "status", "reviewGate"]}
+      detailPath="/documentation"
     />
   );
 }

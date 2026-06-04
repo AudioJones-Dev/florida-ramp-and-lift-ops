@@ -7,7 +7,8 @@ export default function AlertsPage() {
       title="Alerts"
       description="Hybrid alert placeholders representing persisted records after runtime thresholds are crossed."
       rows={mockAlerts}
-      fields={["severity", "source", "status", "owner", "summary"]}
+      fields={["severity", "sourceObjectType", "status", "owner", "summary"]}
+      detailPath="/alerts"
     />
   );
 }

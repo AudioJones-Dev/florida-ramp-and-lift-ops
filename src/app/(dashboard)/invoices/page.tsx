@@ -7,7 +7,8 @@ export default function InvoicesPage() {
       title="Invoices"
       description="Invoice readiness placeholders. QuickBooks remains the future accounting ledger boundary."
       rows={mockInvoices}
-      fields={["invoiceNumber", "customer", "status", "amount", "approvalOwner"]}
+      fields={["invoiceNumber", "customerName", "status", "amount", "approvalOwner"]}
+      detailPath="/invoices"
     />
   );
 }
