@@ -1,0 +1,192 @@
+import {
+  AlertTriangle,
+  CheckSquare,
+  ClipboardList,
+  FileCheck2,
+  FileText,
+  HardHat,
+  MessageSquare
+} from "lucide-react";
+import {
+  mockAlerts,
+  mockApprovals,
+  mockCommunications,
+  mockContractorAssignments,
+  mockJobs
+} from "@/lib/mock-data";
+import type { ManualRecord } from "@/types/core";
+
+export type QueueKey =
+  | "documentation"
+  | "invoice-review"
+  | "approvals"
+  | "alerts"
+  | "contractor-assignments"
+  | "follow-up";
+
+export type QueueItem = ManualRecord & {
+  title: string;
+  detail: string;
+  owner: string;
+  status: string;
+  href: string;
+};
+
+export type QueueDefinition = {
+  key: QueueKey;
+  title: string;
+  description: string;
+  href: string;
+  ownerLabel: string;
+  emptyTitle: string;
+  emptyDescription: string;
+  icon: typeof ClipboardList;
+  items: QueueItem[];
+};
+
+const jobsNeedingDocumentation = mockJobs
+  .filter((job) =>
+    ["required", "missing", "submitted", "needs_review", "rejected", "held"].includes(
+      job.documentationStatus
+    )
+  )
+  .map((job) => ({
+    id: `queue-doc-${job.id}`,
+    title: `${job.jobNumber} - ${job.customerName}`,
+    detail: `${job.jobType}. ${job.invoiceReadiness}`,
+    owner: job.assignedTo === "Unassigned" ? "Office Admin" : job.assignedTo,
+    status: job.documentationStatus,
+    href: `/jobs/${job.id}`,
+    jobId: job.jobId
+  }));
+
+const jobsReadyForInvoiceReview = mockJobs
+  .filter((job) => job.status === "invoice_review" || job.invoiceReadiness.includes("Ready"))
+  .map((job) => ({
+    id: `queue-invoice-${job.id}`,
+    title: `${job.jobNumber} - ${job.customerName}`,
+    detail: job.invoiceReadiness,
+    owner: "Finance",
+    status: job.status,
+    href: `/jobs/${job.id}`,
+    jobId: job.jobId
+  }));
+
+const openApprovals = mockApprovals
+  .filter((approval) => ["requested", "held"].includes(approval.status))
+  .map((approval) => ({
+    id: `queue-approval-${approval.id}`,
+    title: approval.approvalType,
+    detail: approval.risk,
+    owner: approval.approver,
+    status: approval.status,
+    href: `/approvals/${approval.id}`,
+    approvalId: approval.approvalId
+  }));
+
+const activeAlerts = mockAlerts
+  .filter((alert) => !["resolved", "dismissed"].includes(alert.status))
+  .map((alert) => ({
+    id: `queue-alert-${alert.id}`,
+    title: alert.summary,
+    detail: `${alert.sourceObjectType}: ${alert.thresholdRule}`,
+    owner: alert.owner,
+    status: alert.status,
+    href: `/alerts/${alert.id}`,
+    severity: alert.severity
+  }));
+
+const contractorAssignments = mockContractorAssignments.map((assignment) => ({
+  id: `queue-assignment-${assignment.id}`,
+  title: assignment.job,
+  detail: `${assignment.scope}. Documentation: ${assignment.documentationStatus}`,
+  owner: "Dispatcher",
+  status: assignment.status.toLowerCase().replace(/\s+/g, "_"),
+  href: "/contractor",
+  assignmentId: assignment.id
+}));
+
+const communicationsRequiringFollowUp = mockCommunications
+  .filter((communication) => ["unanswered", "needs_review", "new"].includes(communication.status))
+  .map((communication) => ({
+    id: `queue-followup-${communication.id}`,
+    title: `${communication.contactName} - ${communication.sourceChannel}`,
+    detail: communication.summary,
+    owner: communication.followUpOwner,
+    status: communication.status,
+    href: `/communications/${communication.id}`,
+    communicationId: communication.communicationId
+  }));
+
+export const queueDefinitions: QueueDefinition[] = [
+  {
+    key: "documentation",
+    title: "Jobs Needing Documentation",
+    description: "Jobs blocked by required, missing, submitted, or review-needed proof-of-work.",
+    href: "/queues/documentation",
+    ownerLabel: "Responsible owner",
+    emptyTitle: "No documentation blockers",
+    emptyDescription: "No mock jobs currently require documentation attention.",
+    icon: FileCheck2,
+    items: jobsNeedingDocumentation
+  },
+  {
+    key: "invoice-review",
+    title: "Jobs Ready For Invoice Review",
+    description: "Jobs that have moved into invoice review or have invoice-ready documentation.",
+    href: "/queues/invoice-review",
+    ownerLabel: "Responsible owner",
+    emptyTitle: "No jobs ready for invoice review",
+    emptyDescription: "No mock jobs currently match invoice review criteria.",
+    icon: FileText,
+    items: jobsReadyForInvoiceReview
+  },
+  {
+    key: "approvals",
+    title: "Open Approvals",
+    description: "Human approval records that are requested or held.",
+    href: "/queues/approvals",
+    ownerLabel: "Approver",
+    emptyTitle: "No open approvals",
+    emptyDescription: "All mock approval records are resolved or inactive.",
+    icon: CheckSquare,
+    items: openApprovals
+  },
+  {
+    key: "alerts",
+    title: "Active Alerts",
+    description: "Persisted alerts that have not been resolved or dismissed.",
+    href: "/queues/alerts",
+    ownerLabel: "Owner",
+    emptyTitle: "No active alerts",
+    emptyDescription: "No persisted mock alerts require attention.",
+    icon: AlertTriangle,
+    items: activeAlerts
+  },
+  {
+    key: "contractor-assignments",
+    title: "Contractor Assignments",
+    description: "Current mock contractor assignment workload for contractor portal review.",
+    href: "/queues/contractor-assignments",
+    ownerLabel: "Responsible role",
+    emptyTitle: "No contractor assignments",
+    emptyDescription: "No mock contractor assignments are currently available.",
+    icon: HardHat,
+    items: contractorAssignments
+  },
+  {
+    key: "follow-up",
+    title: "Communications Requiring Follow-Up",
+    description: "Manual communication records that are new, unanswered, or need review.",
+    href: "/queues/follow-up",
+    ownerLabel: "Follow-up owner",
+    emptyTitle: "No communications requiring follow-up",
+    emptyDescription: "No mock communication records currently need follow-up.",
+    icon: MessageSquare,
+    items: communicationsRequiringFollowUp
+  }
+];
+
+export function getQueueDefinition(key: QueueKey) {
+  return queueDefinitions.find((queue) => queue.key === key);
+}

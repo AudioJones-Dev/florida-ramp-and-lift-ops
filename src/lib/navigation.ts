@@ -8,6 +8,7 @@ import {
   Gauge,
   HardHat,
   Home,
+  ListChecks,
   MessageSquare,
   Settings,
   Truck,
@@ -60,6 +61,12 @@ export const navigationItems: NavigationItem[] = [
     label: "Dispatch",
     icon: Truck,
     roles: ["dispatcher", "office_admin", "support_admin", "owner"]
+  },
+  {
+    href: "/queues",
+    label: "Queues",
+    icon: ListChecks,
+    roles: internalRoles
   },
   {
     href: "/contractor",
