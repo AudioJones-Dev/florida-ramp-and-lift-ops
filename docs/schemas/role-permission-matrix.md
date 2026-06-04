@@ -25,28 +25,49 @@ Permissions are product-level planning rules, not implementation code.
 ## Roles
 
 - Owner
-- Executive
+- Support Admin
 - Office Admin
 - Dispatcher
-- Installer
+- Finance
 - Lead Installer
 - Contractor
-- Finance
+- Client
 - AI Agent
+
+Optional future/narrower roles:
+
+- Executive
+- Installer
 
 ## MVP Permission Matrix
 
 | Role | Read | Write | Approve | Escalate | Dispatch | Invoice | Override |
 |---|---|---|---|---|---|---|---|
 | Owner | All records | All records except raw secrets | All business approvals | All alerts/tasks | Approve/override | Final client invoice authority | Full audited override |
+| Support Admin | System configuration, schema/admin views, agent logs, workflow QA, non-secret operational records | Configuration drafts, workflow settings, data cleanup, agent/prompt version notes | No client invoice release unless delegated | System/workflow/data quality alerts | Configure/review only | Configure/review only; no final client release unless delegated | System/config override with audit |
 | Executive | Executive dashboards, reports, alerts | Executive notes/tasks | Strategic approvals if assigned | Yes | No direct dispatch by default | Read financial summaries | No unless assigned |
 | Office Admin | Operations, customers, jobs, communications, docs | Intake, jobs, communications, tasks | Intake/completion if assigned | Yes | Prepare/approve if assigned | Prepare, not final client release | Limited audited override |
 | Dispatcher | Jobs, dispatch, contractors, locations, safety flags | Dispatch drafts, crew assignments, job scheduling | Dispatch approval if assigned | Dispatch/safety alerts | Prepare and send after approval | No | Route/crew override with reason |
 | Installer | Assigned jobs, dispatch, safety, documentation | Field notes, job submissions, documentation | No approval authority | Safety/job exceptions | View assigned dispatch | No | No |
 | Lead Installer | Assigned crew jobs, dispatch, safety, documentation | Field notes, completion packages, crew notes | No financial approval | Safety/job exceptions | Confirm receipt/status | No | No |
 | Contractor | Own jobs, own documentation, own payout summaries when released | Own submissions and notes | No approval authority | Own job exceptions | View assigned dispatch | View own approved payout info | No |
+| Client | Own customer-facing jobs, estimates, invoices, documents when released | Limited profile/contact updates future | No internal approval authority | Own service/invoice issues future | No | Own invoices only when released | No |
 | Finance | Invoices, payouts, approved jobs, financial alerts | Invoice drafts, payout records, review notes | Contractor billing; client invoices only if delegated future role | Financial alerts | No | Prepare/review; Michael final MVP release | Financial override with reason |
 | AI Agent | Records explicitly granted to agent role | Drafts, suggestions, flags, summaries | No final approval | Recommend escalation | Suggest only | Suggest/review only | No |
+
+## Access Control Doctrine
+
+The platform should use role-based access plus object-level permissions.
+
+Role controls what type of actions a user can perform. Object ownership controls which records they can see.
+
+Examples:
+
+- Contractor can read only jobs assigned to them.
+- Client can read only their own jobs and invoices after release.
+- Michael Keegan can read and approve everything.
+- Audio Jones / AJ Digital can configure the system as Support Admin but should not release client invoices unless delegated.
+- AI Agent can prepare drafts, summaries, alerts, and recommendations but cannot approve sensitive actions.
 
 ## Object-Level Permission Notes
 

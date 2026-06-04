@@ -18,6 +18,7 @@ This repo remains documentation-first. No app framework, Firebase, cloud infrast
 
 | Folder | Purpose |
 |---|---|
+| `architecture/` | Platform architecture decisions, access model, and implementation direction. |
 | `product-roadmaps/` | Product sequencing for each FLR operating domain. |
 | `prds/` | Product requirement documents for the domain systems and dashboard. |
 | `schemas/` | Human-readable schema planning docs that complement root-level JSON Schemas. |
