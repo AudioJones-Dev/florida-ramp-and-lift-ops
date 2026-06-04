@@ -10,5 +10,6 @@ These documents are planning-level specifications. They do not implement app cod
 - `event-driven-architecture.md` defines how state transitions produce events consumed by dashboards, agents, alerts, approvals, audit logs, portals, and future automations.
 - `hubspot-crm-integration-model.md` defines HubSpot as the CRM/intake layer while preserving FLR as operational source of truth and QuickBooks as accounting ledger.
 - `implementation-readiness-gate.md` defines the required checkpoint before moving from docs/spec-first architecture into app scaffolding or implementation.
+- `mvp-definition.md` defines the exact MVP scope, in/out boundaries, portals, workflows, approval queues, and exclusions before app scaffolding begins.
 - `saas-portal-access-model.md` defines the one-app portal architecture, stakeholder access model, recommended stack, MVP build order, and role-based access doctrine.
 - `worksie-integration-strategy.md` defines Worksie-style capabilities as embedded FLR operational modules for MVP, not a standalone OS.
