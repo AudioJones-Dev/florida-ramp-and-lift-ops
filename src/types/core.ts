@@ -195,6 +195,7 @@ export type Alert = ManualRecord & {
 
 export type Approval = ManualRecord & {
   approvalId: string;
+  approvalCategory: string;
   approvalType: string;
   relatedObjectType: string;
   relatedObjectId: string;
@@ -202,5 +203,8 @@ export type Approval = ManualRecord & {
   requestedBy: string;
   approver: string;
   risk: string;
+  targetTransition: string;
+  evidenceSummary: string;
+  blockingRule: string;
   decisionNotes: string;
 };

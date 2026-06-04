@@ -354,6 +354,7 @@ export const mockApprovals: Approval[] = [
   {
     id: "approval_001",
     approvalId: "approval_001",
+    approvalCategory: "Invoice approval",
     approvalType: "client_invoice_release",
     relatedObjectType: "Invoice",
     relatedObjectId: "invoice_002",
@@ -361,11 +362,15 @@ export const mockApprovals: Approval[] = [
     requestedBy: "Finance",
     approver: "Michael Keegan",
     risk: "Client-facing financial action",
+    targetTransition: "Invoice approved -> sent",
+    evidenceSummary: "Invoice draft is ready for final human release review.",
+    blockingRule: "Client-facing invoices require Michael Keegan approval in MVP.",
     decisionNotes: "Final release requires explicit human approval."
   },
   {
     id: "approval_002",
     approvalId: "approval_002",
+    approvalCategory: "Documentation approval",
     approvalType: "documentation_exception",
     relatedObjectType: "DocumentationArtifact",
     relatedObjectId: "documentation_001",
@@ -373,11 +378,15 @@ export const mockApprovals: Approval[] = [
     requestedBy: "Office Admin",
     approver: "Office Admin",
     risk: "Missing photo evidence",
+    targetTransition: "Documentation submitted -> approved",
+    evidenceSummary: "Install photos were submitted but the set is incomplete.",
+    blockingRule: "Billing/safety evidence must be reviewed by a human before approval.",
     decisionNotes: "Hold until required photo set is complete."
   },
   {
     id: "approval_003",
     approvalId: "approval_003",
+    approvalCategory: "Payout approval",
     approvalType: "contractor_payout_review",
     relatedObjectType: "ContractorPayout",
     relatedObjectId: "mock_payout_batch_001",
@@ -385,7 +394,26 @@ export const mockApprovals: Approval[] = [
     requestedBy: "Finance",
     approver: "Finance",
     risk: "Payment-adjacent review",
+    targetTransition: "ContractorPayout needs_review -> approved",
+    evidenceSummary: "Mock payout batch requires finance review before contractor release visibility.",
+    blockingRule: "Contractor payouts cannot be approved without linked jobs and calculation basis.",
     decisionNotes: "Payout review only. No payment processing in MVP scaffold."
+  },
+  {
+    id: "approval_004",
+    approvalId: "approval_004",
+    approvalCategory: "Job completion approval",
+    approvalType: "job_completion_review",
+    relatedObjectType: "Job",
+    relatedObjectId: "job_001",
+    status: "requested",
+    requestedBy: "Office Admin",
+    approver: "Office Admin",
+    risk: "Job cannot move to billing until completion evidence is accepted.",
+    targetTransition: "Job documentation_review -> approved",
+    evidenceSummary: "Completion notes are present. Required install photos still need review.",
+    blockingRule: "Job completion approval requires documentation review before invoice readiness.",
+    decisionNotes: "Approve only after proof-of-work evidence is complete."
   }
 ];
 

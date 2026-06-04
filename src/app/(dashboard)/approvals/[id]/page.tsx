@@ -12,6 +12,7 @@ export default async function ApprovalDetailPage({ params }: { params: Promise<{
       backHref="/approvals"
       fields={[
         "approvalId",
+        "approvalCategory",
         "approvalType",
         "relatedObjectType",
         "relatedObjectId",
@@ -19,6 +20,9 @@ export default async function ApprovalDetailPage({ params }: { params: Promise<{
         "requestedBy",
         "approver",
         "risk",
+        "targetTransition",
+        "evidenceSummary",
+        "blockingRule",
         "decisionNotes"
       ]}
     />

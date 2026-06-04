@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 const variants = {
   default: "bg-[var(--primary)] text-[var(--primary-foreground)] hover:bg-[#145d50]",
   secondary: "bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:bg-[#d9ece5]",
+  destructive: "bg-[var(--destructive)] text-[var(--destructive-foreground)] hover:bg-[#9f1f16]",
   ghost: "hover:bg-[var(--muted)]"
 };
 
