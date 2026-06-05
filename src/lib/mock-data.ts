@@ -6,6 +6,7 @@ import type {
   Customer,
   DocumentationArtifact,
   Invoice,
+  Lead,
   Job,
   ContractorAssignment,
   DemoScenario
@@ -46,6 +47,113 @@ export const mockQueues = [
       { id: "inv-1", title: "Job FLR-1042", detail: "Completion notes received, photo set incomplete" },
       { id: "inv-2", title: "Job FLR-1048", detail: "Ready for human invoice review" }
     ]
+  }
+];
+
+export const mockLeads: Lead[] = [
+  {
+    id: "lead_001",
+    leadId: "lead_001",
+    customerId: "customer_001",
+    contactName: "M. Reynolds",
+    leadType: "Ramp install",
+    status: "converted",
+    source: "Manual phone intake",
+    owner: "Office Admin",
+    nextStep: "Review documentation and move job toward invoice readiness.",
+    relatedCommunicationId: "communication_001",
+    notes: "Converted into job FLR-1042."
+  },
+  {
+    id: "lead_002",
+    leadId: "lead_002",
+    customerId: "customer_002",
+    contactName: "WilScot account",
+    leadType: "Commercial ramp takedown",
+    status: "converted",
+    source: "Manual commercial intake",
+    owner: "Office Admin",
+    nextStep: "Finance review before client-facing invoice release.",
+    relatedCommunicationId: "communication_002",
+    notes: "Converted into job FLR-1048."
+  },
+  {
+    id: "lead_003",
+    leadId: "lead_003",
+    customerId: "customer_003",
+    contactName: "S. Patel",
+    leadType: "Ramp estimate",
+    status: "estimate_needed",
+    source: "Website/manual lead",
+    owner: "Office Admin",
+    nextStep: "Call back and schedule estimate.",
+    relatedCommunicationId: "communication_003",
+    notes: "Lead exists to validate intake before HubSpot sync."
+  },
+  {
+    id: "lead_004",
+    leadId: "lead_004",
+    customerId: "customer_004",
+    contactName: "A. Martin",
+    leadType: "Residential ramp install",
+    status: "converted",
+    source: "Demo Scenario 1",
+    owner: "Dispatcher",
+    nextStep: "Contractor acceptance and field documentation.",
+    relatedCommunicationId: "communication_004",
+    notes: "Demo lead converted into residential ramp install job."
+  },
+  {
+    id: "lead_005",
+    leadId: "lead_005",
+    customerId: "customer_005",
+    contactName: "WilScot coordinator",
+    leadType: "Commercial service call",
+    status: "converted",
+    source: "Demo Scenario 2",
+    owner: "Office Admin",
+    nextStep: "Review closeout documentation.",
+    relatedCommunicationId: "communication_005",
+    notes: "Commercial account request converted into service job."
+  },
+  {
+    id: "lead_006",
+    leadId: "lead_006",
+    customerId: "customer_006",
+    contactName: "D. Nguyen",
+    leadType: "VPL installation",
+    status: "qualified",
+    source: "Demo Scenario 3",
+    owner: "Dispatcher",
+    nextStep: "Confirm specialized equipment before dispatch-ready state.",
+    relatedCommunicationId: "communication_006",
+    notes: "Qualified specialized install lead."
+  },
+  {
+    id: "lead_007",
+    leadId: "lead_007",
+    customerId: "customer_007",
+    contactName: "C. Brooks",
+    leadType: "Ramp takedown",
+    status: "converted",
+    source: "Demo Scenario 4",
+    owner: "Office Admin",
+    nextStep: "Recover missing after photos.",
+    relatedCommunicationId: "communication_007",
+    notes: "Lead converted but closeout is blocked by documentation."
+  },
+  {
+    id: "lead_008",
+    leadId: "lead_008",
+    customerId: "customer_008",
+    contactName: "Facilities manager",
+    leadType: "Commercial ramp install",
+    status: "converted",
+    source: "Demo Scenario 5",
+    owner: "Finance",
+    nextStep: "Michael invoice release approval.",
+    relatedCommunicationId: "communication_008",
+    notes: "Commercial install is ready for invoice approval."
   }
 ];
 
@@ -161,6 +269,8 @@ export const mockJobs: Job[] = [
     scheduledFor: "Today",
     assignedTo: "Lead Installer A",
     documentationStatus: "needs_review",
+    invoiceReadinessStatus: "blocked",
+    invoiceReadyForReview: false,
     invoiceReadiness: "Blocked by missing install photos",
     notes: "Completion notes received. Photos need human review."
   },
@@ -176,6 +286,8 @@ export const mockJobs: Job[] = [
     scheduledFor: "This week",
     assignedTo: "Senior Lead B",
     documentationStatus: "approved",
+    invoiceReadinessStatus: "ready_for_review",
+    invoiceReadyForReview: true,
     invoiceReadiness: "Ready for human invoice review",
     notes: "Do not release client-facing invoice without Michael approval."
   },
@@ -191,6 +303,8 @@ export const mockJobs: Job[] = [
     scheduledFor: "Tomorrow",
     assignedTo: "Unassigned",
     documentationStatus: "required",
+    invoiceReadinessStatus: "not_ready",
+    invoiceReadyForReview: false,
     invoiceReadiness: "Not ready",
     notes: "Dispatch assignment still pending."
   },
@@ -206,6 +320,8 @@ export const mockJobs: Job[] = [
     scheduledFor: "Today",
     assignedTo: "Lead Installer A",
     documentationStatus: "required",
+    invoiceReadinessStatus: "not_ready",
+    invoiceReadyForReview: false,
     invoiceReadiness: "Not ready until completion documentation is submitted",
     notes: "Scenario 1: assigned and ready for contractor acceptance."
   },
@@ -221,6 +337,8 @@ export const mockJobs: Job[] = [
     scheduledFor: "Today",
     assignedTo: "Senior Lead B",
     documentationStatus: "submitted",
+    invoiceReadinessStatus: "needs_review",
+    invoiceReadyForReview: false,
     invoiceReadiness: "Waiting on documentation review",
     notes: "Scenario 2: service call underway with submitted notes."
   },
@@ -236,6 +354,8 @@ export const mockJobs: Job[] = [
     scheduledFor: "Tomorrow",
     assignedTo: "Lead Installer A",
     documentationStatus: "required",
+    invoiceReadinessStatus: "not_ready",
+    invoiceReadyForReview: false,
     invoiceReadiness: "Not ready until install completion",
     notes: "Scenario 3: VPL install scheduled and preparing dispatch."
   },
@@ -251,6 +371,8 @@ export const mockJobs: Job[] = [
     scheduledFor: "Yesterday",
     assignedTo: "Helper C",
     documentationStatus: "missing",
+    invoiceReadinessStatus: "blocked",
+    invoiceReadyForReview: false,
     invoiceReadiness: "Blocked by missing after photos",
     notes: "Scenario 4: job is blocked by missing proof-of-work."
   },
@@ -266,6 +388,8 @@ export const mockJobs: Job[] = [
     scheduledFor: "Completed this week",
     assignedTo: "Senior Lead B",
     documentationStatus: "approved",
+    invoiceReadinessStatus: "ready_for_review",
+    invoiceReadyForReview: true,
     invoiceReadiness: "Ready for Michael approval",
     notes: "Scenario 5: complete and ready for client-facing invoice approval."
   }
@@ -1007,6 +1131,7 @@ export const mockContractorAssignments: ContractorAssignment[] = [
 ];
 
 export const coreRecordLookups = {
+  leads: (id: string) => mockLeads.find((record) => record.id === id),
   customers: (id: string) => mockCustomers.find((record) => record.id === id),
   jobs: (id: string) => mockJobs.find((record) => record.id === id),
   contractors: (id: string) => mockContractors.find((record) => record.id === id),
@@ -1023,6 +1148,7 @@ export const demoScenarios: DemoScenario[] = [
     title: "Residential Ramp Install",
     summary: "Assigned residential ramp job moving from dispatch into contractor acceptance and documentation.",
     stage: "Assignment",
+    leadId: "lead_004",
     customerId: "customer_004",
     jobId: "job_004",
     contractorId: "contractor_001",
@@ -1046,6 +1172,7 @@ export const demoScenarios: DemoScenario[] = [
     title: "WilScot Service Call",
     summary: "Commercial service call with submitted documentation and follow-up review.",
     stage: "Documentation Review",
+    leadId: "lead_005",
     customerId: "customer_005",
     jobId: "job_005",
     contractorId: "contractor_002",
@@ -1069,6 +1196,7 @@ export const demoScenarios: DemoScenario[] = [
     title: "VPL Installation",
     summary: "Specialized VPL installation scheduled with equipment confirmation required before dispatch-ready.",
     stage: "Scheduled",
+    leadId: "lead_006",
     customerId: "customer_006",
     jobId: "job_006",
     contractorId: "contractor_001",
@@ -1092,6 +1220,7 @@ export const demoScenarios: DemoScenario[] = [
     title: "Contractor Documentation Missing",
     summary: "Completed field work blocked because required after photos are missing.",
     stage: "Blocked",
+    leadId: "lead_007",
     customerId: "customer_007",
     jobId: "job_007",
     contractorId: "contractor_003",
@@ -1115,6 +1244,7 @@ export const demoScenarios: DemoScenario[] = [
     title: "Invoice Ready For Approval",
     summary: "Commercial install has approved documentation and is waiting for Michael invoice release approval.",
     stage: "Invoice Review",
+    leadId: "lead_008",
     customerId: "customer_008",
     jobId: "job_008",
     contractorId: "contractor_002",

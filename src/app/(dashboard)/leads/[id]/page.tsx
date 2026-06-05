@@ -4,47 +4,49 @@ import { RecordDetail } from "@/components/record-detail";
 import { Button } from "@/components/ui/button";
 import { coreRecordLookups } from "@/lib/mock-data";
 
-export default async function InvoiceDetailPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function LeadDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const invoice = coreRecordLookups.invoices(id);
+  const lead = coreRecordLookups.leads(id);
 
   return (
     <RecordDetail
-      title="Invoice detail"
-      description="Manual invoice readiness record. QuickBooks remains the future accounting ledger boundary."
-      record={invoice}
-      backHref="/invoices"
+      title="Lead detail"
+      description="Manual lead record for validating intake, qualification, estimate, and conversion states before HubSpot sync."
+      record={lead}
+      backHref="/leads"
       fields={[
-        "invoiceId",
-        "invoiceNumber",
-        "invoiceClass",
-        "customerName",
+        "leadId",
+        "customerId",
+        "contactName",
+        "leadType",
         "status",
-        "amount",
-        "approvalOwner",
-        "quickBooksReference",
-        "readinessSummary"
+        "source",
+        "owner",
+        "nextStep",
+        "relatedCommunicationId",
+        "notes"
       ]}
     >
-      {invoice ? (
+      {lead ? (
         <section className="mt-6 rounded-md border bg-[var(--background)] p-4">
           <div className="text-xs font-semibold uppercase text-[var(--muted-foreground)]">
-            Invoice release boundary
+            Intake handoff
           </div>
           <p className="mt-2 text-sm leading-6 text-[var(--muted-foreground)]">
-            Client-facing invoice release remains a human approval action. For MVP, Michael
-            Keegan is the final release authority. QuickBooks is not connected in this prototype.
+            This lead can be reviewed as a CRM intake record today, then mapped to HubSpot later.
+            Conversion should create or link a customer, job, and communication record before any
+            operational workflow starts.
           </p>
           <div className="mt-4 flex flex-col gap-2 sm:flex-row">
             <Button variant="secondary" asChild>
-              <Link href="/queues/invoice-review">
-                Review invoice queue
+              <Link href={`/customers/${lead.customerId}`}>
+                View customer
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
             <Button variant="secondary" asChild>
-              <Link href="/queues/approvals">
-                Open approvals
+              <Link href={`/communications/${lead.relatedCommunicationId}`}>
+                View communication
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>

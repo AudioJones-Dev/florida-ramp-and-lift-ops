@@ -96,7 +96,7 @@ export const dashboardIntelligenceCards: IntelligenceCard[] = [
   {
     title: "Jobs Ready For Invoice Review",
     value: invoiceReviewReady,
-    detail: "Jobs that entered invoice review or have invoice-ready documentation.",
+    detail: "Jobs with explicit invoice-ready flags. Finance reviews first; Michael approves client release.",
     severity: invoiceReviewReady > 0 ? "medium" : "low",
     priority: invoiceReviewReady > 0 ? "priority" : "monitor",
     href: "/queues/invoice-review",
@@ -105,7 +105,7 @@ export const dashboardIntelligenceCards: IntelligenceCard[] = [
   {
     title: "Open Approvals",
     value: openApprovals,
-    detail: "Approval records in requested or held state.",
+    detail: "Approval records waiting for a human decision and decision note.",
     severity: openApprovals > 0 ? "high" : "low",
     priority: openApprovals > 0 ? "urgent" : "monitor",
     href: "/queues/approvals",
@@ -123,7 +123,7 @@ export const dashboardIntelligenceCards: IntelligenceCard[] = [
   {
     title: "Contractor Assignment Issues",
     value: contractorAssignmentIssues,
-    detail: "Assignments still pending acceptance, held, or otherwise needing dispatch attention.",
+    detail: "Assignments needing dispatch review for acceptance, PPE, safety, or field documentation.",
     severity: contractorAssignmentIssues > 0 ? "medium" : "low",
     priority: contractorAssignmentIssues > 0 ? "priority" : "monitor",
     href: "/queues/contractor-assignments",
@@ -132,7 +132,7 @@ export const dashboardIntelligenceCards: IntelligenceCard[] = [
   {
     title: "Follow-Ups Required",
     value: followUpsRequired,
-    detail: "Communications that are new, unanswered, or need review.",
+    detail: "Communications where an owner must respond or review before work stalls.",
     severity: followUpsRequired > 0 ? "high" : "low",
     priority: followUpsRequired > 0 ? "urgent" : "monitor",
     href: "/queues/follow-up",
@@ -185,7 +185,7 @@ export const revenueReadiness = [
   {
     label: "Invoice review ready",
     value: invoiceReviewReady,
-    detail: "Jobs that can move toward invoice review.",
+    detail: "Jobs with explicit invoice readiness flags ready for finance packet review.",
     href: "/queues/invoice-review"
   },
   {
@@ -212,6 +212,31 @@ export const executiveSummary = {
   detail:
     "Deterministic summary derived from mock jobs, invoices, approvals, alerts, communications, and queue definitions."
 };
+
+export const michaelsNextActions = [
+  {
+    label: "Approve or hold client invoices",
+    value: mockApprovals.filter(
+      (approval) =>
+        approval.approvalType === "client_invoice_release" &&
+        ["requested", "held"].includes(approval.status)
+    ).length,
+    detail: "Michael reviews client-facing invoice release requests before anything is sent.",
+    href: "/queues/approvals"
+  },
+  {
+    label: "Clear invoice-ready jobs",
+    value: invoiceReviewReady,
+    detail: "Finance should prepare packets so Michael only reviews complete invoice candidates.",
+    href: "/queues/invoice-review"
+  },
+  {
+    label: "Resolve high-priority blockers",
+    value: getHighPriorityCount(),
+    detail: "High alerts, blocked documentation, and unanswered follow-ups should be assigned or escalated.",
+    href: "/queues"
+  }
+];
 
 function getInvoiceBacklogCount() {
   return mockInvoices.filter((invoice) =>
@@ -250,7 +275,7 @@ function getExecutiveSummaryHeadline() {
 export const dashboardBusinessRules = [
   "Jobs in documentation_review, invoice_review, on_hold, incomplete, or return_needed count as requiring attention.",
   "Jobs with required, missing, submitted, needs_review, rejected, or held documentation count as documentation blockers.",
-  "Jobs with status invoice_review or invoiceReadiness containing Ready count as ready for invoice review.",
+  "Jobs with invoiceReadyForReview true or invoiceReadinessStatus ready_for_review count as ready for invoice review.",
   "Approvals in requested or held states count as open approvals.",
   "Alerts not resolved or dismissed count as active alerts.",
   "Communications in new, unanswered, or needs_review states count as requiring follow-up.",

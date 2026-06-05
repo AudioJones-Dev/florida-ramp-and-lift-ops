@@ -10,6 +10,7 @@ import {
   dashboardIntelligenceCards,
   dashboardKpis,
   executiveSummary,
+  michaelsNextActions,
   operationalHealth,
   revenueReadiness
 } from "@/lib/dashboard-intelligence";
@@ -44,6 +45,34 @@ export default function DashboardPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="space-y-4">
+        <div>
+          <h2 className="text-lg font-semibold">Michael&apos;s Next Actions</h2>
+          <p className="mt-1 text-sm text-[var(--muted-foreground)]">
+            The top mock review actions before operations are clear.
+          </p>
+        </div>
+        <div className="grid gap-4 md:grid-cols-3">
+          {michaelsNextActions.map((item) => (
+            <article key={item.label} className="rounded-lg border bg-white p-5 shadow-sm">
+              <div className="text-sm font-medium text-[var(--muted-foreground)]">
+                {item.label}
+              </div>
+              <div className="mt-2 text-3xl font-semibold">{item.value}</div>
+              <p className="mt-2 min-h-14 text-sm leading-6 text-[var(--muted-foreground)]">
+                {item.detail}
+              </p>
+              <Button className="mt-5 w-full" variant="secondary" asChild>
+                <Link href={item.href}>
+                  Review
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+            </article>
+          ))}
         </div>
       </section>
 

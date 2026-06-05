@@ -1,6 +1,7 @@
 "use client";
 
 import { Check, CirclePause, ClipboardList, FileCheck2, MapPin, ShieldCheck, X } from "lucide-react";
+import { DocumentationUploadPlaceholder } from "@/components/documentation-upload-placeholder";
 import { useMemo, useState } from "react";
 import { StatusBadge } from "@/components/status-badge";
 import { Badge } from "@/components/ui/badge";
@@ -145,6 +146,10 @@ function AssignmentCard({
         <p className="mt-2 text-sm leading-6">
           {assignment.siteContact}. {assignment.notes}
         </p>
+      </div>
+
+      <div className="mt-4">
+        <DocumentationUploadPlaceholder label="Field photo/document placeholder" />
       </div>
 
       <div className="mt-4 grid gap-2 sm:grid-cols-3">

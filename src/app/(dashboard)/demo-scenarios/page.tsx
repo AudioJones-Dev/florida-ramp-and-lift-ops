@@ -46,6 +46,8 @@ export default function DemoScenariosPage() {
               <StatusBadge value={scenario.stage.toLowerCase().replace(/\s+/g, "_")} />
             </div>
             <div className="mt-5 grid gap-2 sm:grid-cols-2">
+              <TraceLink href={`/demo-scenarios/${scenario.id}`} label="Scenario detail" />
+              <TraceLink href={`/leads/${scenario.leadId}`} label="Lead" />
               <TraceLink href={`/customers/${scenario.customerId}`} label="Customer" />
               <TraceLink href={`/jobs/${scenario.jobId}`} label="Job" />
               <TraceLink href="/contractor" label="Contractor assignment" />

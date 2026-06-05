@@ -53,7 +53,7 @@ const jobsNeedingDocumentation = mockJobs
   .map((job) => ({
     id: `queue-doc-${job.id}`,
     title: `${job.jobNumber} - ${job.customerName}`,
-    detail: `${job.jobType}. ${job.invoiceReadiness}`,
+    detail: `Action: collect or review proof-of-work for ${job.jobType}. ${job.invoiceReadiness}`,
     owner: job.assignedTo === "Unassigned" ? "Office Admin" : job.assignedTo,
     status: job.documentationStatus,
     href: `/jobs/${job.id}`,
@@ -61,11 +61,11 @@ const jobsNeedingDocumentation = mockJobs
   }));
 
 const jobsReadyForInvoiceReview = mockJobs
-  .filter((job) => job.status === "invoice_review" || job.invoiceReadiness.includes("Ready"))
+  .filter((job) => job.invoiceReadyForReview || job.invoiceReadinessStatus === "ready_for_review")
   .map((job) => ({
     id: `queue-invoice-${job.id}`,
     title: `${job.jobNumber} - ${job.customerName}`,
-    detail: job.invoiceReadiness,
+    detail: `Action: finance review packet, then route client-facing release to Michael. ${job.invoiceReadiness}`,
     owner: "Finance",
     status: job.status,
     href: `/jobs/${job.id}`,
@@ -77,7 +77,7 @@ const openApprovals = mockApprovals
   .map((approval) => ({
     id: `queue-approval-${approval.id}`,
     title: approval.approvalType,
-    detail: approval.risk,
+    detail: `Action: ${approval.approver} must approve, hold, or reject with notes. ${approval.risk}`,
     owner: approval.approver,
     status: approval.status,
     href: `/approvals/${approval.id}`,
@@ -89,7 +89,7 @@ const activeAlerts = mockAlerts
   .map((alert) => ({
     id: `queue-alert-${alert.id}`,
     title: alert.summary,
-    detail: `${alert.sourceObjectType}: ${alert.thresholdRule}`,
+    detail: `Action: ${alert.owner} should acknowledge or resolve. ${alert.sourceObjectType}: ${alert.thresholdRule}`,
     owner: alert.owner,
     status: alert.status,
     href: `/alerts/${alert.id}`,
@@ -99,7 +99,7 @@ const activeAlerts = mockAlerts
 const contractorAssignments = mockContractorAssignments.map((assignment) => ({
   id: `queue-assignment-${assignment.id}`,
   title: `${assignment.jobNumber} - ${assignment.jobTitle}`,
-  detail: `${assignment.scope}. Documentation: ${assignment.documentationStatus}`,
+  detail: `Action: verify acceptance, PPE, and required documentation. ${assignment.scope}. Documentation: ${assignment.documentationStatus}`,
   owner: "Dispatcher",
   status: assignment.status,
   href: "/contractor",
@@ -111,7 +111,7 @@ const communicationsRequiringFollowUp = mockCommunications
   .map((communication) => ({
     id: `queue-followup-${communication.id}`,
     title: `${communication.contactName} - ${communication.sourceChannel}`,
-    detail: communication.summary,
+    detail: `Action: ${communication.followUpOwner} should respond or review. ${communication.summary}`,
     owner: communication.followUpOwner,
     status: communication.status,
     href: `/communications/${communication.id}`,
@@ -122,7 +122,7 @@ export const queueDefinitions: QueueDefinition[] = [
   {
     key: "documentation",
     title: "Jobs Needing Documentation",
-    description: "Jobs blocked by required, missing, submitted, or review-needed proof-of-work.",
+    description: "Action queue for collecting, reviewing, or rejecting proof-of-work before completion and billing.",
     href: "/queues/documentation",
     ownerLabel: "Responsible owner",
     emptyTitle: "No documentation blockers",
@@ -133,7 +133,7 @@ export const queueDefinitions: QueueDefinition[] = [
   {
     key: "invoice-review",
     title: "Jobs Ready For Invoice Review",
-    description: "Jobs that have moved into invoice review or have invoice-ready documentation.",
+    description: "Action queue for finance packet review before Michael approves any client-facing invoice release.",
     href: "/queues/invoice-review",
     ownerLabel: "Responsible owner",
     emptyTitle: "No jobs ready for invoice review",
@@ -144,7 +144,7 @@ export const queueDefinitions: QueueDefinition[] = [
   {
     key: "approvals",
     title: "Open Approvals",
-    description: "Human approval records that are requested or held.",
+    description: "Human approval records that require approve, hold, or reject decisions with notes.",
     href: "/queues/approvals",
     ownerLabel: "Approver",
     emptyTitle: "No open approvals",
@@ -155,7 +155,7 @@ export const queueDefinitions: QueueDefinition[] = [
   {
     key: "alerts",
     title: "Active Alerts",
-    description: "Persisted alerts that have not been resolved or dismissed.",
+    description: "Persisted alerts that need ownership, acknowledgement, escalation, or resolution.",
     href: "/queues/alerts",
     ownerLabel: "Owner",
     emptyTitle: "No active alerts",
@@ -166,7 +166,7 @@ export const queueDefinitions: QueueDefinition[] = [
   {
     key: "contractor-assignments",
     title: "Contractor Assignments",
-    description: "Current mock contractor assignment workload for contractor portal review.",
+    description: "Dispatch review queue for assignment acceptance, PPE requirements, and field documentation status.",
     href: "/queues/contractor-assignments",
     ownerLabel: "Responsible role",
     emptyTitle: "No contractor assignments",
@@ -177,7 +177,7 @@ export const queueDefinitions: QueueDefinition[] = [
   {
     key: "follow-up",
     title: "Communications Requiring Follow-Up",
-    description: "Manual communication records that are new, unanswered, or need review.",
+    description: "Follow-up queue for missed, new, or review-needed communications before leads and jobs stall.",
     href: "/queues/follow-up",
     ownerLabel: "Follow-up owner",
     emptyTitle: "No communications requiring follow-up",

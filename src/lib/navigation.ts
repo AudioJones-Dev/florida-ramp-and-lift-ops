@@ -13,6 +13,7 @@ import {
   MessageSquare,
   Settings,
   Truck,
+  UserRoundSearch,
   Users
 } from "lucide-react";
 import type { MockRoleId } from "@/lib/roles";
@@ -82,6 +83,7 @@ export const navigationItems: NavigationItem[] = [
     roles: ["contractor", "lead_installer", "support_admin", "owner"]
   },
   { href: "/customers", label: "Customers", icon: Users, roles: internalRoles },
+  { href: "/leads", label: "Leads", icon: UserRoundSearch, roles: internalRoles },
   { href: "/jobs", label: "Jobs", icon: BriefcaseBusiness, roles: internalRoles },
   { href: "/contractors", label: "Contractors", icon: HardHat, roles: internalRoles },
   { href: "/communications", label: "Communications", icon: MessageSquare, roles: internalRoles },

@@ -1,4 +1,5 @@
 export type CoreObjectKind =
+  | "Lead"
   | "Customer"
   | "Job"
   | "Contractor"
@@ -10,6 +11,16 @@ export type CoreObjectKind =
 
 export type CustomerStatus = "prospect" | "active" | "on_hold" | "inactive" | "archived";
 export type CustomerType = "residential" | "commercial";
+
+export type LeadStatus =
+  | "new"
+  | "contacted"
+  | "qualified"
+  | "estimate_needed"
+  | "estimate_sent"
+  | "approved"
+  | "converted"
+  | "lost";
 
 export type JobStatus =
   | "pending"
@@ -92,11 +103,26 @@ export type ApprovalStatus =
   | "expired"
   | "superseded";
 
-export type RecordValue = string | number | string[];
+export type InvoiceReadinessStatus = "not_ready" | "blocked" | "needs_review" | "ready_for_review";
+
+export type RecordValue = string | number | boolean | string[];
 
 export type ManualRecord = {
   id: string;
   [key: string]: RecordValue;
+};
+
+export type Lead = ManualRecord & {
+  leadId: string;
+  customerId: string;
+  contactName: string;
+  leadType: string;
+  status: LeadStatus;
+  source: string;
+  owner: string;
+  nextStep: string;
+  relatedCommunicationId: string;
+  notes: string;
 };
 
 export type Customer = ManualRecord & {
@@ -122,6 +148,8 @@ export type Job = ManualRecord & {
   scheduledFor: string;
   assignedTo: string;
   documentationStatus: DocumentationStatus;
+  invoiceReadinessStatus: InvoiceReadinessStatus;
+  invoiceReadyForReview: boolean;
   invoiceReadiness: string;
   notes: string;
 };
@@ -242,6 +270,7 @@ export type DemoScenario = {
   title: string;
   summary: string;
   stage: string;
+  leadId: string;
   customerId: string;
   jobId: string;
   contractorId: string;

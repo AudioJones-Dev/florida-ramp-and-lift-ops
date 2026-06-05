@@ -7,7 +7,15 @@ export default function JobsPage() {
       title="Jobs"
       description="Manual job and progress tracking records owned by the FLR Platform."
       rows={mockJobs}
-      fields={["jobNumber", "customerName", "jobType", "status", "scheduledFor", "assignedTo"]}
+      fields={[
+        "jobNumber",
+        "customerName",
+        "jobType",
+        "status",
+        "invoiceReadinessStatus",
+        "scheduledFor",
+        "assignedTo"
+      ]}
       detailPath="/jobs"
       createLabel="New job"
       createFields={[

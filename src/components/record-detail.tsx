@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { EmptyState } from "@/components/empty-state";
+import { MockEventTimeline } from "@/components/mock-event-timeline";
 import { StatusBadge, formatStatus } from "@/components/status-badge";
 import { Button } from "@/components/ui/button";
+import type { ReactNode } from "react";
 import type { ManualRecord } from "@/types/core";
 
 export function RecordDetail({
@@ -10,13 +12,15 @@ export function RecordDetail({
   description,
   record,
   backHref,
-  fields
+  fields,
+  children
 }: {
   title: string;
   description: string;
   record: ManualRecord | undefined;
   backHref: string;
   fields: string[];
+  children?: ReactNode;
 }) {
   if (!record) {
     return (
@@ -56,6 +60,8 @@ export function RecordDetail({
             </div>
           ))}
         </dl>
+        {children}
+        <MockEventTimeline recordId={record.id} />
       </section>
     </div>
   );
