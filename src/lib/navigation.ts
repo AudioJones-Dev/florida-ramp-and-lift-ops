@@ -9,6 +9,7 @@ import {
   HardHat,
   Home,
   ListChecks,
+  Map,
   MessageSquare,
   Settings,
   Truck,
@@ -66,6 +67,12 @@ export const navigationItems: NavigationItem[] = [
     href: "/queues",
     label: "Queues",
     icon: ListChecks,
+    roles: internalRoles
+  },
+  {
+    href: "/demo-scenarios",
+    label: "Demo Scenarios",
+    icon: Map,
     roles: internalRoles
   },
   {

@@ -7,7 +7,8 @@ import type {
   DocumentationArtifact,
   Invoice,
   Job,
-  ContractorAssignment
+  ContractorAssignment,
+  DemoScenario
 } from "@/types/core";
 
 export const mockDashboardMetrics = {
@@ -84,6 +85,66 @@ export const mockCustomers: Customer[] = [
     primaryContactEmail: "mock.intake@example.com",
     source: "Website/manual lead",
     notes: "Needs estimate callback."
+  },
+  {
+    id: "customer_004",
+    customerId: "customer_004",
+    customerType: "residential",
+    displayName: "Residential Ramp Install Demo",
+    status: "active",
+    primaryContactName: "A. Martin",
+    primaryContactPhone: "(555) 013-0104",
+    primaryContactEmail: "ramp.demo@example.com",
+    source: "Demo Scenario 1",
+    notes: "End-to-end residential ramp install journey."
+  },
+  {
+    id: "customer_005",
+    customerId: "customer_005",
+    customerType: "commercial",
+    displayName: "WilScot Service Call Demo",
+    status: "active",
+    primaryContactName: "WilScot coordinator",
+    primaryContactPhone: "(555) 013-0105",
+    primaryContactEmail: "wilscot.demo@example.com",
+    source: "Demo Scenario 2",
+    notes: "Service call journey with commercial coordination."
+  },
+  {
+    id: "customer_006",
+    customerId: "customer_006",
+    customerType: "residential",
+    displayName: "VPL Installation Demo",
+    status: "active",
+    primaryContactName: "D. Nguyen",
+    primaryContactPhone: "(555) 013-0106",
+    primaryContactEmail: "vpl.demo@example.com",
+    source: "Demo Scenario 3",
+    notes: "VPL install journey focused on dispatch and documentation."
+  },
+  {
+    id: "customer_007",
+    customerId: "customer_007",
+    customerType: "residential",
+    displayName: "Documentation Missing Demo",
+    status: "active",
+    primaryContactName: "C. Brooks",
+    primaryContactPhone: "(555) 013-0107",
+    primaryContactEmail: "docs.demo@example.com",
+    source: "Demo Scenario 4",
+    notes: "Journey intentionally blocked by missing contractor documentation."
+  },
+  {
+    id: "customer_008",
+    customerId: "customer_008",
+    customerType: "commercial",
+    displayName: "Invoice Approval Demo",
+    status: "active",
+    primaryContactName: "Facilities manager",
+    primaryContactPhone: "(555) 013-0108",
+    primaryContactEmail: "invoice.demo@example.com",
+    source: "Demo Scenario 5",
+    notes: "Journey ready for Michael invoice release approval."
   }
 ];
 
@@ -132,6 +193,81 @@ export const mockJobs: Job[] = [
     documentationStatus: "required",
     invoiceReadiness: "Not ready",
     notes: "Dispatch assignment still pending."
+  },
+  {
+    id: "job_004",
+    jobId: "job_004",
+    jobNumber: "FLR-2001",
+    customerId: "customer_004",
+    customerName: "Residential Ramp Install Demo",
+    jobType: "Residential ramp install",
+    status: "assigned",
+    siteAddress: "Residential site, Clearwater area",
+    scheduledFor: "Today",
+    assignedTo: "Lead Installer A",
+    documentationStatus: "required",
+    invoiceReadiness: "Not ready until completion documentation is submitted",
+    notes: "Scenario 1: assigned and ready for contractor acceptance."
+  },
+  {
+    id: "job_005",
+    jobId: "job_005",
+    jobNumber: "FLR-2002",
+    customerId: "customer_005",
+    customerName: "WilScot Service Call Demo",
+    jobType: "WilScot service call",
+    status: "in_progress",
+    siteAddress: "Commercial site, Lakeland area",
+    scheduledFor: "Today",
+    assignedTo: "Senior Lead B",
+    documentationStatus: "submitted",
+    invoiceReadiness: "Waiting on documentation review",
+    notes: "Scenario 2: service call underway with submitted notes."
+  },
+  {
+    id: "job_006",
+    jobId: "job_006",
+    jobNumber: "FLR-2003",
+    customerId: "customer_006",
+    customerName: "VPL Installation Demo",
+    jobType: "VPL installation",
+    status: "scheduled",
+    siteAddress: "Residential site, Naples area",
+    scheduledFor: "Tomorrow",
+    assignedTo: "Lead Installer A",
+    documentationStatus: "required",
+    invoiceReadiness: "Not ready until install completion",
+    notes: "Scenario 3: VPL install scheduled and preparing dispatch."
+  },
+  {
+    id: "job_007",
+    jobId: "job_007",
+    jobNumber: "FLR-2004",
+    customerId: "customer_007",
+    customerName: "Documentation Missing Demo",
+    jobType: "Ramp takedown",
+    status: "documentation_review",
+    siteAddress: "Residential site, Fort Myers area",
+    scheduledFor: "Yesterday",
+    assignedTo: "Helper C",
+    documentationStatus: "missing",
+    invoiceReadiness: "Blocked by missing after photos",
+    notes: "Scenario 4: job is blocked by missing proof-of-work."
+  },
+  {
+    id: "job_008",
+    jobId: "job_008",
+    jobNumber: "FLR-2005",
+    customerId: "customer_008",
+    customerName: "Invoice Approval Demo",
+    jobType: "Commercial ramp install",
+    status: "invoice_review",
+    siteAddress: "Commercial site, Jacksonville area",
+    scheduledFor: "Completed this week",
+    assignedTo: "Senior Lead B",
+    documentationStatus: "approved",
+    invoiceReadiness: "Ready for Michael approval",
+    notes: "Scenario 5: complete and ready for client-facing invoice approval."
   }
 ];
 
@@ -231,6 +367,71 @@ export const mockCommunications: Communication[] = [
     relatedObjectId: "customer_003",
     summary: "Needs estimate callback.",
     followUpOwner: "Office Admin"
+  },
+  {
+    id: "communication_004",
+    communicationId: "communication_004",
+    communicationType: "call",
+    direction: "inbound",
+    status: "received",
+    sourceChannel: "Phone",
+    contactName: "A. Martin",
+    relatedObjectType: "Job",
+    relatedObjectId: "job_004",
+    summary: "Customer confirmed ramp install access window.",
+    followUpOwner: "Dispatcher"
+  },
+  {
+    id: "communication_005",
+    communicationId: "communication_005",
+    communicationType: "email",
+    direction: "inbound",
+    status: "needs_review",
+    sourceChannel: "Email",
+    contactName: "WilScot coordinator",
+    relatedObjectType: "Job",
+    relatedObjectId: "job_005",
+    summary: "WilScot requested service call closeout confirmation.",
+    followUpOwner: "Office Admin"
+  },
+  {
+    id: "communication_006",
+    communicationId: "communication_006",
+    communicationType: "manual_note",
+    direction: "internal",
+    status: "new",
+    sourceChannel: "Manual note",
+    contactName: "D. Nguyen",
+    relatedObjectType: "Job",
+    relatedObjectId: "job_006",
+    summary: "VPL installation requires equipment confirmation before dispatch.",
+    followUpOwner: "Dispatcher"
+  },
+  {
+    id: "communication_007",
+    communicationId: "communication_007",
+    communicationType: "call",
+    direction: "outbound",
+    status: "unanswered",
+    sourceChannel: "Phone",
+    contactName: "C. Brooks",
+    relatedObjectType: "Job",
+    relatedObjectId: "job_007",
+    summary: "Follow-up needed for missing after photos.",
+    followUpOwner: "Office Admin"
+  },
+  {
+    id: "communication_008",
+    communicationId: "communication_008",
+    communicationType: "email",
+    direction: "internal",
+    status: "needs_review",
+    sourceChannel: "Email",
+    contactName: "Facilities manager",
+    relatedObjectType: "Invoice",
+    relatedObjectId: "invoice_008",
+    summary: "Invoice release packet ready for final review.",
+    followUpOwner: "Finance"
   }
 ];
 
@@ -273,6 +474,71 @@ export const mockDocumentation: DocumentationArtifact[] = [
     source: "Manual requirement",
     reviewGate: "Blocked",
     notes: "Must be present before dispatch-ready state."
+  },
+  {
+    id: "documentation_004",
+    documentationArtifactId: "documentation_004",
+    artifactType: "Install checklist",
+    relatedObjectType: "Job",
+    relatedObjectId: "job_004",
+    jobNumber: "FLR-2001",
+    submittedBy: "Lead Installer A",
+    status: "required",
+    source: "Demo Scenario 1",
+    reviewGate: "Required before completion",
+    notes: "Contractor must submit before closeout."
+  },
+  {
+    id: "documentation_005",
+    documentationArtifactId: "documentation_005",
+    artifactType: "Service notes",
+    relatedObjectType: "Job",
+    relatedObjectId: "job_005",
+    jobNumber: "FLR-2002",
+    submittedBy: "Senior Lead B",
+    status: "submitted",
+    source: "Demo Scenario 2",
+    reviewGate: "Needs review",
+    notes: "Closeout notes submitted for WilScot service call."
+  },
+  {
+    id: "documentation_006",
+    documentationArtifactId: "documentation_006",
+    artifactType: "VPL install prep",
+    relatedObjectType: "Job",
+    relatedObjectId: "job_006",
+    jobNumber: "FLR-2003",
+    submittedBy: "Dispatcher",
+    status: "required",
+    source: "Demo Scenario 3",
+    reviewGate: "Required before dispatch-ready",
+    notes: "Equipment and site readiness documentation required."
+  },
+  {
+    id: "documentation_007",
+    documentationArtifactId: "documentation_007",
+    artifactType: "After photos",
+    relatedObjectType: "Job",
+    relatedObjectId: "job_007",
+    jobNumber: "FLR-2004",
+    submittedBy: "Helper C",
+    status: "missing",
+    source: "Demo Scenario 4",
+    reviewGate: "Blocked",
+    notes: "Missing photos block invoice readiness."
+  },
+  {
+    id: "documentation_008",
+    documentationArtifactId: "documentation_008",
+    artifactType: "Completion packet",
+    relatedObjectType: "Job",
+    relatedObjectId: "job_008",
+    jobNumber: "FLR-2005",
+    submittedBy: "Senior Lead B",
+    status: "approved",
+    source: "Demo Scenario 5",
+    reviewGate: "Ready for invoice",
+    notes: "Completion packet approved."
   }
 ];
 
@@ -312,6 +578,66 @@ export const mockInvoices: Invoice[] = [
     approvalOwner: "Finance",
     quickBooksReference: "Not synced",
     readinessSummary: "Not ready. Estimate/job lifecycle incomplete."
+  },
+  {
+    id: "invoice_004",
+    invoiceId: "invoice_004",
+    invoiceNumber: "Draft-2001",
+    invoiceClass: "client",
+    customerName: "Residential Ramp Install Demo",
+    status: "draft",
+    amount: "$3,200",
+    approvalOwner: "Finance",
+    quickBooksReference: "Not synced",
+    readinessSummary: "Waiting on contractor documentation."
+  },
+  {
+    id: "invoice_005",
+    invoiceId: "invoice_005",
+    invoiceNumber: "Draft-2002",
+    invoiceClass: "client",
+    customerName: "WilScot Service Call Demo",
+    status: "needs_review",
+    amount: "$1,150",
+    approvalOwner: "Finance",
+    quickBooksReference: "Not synced",
+    readinessSummary: "Service documentation submitted; finance review required."
+  },
+  {
+    id: "invoice_006",
+    invoiceId: "invoice_006",
+    invoiceNumber: "Draft-2003",
+    invoiceClass: "client",
+    customerName: "VPL Installation Demo",
+    status: "draft",
+    amount: "$0",
+    approvalOwner: "Finance",
+    quickBooksReference: "Not synced",
+    readinessSummary: "Not ready until install completion."
+  },
+  {
+    id: "invoice_007",
+    invoiceId: "invoice_007",
+    invoiceNumber: "Draft-2004",
+    invoiceClass: "client",
+    customerName: "Documentation Missing Demo",
+    status: "held",
+    amount: "$950",
+    approvalOwner: "Office Admin",
+    quickBooksReference: "Not synced",
+    readinessSummary: "Held because documentation is missing."
+  },
+  {
+    id: "invoice_008",
+    invoiceId: "invoice_008",
+    invoiceNumber: "Draft-2005",
+    invoiceClass: "client",
+    customerName: "Invoice Approval Demo",
+    status: "needs_review",
+    amount: "$12,400",
+    approvalOwner: "Michael Keegan",
+    quickBooksReference: "Not synced",
+    readinessSummary: "Ready for Michael approval before client-facing release."
   }
 ];
 
@@ -348,6 +674,61 @@ export const mockAlerts: Alert[] = [
     owner: "Finance",
     summary: "Job ready for invoice review.",
     thresholdRule: "Job entered invoice_review"
+  },
+  {
+    id: "alert_004",
+    alertId: "alert_004",
+    sourceObjectType: "Job",
+    sourceObjectId: "job_004",
+    severity: "medium",
+    status: "assigned",
+    owner: "Dispatcher",
+    summary: "Residential ramp install awaiting contractor acceptance.",
+    thresholdRule: "Assigned job not yet accepted"
+  },
+  {
+    id: "alert_005",
+    alertId: "alert_005",
+    sourceObjectType: "Communication",
+    sourceObjectId: "communication_005",
+    severity: "medium",
+    status: "open",
+    owner: "Office Admin",
+    summary: "WilScot service closeout needs review.",
+    thresholdRule: "Commercial communication needs review"
+  },
+  {
+    id: "alert_006",
+    alertId: "alert_006",
+    sourceObjectType: "Job",
+    sourceObjectId: "job_006",
+    severity: "medium",
+    status: "open",
+    owner: "Dispatcher",
+    summary: "VPL install needs equipment confirmation.",
+    thresholdRule: "Scheduled specialized install missing prep confirmation"
+  },
+  {
+    id: "alert_007",
+    alertId: "alert_007",
+    sourceObjectType: "DocumentationArtifact",
+    sourceObjectId: "documentation_007",
+    severity: "high",
+    status: "open",
+    owner: "Office Admin",
+    summary: "After photos missing for completed takedown.",
+    thresholdRule: "Required documentation missing"
+  },
+  {
+    id: "alert_008",
+    alertId: "alert_008",
+    sourceObjectType: "Invoice",
+    sourceObjectId: "invoice_008",
+    severity: "high",
+    status: "open",
+    owner: "Finance",
+    summary: "Invoice ready for Michael approval.",
+    thresholdRule: "Client-facing invoice requires final human approval"
   }
 ];
 
@@ -415,6 +796,70 @@ export const mockApprovals: Approval[] = [
     evidenceSummary: "Completion notes are present. Required install photos still need review.",
     blockingRule: "Job completion approval requires documentation review before invoice readiness.",
     decisionNotes: "Approve only after proof-of-work evidence is complete."
+  },
+  {
+    id: "approval_005",
+    approvalId: "approval_005",
+    approvalCategory: "Documentation approval",
+    approvalType: "documentation_review",
+    relatedObjectType: "DocumentationArtifact",
+    relatedObjectId: "documentation_005",
+    status: "requested",
+    requestedBy: "Office Admin",
+    approver: "Office Admin",
+    risk: "Commercial service closeout cannot move to invoice readiness until reviewed.",
+    targetTransition: "Documentation submitted -> approved",
+    evidenceSummary: "WilScot service notes submitted and awaiting review.",
+    blockingRule: "Billing evidence must be reviewed before invoice approval.",
+    decisionNotes: "Review service notes before invoice readiness."
+  },
+  {
+    id: "approval_006",
+    approvalId: "approval_006",
+    approvalCategory: "Job completion approval",
+    approvalType: "job_completion_review",
+    relatedObjectType: "Job",
+    relatedObjectId: "job_006",
+    status: "held",
+    requestedBy: "Dispatcher",
+    approver: "Office Admin",
+    risk: "VPL job cannot proceed until equipment readiness is confirmed.",
+    targetTransition: "Job scheduled -> dispatch_ready",
+    evidenceSummary: "Specialized install requires equipment confirmation.",
+    blockingRule: "Specialized installs require prep confirmation before dispatch-ready.",
+    decisionNotes: "Hold until required equipment is confirmed."
+  },
+  {
+    id: "approval_007",
+    approvalId: "approval_007",
+    approvalCategory: "Documentation approval",
+    approvalType: "documentation_exception",
+    relatedObjectType: "DocumentationArtifact",
+    relatedObjectId: "documentation_007",
+    status: "held",
+    requestedBy: "Office Admin",
+    approver: "Office Admin",
+    risk: "Missing after photos block billing readiness.",
+    targetTransition: "Documentation missing -> submitted",
+    evidenceSummary: "After photos are missing from the contractor closeout packet.",
+    blockingRule: "Required proof-of-work must exist before invoice readiness.",
+    decisionNotes: "Request missing photos from contractor."
+  },
+  {
+    id: "approval_008",
+    approvalId: "approval_008",
+    approvalCategory: "Invoice approval",
+    approvalType: "client_invoice_release",
+    relatedObjectType: "Invoice",
+    relatedObjectId: "invoice_008",
+    status: "requested",
+    requestedBy: "Finance",
+    approver: "Michael Keegan",
+    risk: "Client-facing invoice release requires final human approval.",
+    targetTransition: "Invoice needs_review -> approved",
+    evidenceSummary: "Completion packet approved and invoice draft ready for release review.",
+    blockingRule: "Michael Keegan has MVP final authority for client-facing invoice release.",
+    decisionNotes: "Approve only after reviewing packet and amount."
   }
 ];
 
@@ -458,6 +903,106 @@ export const mockContractorAssignments: ContractorAssignment[] = [
     ppeStatus: "Review needed",
     payout: "Calculated mock",
     notes: "PPE review should remain visible before final closeout."
+  },
+  {
+    id: "assignment-4",
+    jobId: "job_004",
+    jobNumber: "FLR-2001",
+    jobTitle: "Residential ramp install",
+    contractorName: "Lead Installer A",
+    location: "Residential site, Clearwater area",
+    siteContact: "A. Martin",
+    scheduledWindow: "Today, 1:00 PM - 4:00 PM",
+    status: "assigned",
+    scope: "Install residential ramp and submit before/after photos.",
+    requiredEquipment: ["Ramp sections", "Anchors", "Install tools"],
+    requiredDocumentation: ["Before photos", "After photos", "Completion notes"],
+    documentationStatus: "Required",
+    ppeRequirements: ["Gloves", "Eye protection", "Work boots"],
+    safetyRequirements: ["Confirm stable landing", "Clear walkway", "Review customer mobility needs"],
+    ppeStatus: "Compliant",
+    payout: "Pending completion",
+    notes: "Scenario 1 assignment."
+  },
+  {
+    id: "assignment-5",
+    jobId: "job_005",
+    jobNumber: "FLR-2002",
+    jobTitle: "WilScot service call",
+    contractorName: "Senior Lead B",
+    location: "Commercial site, Lakeland area",
+    siteContact: "WilScot coordinator",
+    scheduledWindow: "Today, commercial access window",
+    status: "in_progress",
+    scope: "Perform service call and document closeout conditions.",
+    requiredEquipment: ["Service tools", "Replacement hardware", "Truck access"],
+    requiredDocumentation: ["Service notes", "After photos", "Site condition notes"],
+    documentationStatus: "Submitted",
+    ppeRequirements: ["Hi-vis vest", "Gloves", "Eye protection"],
+    safetyRequirements: ["Confirm site access", "Watch traffic exposure", "Document hazards"],
+    ppeStatus: "Compliant",
+    payout: "Pending review",
+    notes: "Scenario 2 assignment."
+  },
+  {
+    id: "assignment-6",
+    jobId: "job_006",
+    jobNumber: "FLR-2003",
+    jobTitle: "VPL installation",
+    contractorName: "Lead Installer A",
+    location: "Residential site, Naples area",
+    siteContact: "D. Nguyen",
+    scheduledWindow: "Tomorrow, dispatch pending",
+    status: "assigned",
+    scope: "Prepare VPL installation and confirm required equipment.",
+    requiredEquipment: ["VPL install support kit", "Lift prep tools", "Safety cones"],
+    requiredDocumentation: ["Prep checklist", "Site access photos", "Equipment confirmation"],
+    documentationStatus: "Required",
+    ppeRequirements: ["Gloves", "Eye protection", "Work boots"],
+    safetyRequirements: ["Confirm lift area clear", "Verify electrical/site readiness", "Escalate access issues"],
+    ppeStatus: "Compliant",
+    payout: "Not calculated",
+    notes: "Scenario 3 assignment."
+  },
+  {
+    id: "assignment-7",
+    jobId: "job_007",
+    jobNumber: "FLR-2004",
+    jobTitle: "Ramp takedown",
+    contractorName: "Helper C",
+    location: "Residential site, Fort Myers area",
+    siteContact: "C. Brooks",
+    scheduledWindow: "Yesterday",
+    status: "submitted",
+    scope: "Complete takedown and upload after photos.",
+    requiredEquipment: ["Removal tools", "Truck access"],
+    requiredDocumentation: ["After photos", "Completion notes"],
+    documentationStatus: "Missing after photos",
+    ppeRequirements: ["Gloves", "Eye protection"],
+    safetyRequirements: ["Document site condition", "Confirm no remaining trip hazard"],
+    ppeStatus: "Compliant",
+    payout: "Held",
+    notes: "Scenario 4 assignment blocked by missing documentation."
+  },
+  {
+    id: "assignment-8",
+    jobId: "job_008",
+    jobNumber: "FLR-2005",
+    jobTitle: "Commercial ramp install",
+    contractorName: "Senior Lead B",
+    location: "Commercial site, Jacksonville area",
+    siteContact: "Facilities manager",
+    scheduledWindow: "Completed this week",
+    status: "submitted",
+    scope: "Install commercial ramp and submit complete closeout packet.",
+    requiredEquipment: ["Commercial ramp kit", "Install tools", "Truck access"],
+    requiredDocumentation: ["Completion packet", "After photos", "Customer signoff"],
+    documentationStatus: "Approved",
+    ppeRequirements: ["Hi-vis vest", "Gloves", "Eye protection", "Work boots"],
+    safetyRequirements: ["Verify ADA path", "Document final condition", "Confirm site contact signoff"],
+    ppeStatus: "Compliant",
+    payout: "Pending invoice approval",
+    notes: "Scenario 5 assignment ready for invoice approval."
   }
 ];
 
@@ -471,3 +1016,121 @@ export const coreRecordLookups = {
   alerts: (id: string) => mockAlerts.find((record) => record.id === id),
   approvals: (id: string) => mockApprovals.find((record) => record.id === id)
 };
+
+export const demoScenarios: DemoScenario[] = [
+  {
+    id: "scenario_001",
+    title: "Residential Ramp Install",
+    summary: "Assigned residential ramp job moving from dispatch into contractor acceptance and documentation.",
+    stage: "Assignment",
+    customerId: "customer_004",
+    jobId: "job_004",
+    contractorId: "contractor_001",
+    communicationId: "communication_004",
+    documentationId: "documentation_004",
+    invoiceId: "invoice_004",
+    alertId: "alert_004",
+    approvalId: "approval_004",
+    assignmentId: "assignment-4",
+    validation: {
+      lead: "Manual customer intake confirmed",
+      job: "Job assigned",
+      assignment: "Contractor acceptance pending",
+      documentation: "Required before completion",
+      approval: "Job completion approval pending later",
+      invoiceReadiness: "Not ready"
+    }
+  },
+  {
+    id: "scenario_002",
+    title: "WilScot Service Call",
+    summary: "Commercial service call with submitted documentation and follow-up review.",
+    stage: "Documentation Review",
+    customerId: "customer_005",
+    jobId: "job_005",
+    contractorId: "contractor_002",
+    communicationId: "communication_005",
+    documentationId: "documentation_005",
+    invoiceId: "invoice_005",
+    alertId: "alert_005",
+    approvalId: "approval_005",
+    assignmentId: "assignment-5",
+    validation: {
+      lead: "Commercial account request received",
+      job: "Job in progress",
+      assignment: "Contractor working service call",
+      documentation: "Service notes submitted",
+      approval: "Documentation approval requested",
+      invoiceReadiness: "Waiting on review"
+    }
+  },
+  {
+    id: "scenario_003",
+    title: "VPL Installation",
+    summary: "Specialized VPL installation scheduled with equipment confirmation required before dispatch-ready.",
+    stage: "Scheduled",
+    customerId: "customer_006",
+    jobId: "job_006",
+    contractorId: "contractor_001",
+    communicationId: "communication_006",
+    documentationId: "documentation_006",
+    invoiceId: "invoice_006",
+    alertId: "alert_006",
+    approvalId: "approval_006",
+    assignmentId: "assignment-6",
+    validation: {
+      lead: "VPL request captured",
+      job: "Job scheduled",
+      assignment: "Contractor assigned",
+      documentation: "Prep checklist required",
+      approval: "Dispatch readiness held",
+      invoiceReadiness: "Not ready"
+    }
+  },
+  {
+    id: "scenario_004",
+    title: "Contractor Documentation Missing",
+    summary: "Completed field work blocked because required after photos are missing.",
+    stage: "Blocked",
+    customerId: "customer_007",
+    jobId: "job_007",
+    contractorId: "contractor_003",
+    communicationId: "communication_007",
+    documentationId: "documentation_007",
+    invoiceId: "invoice_007",
+    alertId: "alert_007",
+    approvalId: "approval_007",
+    assignmentId: "assignment-7",
+    validation: {
+      lead: "Customer work completed",
+      job: "Job in documentation review",
+      assignment: "Completion submitted",
+      documentation: "After photos missing",
+      approval: "Documentation exception held",
+      invoiceReadiness: "Blocked"
+    }
+  },
+  {
+    id: "scenario_005",
+    title: "Invoice Ready For Approval",
+    summary: "Commercial install has approved documentation and is waiting for Michael invoice release approval.",
+    stage: "Invoice Review",
+    customerId: "customer_008",
+    jobId: "job_008",
+    contractorId: "contractor_002",
+    communicationId: "communication_008",
+    documentationId: "documentation_008",
+    invoiceId: "invoice_008",
+    alertId: "alert_008",
+    approvalId: "approval_008",
+    assignmentId: "assignment-8",
+    validation: {
+      lead: "Commercial request completed",
+      job: "Job in invoice review",
+      assignment: "Completion packet submitted",
+      documentation: "Approved",
+      approval: "Michael invoice approval requested",
+      invoiceReadiness: "Ready"
+    }
+  }
+];

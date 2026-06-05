@@ -236,3 +236,27 @@ export type ContractorAssignment = {
   payout: string;
   notes: string;
 };
+
+export type DemoScenario = {
+  id: string;
+  title: string;
+  summary: string;
+  stage: string;
+  customerId: string;
+  jobId: string;
+  contractorId: string;
+  communicationId: string;
+  documentationId: string;
+  invoiceId: string;
+  alertId: string;
+  approvalId: string;
+  assignmentId: string;
+  validation: {
+    lead: string;
+    job: string;
+    assignment: string;
+    documentation: string;
+    approval: string;
+    invoiceReadiness: string;
+  };
+};
