@@ -14,6 +14,7 @@ import {
   mockContractorAssignments,
   mockJobs
 } from "@/lib/mock-data";
+import { currency, sampleCalculations } from "@/lib/contractor-billing";
 import type { ManualRecord } from "@/types/core";
 
 export type QueueKey =
@@ -84,6 +85,26 @@ const openApprovals = mockApprovals
     approvalId: approval.approvalId
   }));
 
+const contractorPayableReviewItems = sampleCalculations.map((calculation) => ({
+  id: `queue-payable-${calculation.contractorPayable.id}`,
+  title: `${calculation.job.workOrderNumber} - contractor payable`,
+  detail: `Action: review ${currency(calculation.contractorPayable.totalContractorPayable)} payable and ${calculation.contractorPayable.reviewFlags.length} flag(s).`,
+  owner: "Finance",
+  status: calculation.contractorPayable.status,
+  href: "/approvals",
+  payableId: calculation.contractorPayable.id
+}));
+
+const clientReceivableReviewItems = sampleCalculations.map((calculation) => ({
+  id: `queue-receivable-${calculation.clientReceivable.id}`,
+  title: `${calculation.job.workOrderNumber} - client receivable`,
+  detail: "Action: client invoice draft requires separate rate-sheet review. Contractor payout data is excluded.",
+  owner: "Finance",
+  status: calculation.clientReceivable.status,
+  href: "/client-invoices",
+  receivableId: calculation.clientReceivable.id
+}));
+
 const activeAlerts = mockAlerts
   .filter((alert) => !["resolved", "dismissed"].includes(alert.status))
   .map((alert) => ({
@@ -150,7 +171,7 @@ export const queueDefinitions: QueueDefinition[] = [
     emptyTitle: "No open approvals",
     emptyDescription: "All mock approval records are resolved or inactive.",
     icon: CheckSquare,
-    items: openApprovals
+    items: [...openApprovals, ...contractorPayableReviewItems, ...clientReceivableReviewItems]
   },
   {
     key: "alerts",

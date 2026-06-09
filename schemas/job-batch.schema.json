@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AudioJones-Dev/florida-ramp-and-lift-ops/schemas/job-batch.schema.json",
+  "title": "Job Batch",
+  "type": "object",
+  "required": ["id", "batchDate", "leadInstallerId", "routeNotes", "jobs"],
+  "properties": {
+    "id": { "type": "string" },
+    "batchDate": { "type": "string", "format": "date" },
+    "leadInstallerId": { "type": "string" },
+    "assistantInstallerId": { "type": ["string", "null"] },
+    "routeZone": { "type": ["string", "null"], "enum": ["Zone 1", "Zone 2", "Zone 3", "Zone 4", null] },
+    "routeNotes": { "type": "string" },
+    "jobs": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "description": "Reference to job submission id in MVP mock layer." }
+    }
+  },
+  "additionalProperties": false
+}

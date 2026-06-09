@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AudioJones-Dev/florida-ramp-and-lift-ops/schemas/contractor-payable-invoice.schema.json",
+  "title": "Contractor Payable Invoice",
+  "type": "object",
+  "required": ["id", "contractorId", "payPeriodStart", "payPeriodEnd", "payDate", "lines", "totalWeeklyPayout", "status"],
+  "properties": {
+    "id": { "type": "string" },
+    "contractorId": { "type": "string" },
+    "payPeriodStart": { "type": "string", "format": "date" },
+    "payPeriodEnd": { "type": "string", "format": "date" },
+    "payDate": { "type": "string", "format": "date" },
+    "lines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["workOrderNumber", "jobDate", "role", "totalJobPayout", "splitPercentage", "contractorPayoutAmount"],
+        "properties": {
+          "workOrderNumber": { "type": "string" },
+          "jobDate": { "type": "string", "format": "date" },
+          "role": { "type": "string", "enum": ["lead", "assistant", "additional"] },
+          "totalJobPayout": { "type": "number", "minimum": 0 },
+          "splitPercentage": { "type": "number", "minimum": 0, "maximum": 100 },
+          "contractorPayoutAmount": { "type": "number", "minimum": 0 }
+        }
+      }
+    },
+    "totalWeeklyPayout": { "type": "number", "minimum": 0 },
+    "status": { "type": "string", "enum": ["draft", "needs_review", "approved", "rejected", "invoiced", "paid"] }
+  },
+  "additionalProperties": false
+}

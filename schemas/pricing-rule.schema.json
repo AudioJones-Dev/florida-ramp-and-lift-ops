@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AudioJones-Dev/florida-ramp-and-lift-ops/schemas/pricing-rule.schema.json",
+  "title": "Pricing Rule",
+  "type": "object",
+  "required": ["id", "itemCode", "itemName", "rateSheetClass", "unitRate", "activeStatus"],
+  "properties": {
+    "id": { "type": "string" },
+    "itemCode": { "type": "string" },
+    "itemName": { "type": "string" },
+    "jobType": { "type": ["string", "null"] },
+    "rateSheetClass": { "type": "string", "enum": ["contractor", "client"] },
+    "unitRate": { "type": "number", "minimum": 0 },
+    "zone": { "type": ["string", "null"], "enum": ["Zone 1", "Zone 2", "Zone 3", "Zone 4", null] },
+    "activeStatus": { "type": "boolean" }
+  },
+  "additionalProperties": false
+}

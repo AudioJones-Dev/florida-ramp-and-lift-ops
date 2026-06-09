@@ -1,5 +1,5 @@
 import { ContractorSubmissionFlow } from "@/components/contractor-submission-flow";
 
-export default function ContractorPortalPage() {
+export default function SubmitJobPage() {
   return <ContractorSubmissionFlow />;
 }

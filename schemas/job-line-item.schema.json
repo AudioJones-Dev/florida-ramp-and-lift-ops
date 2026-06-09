@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AudioJones-Dev/florida-ramp-and-lift-ops/schemas/job-line-item.schema.json",
+  "title": "Job Line Item",
+  "type": "object",
+  "required": ["id", "jobId", "itemCode", "description", "quantity", "unitRate", "total", "payableOrReceivable"],
+  "properties": {
+    "id": { "type": "string" },
+    "jobId": { "type": "string" },
+    "itemCode": { "type": "string" },
+    "description": { "type": "string" },
+    "quantity": { "type": "number", "minimum": 0 },
+    "unitRate": { "type": "number", "minimum": 0 },
+    "total": { "type": "number" },
+    "payableOrReceivable": { "type": "string", "enum": ["payable", "receivable"] },
+    "category": { "type": "string", "enum": ["base", "add_on", "zone", "second_trip", "lift"] }
+  },
+  "additionalProperties": false
+}

@@ -289,3 +289,248 @@ export type DemoScenario = {
     invoiceReadiness: string;
   };
 };
+
+export type BillingClientType =
+  | "WilScot"
+  | "Residential Customer"
+  | "Commercial Customer"
+  | "VA"
+  | "Harmar"
+  | "Bruno"
+  | "Other";
+
+export type BillingJobType =
+  | "Ramp Install"
+  | "Ramp Recovery"
+  | "VPL Install"
+  | "Stair Lift Install"
+  | "Vehicle Lift Install"
+  | "Service Call"
+  | "Repair"
+  | "Evaluation";
+
+export type CompletionStatus = "Complete" | "Incomplete" | "Pending" | "Return Visit Required";
+export type BillingZone = "Zone 1" | "Zone 2" | "Zone 3" | "Zone 4";
+export type RampConfiguration = "straight" | "switchback";
+export type PaySplitPreset = "60/40" | "50/50" | "70/30" | "100/0" | "custom";
+export type AssignmentRole = "lead" | "assistant" | "additional";
+export type FinancialTrackStatus =
+  | "draft"
+  | "needs_review"
+  | "approved"
+  | "rejected"
+  | "invoiced"
+  | "paid";
+
+export type ReviewFlagSeverity = "info" | "warning" | "blocker";
+
+export type ReviewFlag = {
+  id: string;
+  label: string;
+  reason: string;
+  severity: ReviewFlagSeverity;
+};
+
+export type ContractorDirectoryRecord = {
+  id: string;
+  name: string;
+  companyName: string;
+  email: string;
+  phone: string;
+  activeStatus: "active" | "inactive";
+  defaultRole: AssignmentRole;
+  hubspotContactId?: string;
+  paymentProfileStatus?: "complete" | "missing" | "needs_review";
+};
+
+export type JobAssignment = {
+  id: string;
+  jobId: string;
+  contractorId: string;
+  role: AssignmentRole;
+  splitPercentage: number;
+  payoutAmount: number;
+  participationConfirmed: boolean;
+  photoRequired: boolean;
+  notes: string;
+};
+
+export type PaySplitRule = {
+  id: string;
+  preset: PaySplitPreset;
+  label: string;
+  leadPercentage: number;
+  assistantPercentage: number;
+  requiresAdminReview: boolean;
+};
+
+export type PaySplitOverride = {
+  jobId: string;
+  changedBy: string;
+  oldSplit: string;
+  newSplit: string;
+  reason: string;
+  timestamp: string;
+};
+
+export type RampJobDetails = {
+  configuration: RampConfiguration;
+  rampLength: number;
+  riseHeight: number;
+  zone: BillingZone;
+  stepAttachmentQuantity: number;
+  standaloneStepQuantity: number;
+  additionalPlatformQuantity: number;
+  additionalRampQuantity: number;
+  canopyQuantity: number;
+  crossBracesQuantity: number;
+  oshaStepQuantity: number;
+  oshaCanopyQuantity: number;
+  skirtingLinearFeet: number;
+  hardiPanelLinearFeet: number;
+};
+
+export type LiftJobDetails = {
+  manufacturer: "Harmar" | "Bruno" | "Savaria" | "Other";
+  modelNumber: string;
+  serialNumber: string;
+  partNumber: string;
+  equipmentType: string;
+  vplHeight?: "4-6" | "8" | "10" | "12" | "14";
+  equipmentPlatePhotoSelected: boolean;
+};
+
+export type SecondTripReason =
+  | "Missing Materials"
+  | "Customer Not Available"
+  | "Site Not Ready"
+  | "Client Requested Return"
+  | "Weather Delay"
+  | "Manufacturer Issue"
+  | "Permit/Site Access Issue"
+  | "Installer Error"
+  | "Other";
+
+export type SecondTripDetails = {
+  required: boolean;
+  reason?: SecondTripReason;
+  adminApproved: boolean;
+};
+
+export type PhotoChecklistItem = {
+  id: string;
+  label: string;
+  required: boolean;
+  uploadedByRole: AssignmentRole;
+  selected: boolean;
+};
+
+export type ContractorWorkOrder = {
+  id: string;
+  workOrderNumber: string;
+  customerName: string;
+  address: string;
+  client: BillingClientType;
+  jobType: BillingJobType;
+  assignedInstallerIds: string[];
+  status: "assigned" | "in_progress" | "submitted" | "needs_correction";
+  knownZone?: BillingZone;
+  knownJobDate?: string;
+};
+
+export type BillingJobSubmission = {
+  id: string;
+  workOrderId?: string;
+  workOrderNumber: string;
+  jobDate: string;
+  client: BillingClientType;
+  jobType: BillingJobType;
+  customerName: string;
+  installAddress: string;
+  leadInstallerId: string;
+  assistantInstallerId?: string;
+  additionalInstallerIds: string[];
+  paySplitPreset: PaySplitPreset;
+  customLeadPercentage?: number;
+  customAssistantPercentage?: number;
+  completionStatus: CompletionStatus;
+  notes: string;
+  rampDetails?: RampJobDetails;
+  liftDetails?: LiftJobDetails;
+  secondTrip: SecondTripDetails;
+  photos: PhotoChecklistItem[];
+  adminOverrideReason?: string;
+  addedWork: boolean;
+};
+
+export type JobBatch = {
+  id: string;
+  batchDate: string;
+  leadInstallerId: string;
+  assistantInstallerId?: string;
+  routeZone?: BillingZone;
+  routeNotes: string;
+  jobs: BillingJobSubmission[];
+};
+
+export type BillingLineItem = {
+  id: string;
+  itemCode: string;
+  description: string;
+  quantity: number;
+  unitRate: number;
+  total: number;
+  category: "base" | "add_on" | "zone" | "second_trip" | "lift";
+};
+
+export type ContractorPayableDraft = {
+  id: string;
+  jobId: string;
+  status: FinancialTrackStatus;
+  lineItems: BillingLineItem[];
+  subtotal: number;
+  zoneCharge: number;
+  secondTripCharge: number;
+  addOnsSubtotal: number;
+  totalContractorPayable: number;
+  assignments: JobAssignment[];
+  reviewFlags: ReviewFlag[];
+};
+
+export type ClientReceivableDraft = {
+  id: string;
+  jobId: string;
+  status: FinancialTrackStatus;
+  client: BillingClientType;
+  workOrderNumber: string;
+  customerName: string;
+  placeholderAmount: number;
+  reviewStatus: "client_rate_sheet_required" | "ready_for_admin_pricing";
+  reviewFlags: ReviewFlag[];
+};
+
+export type BillingJobCalculation = {
+  job: BillingJobSubmission;
+  contractorPayable: ContractorPayableDraft;
+  clientReceivable: ClientReceivableDraft;
+};
+
+export type ContractorWeeklyInvoiceLine = {
+  workOrderNumber: string;
+  jobDate: string;
+  role: AssignmentRole;
+  totalJobPayout: number;
+  splitPercentage: number;
+  contractorPayoutAmount: number;
+};
+
+export type ContractorWeeklyInvoice = {
+  contractorId: string;
+  contractorName: string;
+  payPeriodStart: string;
+  payPeriodEnd: string;
+  payDate: string;
+  lines: ContractorWeeklyInvoiceLine[];
+  totalWeeklyPayout: number;
+  status: FinancialTrackStatus;
+};

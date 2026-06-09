@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AudioJones-Dev/florida-ramp-and-lift-ops/schemas/photo-placeholder.schema.json",
+  "title": "Photo Placeholder",
+  "type": "object",
+  "required": ["id", "jobId", "label", "required", "uploadedByRole", "selected"],
+  "properties": {
+    "id": { "type": "string" },
+    "jobId": { "type": "string" },
+    "label": { "type": "string" },
+    "required": { "type": "boolean" },
+    "uploadedByRole": { "type": "string", "enum": ["lead", "assistant", "additional"] },
+    "selected": { "type": "boolean" },
+    "storageStatus": { "type": "string", "enum": ["placeholder_only", "queued_future_storage"], "default": "placeholder_only" }
+  },
+  "additionalProperties": false
+}
