@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AudioJones-Dev/florida-ramp-and-lift-ops/schemas/pay-split-rule.schema.json",
+  "title": "Pay Split Rule",
+  "type": "object",
+  "required": ["id", "preset", "label", "leadPercentage", "assistantPercentage", "requiresAdminReview"],
+  "properties": {
+    "id": { "type": "string" },
+    "preset": { "type": "string", "enum": ["60/40", "50/50", "70/30", "100/0", "custom"] },
+    "label": { "type": "string" },
+    "leadPercentage": { "type": "number", "minimum": 0, "maximum": 100 },
+    "assistantPercentage": { "type": "number", "minimum": 0, "maximum": 100 },
+    "requiresAdminReview": { "type": "boolean" }
+  },
+  "additionalProperties": false
+}

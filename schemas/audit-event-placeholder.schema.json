@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AudioJones-Dev/florida-ramp-and-lift-ops/schemas/audit-event-placeholder.schema.json",
+  "title": "Audit Event Placeholder",
+  "type": "object",
+  "required": ["id", "entityType", "entityId", "action", "actorId", "timestamp", "reason"],
+  "properties": {
+    "id": { "type": "string" },
+    "entityType": { "type": "string" },
+    "entityId": { "type": "string" },
+    "action": { "type": "string" },
+    "actorId": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "previousValue": { "type": ["object", "null"] },
+    "newValue": { "type": ["object", "null"] },
+    "reason": { "type": "string" }
+  },
+  "additionalProperties": false
+}

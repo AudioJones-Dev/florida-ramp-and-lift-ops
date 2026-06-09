@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AudioJones-Dev/florida-ramp-and-lift-ops/schemas/contractor-assignment.schema.json",
+  "title": "Contractor Assignment",
+  "type": "object",
+  "required": [
+    "id",
+    "jobId",
+    "contractorId",
+    "role",
+    "splitPercentage",
+    "payoutAmount",
+    "participationConfirmed",
+    "photoRequired",
+    "notes"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "jobId": { "type": "string" },
+    "contractorId": { "type": "string" },
+    "role": { "type": "string", "enum": ["lead", "assistant", "additional"] },
+    "splitPercentage": { "type": "number", "minimum": 0, "maximum": 100 },
+    "payoutAmount": { "type": "number", "minimum": 0 },
+    "participationConfirmed": { "type": "boolean" },
+    "photoRequired": { "type": "boolean" },
+    "notes": { "type": "string" }
+  },
+  "additionalProperties": false
+}

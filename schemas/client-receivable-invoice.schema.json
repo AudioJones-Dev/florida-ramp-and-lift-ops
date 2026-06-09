@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/AudioJones-Dev/florida-ramp-and-lift-ops/schemas/client-receivable-invoice.schema.json",
+  "title": "Client Receivable Invoice",
+  "type": "object",
+  "required": ["id", "jobId", "client", "workOrderNumber", "customerName", "status", "reviewStatus"],
+  "properties": {
+    "id": { "type": "string" },
+    "jobId": { "type": "string" },
+    "client": { "type": "string" },
+    "workOrderNumber": { "type": "string" },
+    "customerName": { "type": "string" },
+    "placeholderAmount": { "type": "number", "minimum": 0 },
+    "status": { "type": "string", "enum": ["draft", "needs_review", "approved", "rejected", "invoiced", "paid"] },
+    "reviewStatus": { "type": "string", "enum": ["client_rate_sheet_required", "ready_for_admin_pricing"] },
+    "contractorPayoutVisible": { "type": "boolean", "const": false }
+  },
+  "additionalProperties": false
+}

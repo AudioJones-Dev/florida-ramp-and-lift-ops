@@ -6,6 +6,7 @@ import { useMemo, useState } from "react";
 import { StatusBadge } from "@/components/status-badge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { currency, getContractorName, sampleCalculations } from "@/lib/contractor-billing";
 import {
   approvalWorkflowItems,
   getApprovalWorkflowCounts,
@@ -79,6 +80,57 @@ export function ApprovalWorkflowCenter() {
         })}
       </section>
 
+      <section className="rounded-lg border bg-white p-5 shadow-sm">
+        <div className="flex flex-col justify-between gap-3 lg:flex-row lg:items-start">
+          <div>
+            <h2 className="text-lg font-semibold">Parallel Billing Review Gates</h2>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-[var(--muted-foreground)]">
+              Contractor payable and client receivable tracks are reviewed independently. Client receivable drafts do not expose contractor payout amounts.
+            </p>
+          </div>
+          <Badge variant="secondary">{sampleCalculations.length * 2} financial track reviews</Badge>
+        </div>
+        <div className="mt-4 grid gap-4 xl:grid-cols-2">
+          {sampleCalculations.map((calculation) => (
+            <div key={calculation.job.id} className="rounded-md border bg-[var(--background)] p-4">
+              <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-start">
+                <div>
+                  <div className="text-xs font-semibold uppercase text-[var(--muted-foreground)]">
+                    {calculation.job.workOrderNumber}
+                  </div>
+                  <h3 className="mt-1 font-semibold">{calculation.job.customerName}</h3>
+                </div>
+                <Badge variant="secondary">{calculation.job.jobType}</Badge>
+              </div>
+              <div className="mt-4 grid gap-3 md:grid-cols-2">
+                <FinancialGate
+                  title="Contractor payable review"
+                  status={calculation.contractorPayable.status}
+                  primaryValue={currency(calculation.contractorPayable.totalContractorPayable)}
+                  detail={`${calculation.contractorPayable.assignments
+                    .map((assignment) => `${getContractorName(assignment.contractorId)} ${assignment.splitPercentage}%`)
+                    .join(", ")}`}
+                />
+                <FinancialGate
+                  title="Client receivable review"
+                  status={calculation.clientReceivable.status}
+                  primaryValue="Rate sheet required"
+                  detail="Contractor payout data hidden from client draft."
+                />
+              </div>
+              <div className="mt-4 space-y-2">
+                {[...calculation.contractorPayable.reviewFlags, ...calculation.clientReceivable.reviewFlags].map((flag) => (
+                  <div key={flag.id} className="rounded-md border bg-white px-3 py-2 text-sm">
+                    <span className="font-semibold">{flag.label}: </span>
+                    <span className="text-[var(--muted-foreground)]">{flag.reason}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {openItems.length === 0 ? (
         <section className="rounded-lg border bg-white p-8 text-center shadow-sm">
           <h2 className="text-lg font-semibold">No open approval requests</h2>
@@ -93,6 +145,29 @@ export function ApprovalWorkflowCenter() {
           ))}
         </section>
       )}
+    </div>
+  );
+}
+
+function FinancialGate({
+  title,
+  status,
+  primaryValue,
+  detail
+}: {
+  title: string;
+  status: string;
+  primaryValue: string;
+  detail: string;
+}) {
+  return (
+    <div className="rounded-md border bg-white p-3">
+      <div className="flex items-center justify-between gap-2">
+        <div className="text-xs font-semibold uppercase text-[var(--muted-foreground)]">{title}</div>
+        <StatusBadge value={status} />
+      </div>
+      <div className="mt-3 text-lg font-semibold">{primaryValue}</div>
+      <p className="mt-1 text-sm leading-6 text-[var(--muted-foreground)]">{detail}</p>
     </div>
   );
 }
