@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "hooks": {
+    "pre_edit": [
+      {
+        "name": "repo-policy-check",
+        "command": "python .codex/hooks/repo_policy.py --check",
+        "description": "Scans the working tree for obvious repo policy violations before agent edits."
+      }
+    ],
+    "pre_commit": [
+      {
+        "name": "repo-policy-check",
+        "command": "python .codex/hooks/repo_policy.py --check --staged",
+        "description": "Scans staged files for secrets, Firebase drift, dependency changes, and approval-gated runtime changes."
+      }
+    ]
+  }
+}

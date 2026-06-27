@@ -26,6 +26,7 @@ This repo remains documentation-first. No app framework, Firebase, cloud infrast
 | `sop/` | Standard operating procedures. Existing repo convention is singular `sop`. |
 | `guardrails/` | Safety, financial, agent, and human-approval constraints. |
 | `agents/` | Agent role specifications for future implementation. |
+| `system/` | Repo operating protocols, agent-governance rules, and documentation architecture. |
 | `scope/` | Existing Phase 1 scope and canonical operational object docs. |
 | `automation/` | Existing automation specifications. Specs only; no live integrations. |
 | `training/` | Existing crew onboarding and safety training docs. |

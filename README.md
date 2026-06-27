@@ -121,7 +121,7 @@ Documented in `docs/scope/` and `PROJECT_SOURCE.md` for forward planning. Will b
 
 ## Doctrine alignment
 
-This repo is governed by the AJ Digital canonical doctrine layer (lives in the AJ Digital Obsidian vault, not here). Tier 1 production repo expectations apply per the `/goal` protocol — `AGENTS.md` and `CLAUDE.md` will be added in a follow-up commit once the operational scope is validated.
+This repo is governed by the AJ Digital canonical doctrine layer (business memory lives outside this repo). Repo-local operating rules now live in `AGENTS.md`, child `AGENTS.md` files, and `docs/system/`. Tier 1 production repo expectations apply per the Goal Protocol before feature or integration work resumes.
 
 ---
 
