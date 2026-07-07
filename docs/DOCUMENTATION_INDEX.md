@@ -49,6 +49,7 @@ Defines what will be built.
 |---|---|
 | Layer entrypoint | `docs/01-SPECIFICATION/README.md` |
 | Architecture | `docs/architecture/` |
+| UX and interaction requirements | `docs/product/ux/FLR_PLATFORM_UX_PSYCHOLOGY_INTEGRATION.md` |
 | Data model | `docs/schemas/canonical-data-schema.md`, root `schemas/` |
 | API/data contracts | `docs/automation/`, `prompts/`, root `schemas/` |
 | Workflows | `docs/workflows/`, `docs/sop/`, `docs/workflows/job-marketplace-and-assignment-engine.md` |

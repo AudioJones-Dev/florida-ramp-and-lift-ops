@@ -25,6 +25,7 @@ Use individual ADR files under `docs/governance/adr/` when a decision needs deep
 | 2026-06-04 | Michael Keegan is final MVP authority for client-facing invoice release. | Active | Prevents unsafe financial automation and preserves business authority. | Reflect in schemas, workflows, and future UI gates. |
 | 2026-06-04 | No Firebase path is allowed. | Active | Avoids platform drift and recurring integration churn. | Keep dependency/config review in validation. |
 | 2026-07-03 | Use the AJ Digital Tier 4 layer model as a coverage map without renaming the existing docs tree yet. | Active | Existing docs already contain project context; moving files first would create churn without improving truth. | Maintain `docs/DOCUMENTATION_INDEX.md` and add missing contextual docs. |
+| 2026-07-07 | Apply behavioral UX psychology to FRL product planning with explicit dark-pattern guardrails. | Active | Contractor, admin, billing, client, and AI-assisted surfaces need smart defaults, real progress, factual risk visibility, contextual money framing, and human approval preservation. | Maintain `docs/product/ux/FLR_PLATFORM_UX_PSYCHOLOGY_INTEGRATION.md` and keep it aligned with readiness gates. |
 
 ## Open Decision Candidates
 

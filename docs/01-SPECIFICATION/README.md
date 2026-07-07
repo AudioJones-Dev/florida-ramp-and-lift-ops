@@ -22,6 +22,7 @@ Contractors should report what happened on the job. The platform should compute 
 | Specification need | Source |
 |---|---|
 | Architecture | `../architecture/` |
+| UX and interaction requirements | `../product/ux/FLR_PLATFORM_UX_PSYCHOLOGY_INTEGRATION.md` |
 | Data model | `../schemas/canonical-data-schema.md` and root `../../schemas/` |
 | State model | `../schemas/operational-state-machine.md` |
 | Role model | `../schemas/role-permission-matrix.md` |

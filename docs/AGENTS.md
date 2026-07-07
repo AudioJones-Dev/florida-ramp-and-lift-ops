@@ -28,6 +28,7 @@ Docs are the governing layer for this repo. Treat them as product and architectu
 - `docs/00-STRATEGY/` through `docs/06-REFERENCE/`: canonical layer entrypoints that point to existing source docs. Do not duplicate detailed source-of-truth content there unless a future branch explicitly migrates the docs tree.
 - `docs/architecture/`: platform architecture, source-of-truth boundaries, implementation gates.
 - `docs/prds/`: product requirements.
+- `docs/product/`: product UX, interaction, and screen behavior requirements.
 - `docs/schemas/`: human-readable schema and state-machine planning.
 - `docs/workflows/`: operational workflow definitions.
 - `docs/sop/`: field and business operating procedures.

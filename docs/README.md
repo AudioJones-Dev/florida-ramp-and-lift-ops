@@ -21,6 +21,7 @@ This repo remains documentation-first. No app framework, Firebase, cloud infrast
 | `DOCUMENTATION_INDEX.md` | Tier 4 layer coverage map for the existing domain-oriented docs tree. |
 | `00-STRATEGY/` through `06-REFERENCE/` | Canonical AJ Digital Tier 4 layer entrypoints. These point to source docs; they do not replace the domain folders. |
 | `architecture/` | Platform architecture decisions, access model, and implementation direction. |
+| `product/` | Product UX, interaction, and screen behavior requirements. |
 | `product-roadmaps/` | Product sequencing for each FLR operating domain. |
 | `prds/` | Product requirement documents for the domain systems and dashboard. |
 | `schemas/` | Human-readable schema planning docs that complement root-level JSON Schemas. |
