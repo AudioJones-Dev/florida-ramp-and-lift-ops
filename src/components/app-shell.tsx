@@ -1,29 +1,58 @@
 "use client";
 
+import { UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Menu, ShieldCheck } from "lucide-react";
 import { useMemo, useState } from "react";
 import { navigationItems } from "@/lib/navigation";
-import { mockRoles, type MockRoleId } from "@/lib/roles";
+import { mockLoginAccounts, mockRoles, type MockRoleId } from "@/lib/roles";
 import { Button } from "@/components/ui/button";
 
 function getInitialRole(): MockRoleId {
-  const requestedRole =
-    typeof window === "undefined" ? null : new URLSearchParams(window.location.search).get("role");
+  if (typeof window === "undefined") {
+    return "owner";
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const requestedAccount = params.get("account");
+  const accountRole = mockLoginAccounts.find((account) => account.id === requestedAccount)?.roleId;
+  if (accountRole) {
+    return accountRole;
+  }
+
+  const requestedRole = params.get("role");
   const validRole = mockRoles.find((role) => role.id === requestedRole);
   return validRole?.id ?? "owner";
 }
 
 export function AppShell({ children }: { children: React.ReactNode }) {
+  const { isLoaded, user } = useUser();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const requestedAccount = searchParams.get("account");
   const requestedRole = searchParams.get("role");
-  const initialRole = mockRoles.find((item) => item.id === requestedRole)?.id ?? getInitialRole();
+  const requestedAccountRole = mockLoginAccounts.find(
+    (account) => account.id === requestedAccount
+  )?.roleId;
+  const initialRole =
+    requestedAccountRole ??
+    mockRoles.find((item) => item.id === requestedRole)?.id ??
+    getInitialRole();
   const [role, setRole] = useState<MockRoleId>(initialRole);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const activeRole = mockRoles.find((item) => item.id === role) ?? mockRoles[0];
+  const activeAccount =
+    mockLoginAccounts.find(
+      (account) => account.id === requestedAccount && account.roleId === role
+    ) ??
+    mockLoginAccounts.find((account) => account.roleId === role);
+  const activeAccountQuery = activeAccount ? `&account=${activeAccount.id}` : "";
+  const accountEmail =
+    isLoaded && user?.primaryEmailAddress?.emailAddress
+      ? user.primaryEmailAddress.emailAddress
+      : activeAccount?.email;
   const visibleItems = useMemo(
     () =>
       navigationItems.filter((item) =>
@@ -35,7 +64,13 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   function updateRole(nextRole: MockRoleId) {
     setRole(nextRole);
     const url = new URL(window.location.href);
+    const matchingAccount = mockLoginAccounts.find((account) => account.roleId === nextRole);
     url.searchParams.set("role", nextRole);
+    if (matchingAccount) {
+      url.searchParams.set("account", matchingAccount.id);
+    } else {
+      url.searchParams.delete("account");
+    }
     window.history.replaceState({}, "", url);
   }
 
@@ -62,7 +97,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             return (
               <Link
                 key={item.href}
-                href={`${item.href}?role=${role}`}
+                href={`${item.href}?role=${role}${activeAccountQuery}`}
                 className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm transition ${
                   active
                     ? "bg-[var(--secondary)] font-semibold text-[var(--secondary-foreground)]"
@@ -95,22 +130,32 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                   Mock role
                 </div>
                 <div className="text-sm font-semibold">{activeRole.label}</div>
+                {accountEmail ? (
+                  <div className="mt-0.5 text-xs text-[var(--muted-foreground)]">
+                    {accountEmail}
+                  </div>
+                ) : null}
               </div>
             </div>
-            <label className="flex items-center gap-2 text-sm">
-              <span className="hidden text-[var(--muted-foreground)] sm:inline">Preview as</span>
-              <select
-                className="h-10 rounded-md border bg-white px-3 text-sm outline-none ring-[var(--ring)] focus:ring-2"
-                value={role}
-                onChange={(event) => updateRole(event.target.value as MockRoleId)}
-              >
-                {mockRoles.map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item.label}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <div className="flex items-center gap-3">
+              <label className="flex items-center gap-2 text-sm">
+                <span className="hidden text-[var(--muted-foreground)] sm:inline">
+                  Preview as
+                </span>
+                <select
+                  className="h-10 rounded-md border bg-white px-3 text-sm outline-none ring-[var(--ring)] focus:ring-2"
+                  value={role}
+                  onChange={(event) => updateRole(event.target.value as MockRoleId)}
+                >
+                  {mockRoles.map((item) => (
+                    <option key={item.id} value={item.id}>
+                      {item.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <UserButton />
+            </div>
           </div>
         </header>
         <main className="mx-auto w-full max-w-7xl px-4 py-6 lg:px-8">{children}</main>
