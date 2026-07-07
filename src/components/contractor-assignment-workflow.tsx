@@ -1,6 +1,15 @@
 "use client";
 
-import { Check, CirclePause, ClipboardList, FileCheck2, MapPin, ShieldCheck, X } from "lucide-react";
+import {
+  Check,
+  CirclePause,
+  ClipboardList,
+  FileCheck2,
+  MapPin,
+  Repeat2,
+  ShieldCheck,
+  X
+} from "lucide-react";
 import { DocumentationUploadPlaceholder } from "@/components/documentation-upload-placeholder";
 import { useMemo, useState } from "react";
 import { StatusBadge } from "@/components/status-badge";
@@ -13,6 +22,9 @@ type LocalAssignmentState = {
   status?: ContractorAssignmentStatus;
   completionNote?: string;
   documentationStatus?: string;
+  transferReason?: string;
+  remainingScope?: string;
+  transferPacketSummary?: string;
 };
 
 export function ContractorAssignmentWorkflow() {
@@ -24,7 +36,11 @@ export function ContractorAssignmentWorkflow() {
         status: localState[assignment.id]?.status ?? assignment.status,
         documentationStatus:
           localState[assignment.id]?.documentationStatus ?? assignment.documentationStatus,
-        completionNote: localState[assignment.id]?.completionNote ?? ""
+        completionNote: localState[assignment.id]?.completionNote ?? "",
+        transferReason: localState[assignment.id]?.transferReason ?? assignment.transferReason,
+        remainingScope: localState[assignment.id]?.remainingScope ?? assignment.remainingScope,
+        transferPacketSummary:
+          localState[assignment.id]?.transferPacketSummary ?? assignment.transferPacketSummary
       })),
     [localState]
   );
@@ -51,6 +67,21 @@ export function ContractorAssignmentWorkflow() {
     }));
   }
 
+  function requestTransfer(id: string, reason: string) {
+    setLocalState((current) => ({
+      ...current,
+      [id]: {
+        ...current[id],
+        status: "transfer_requested",
+        documentationStatus: "Transfer packet pending dispatcher review",
+        transferReason: reason,
+        remainingScope: "Dispatcher must confirm remaining work before reassigning this job.",
+        transferPacketSummary:
+          "Local transfer request created. Original contractor context stays attached for dispatcher review."
+      }
+    }));
+  }
+
   const openCount = assignments.filter((assignment) =>
     ["assigned", "accepted", "in_progress"].includes(assignment.status)
   ).length;
@@ -59,6 +90,9 @@ export function ContractorAssignmentWorkflow() {
   ).length;
   const ppeIssues = assignments.filter((assignment) =>
     assignment.ppeStatus.toLowerCase().includes("review")
+  ).length;
+  const transferRequests = assignments.filter((assignment) =>
+    ["transfer_requested", "partial_complete"].includes(assignment.status)
   ).length;
 
   return (
@@ -76,10 +110,11 @@ export function ContractorAssignmentWorkflow() {
         </div>
       </section>
 
-      <section className="grid gap-3 sm:grid-cols-3">
+      <section className="grid gap-3 sm:grid-cols-4">
         <Metric label="Open assignments" value={openCount} />
         <Metric label="Documentation needed" value={documentationNeeded} />
         <Metric label="PPE review items" value={ppeIssues} />
+        <Metric label="Transfer requests" value={transferRequests} />
       </section>
 
       <section className="grid gap-4">
@@ -89,6 +124,7 @@ export function ContractorAssignmentWorkflow() {
             assignment={assignment}
             onStatus={updateStatus}
             onSubmitCompletion={submitCompletion}
+            onRequestTransfer={requestTransfer}
           />
         ))}
       </section>
@@ -99,17 +135,22 @@ export function ContractorAssignmentWorkflow() {
 function AssignmentCard({
   assignment,
   onStatus,
-  onSubmitCompletion
+  onSubmitCompletion,
+  onRequestTransfer
 }: {
   assignment: (typeof mockContractorAssignments)[number] & {
     completionNote: string;
   };
   onStatus: (id: string, status: ContractorAssignmentStatus) => void;
   onSubmitCompletion: (id: string, completionNote: string) => void;
+  onRequestTransfer: (id: string, reason: string) => void;
 }) {
   const [note, setNote] = useState("");
+  const [transferReason, setTransferReason] = useState("");
   const isRejected = assignment.status === "rejected";
   const isSubmitted = assignment.status === "submitted";
+  const isTransferRequested = assignment.status === "transfer_requested";
+  const isClosedForAction = isRejected || isSubmitted || isTransferRequested || assignment.status === "transferred";
 
   return (
     <article className="rounded-lg border bg-white p-4 shadow-sm sm:p-5">
@@ -148,20 +189,36 @@ function AssignmentCard({
         </p>
       </div>
 
+      {assignment.transferPacketSummary ? (
+        <div className="mt-4 rounded-md border bg-[var(--secondary)] p-3 text-sm text-[var(--secondary-foreground)]">
+          <div className="flex items-center gap-2 font-semibold">
+            <Repeat2 className="h-4 w-4" />
+            Transfer packet
+          </div>
+          <p className="mt-2 leading-6">{assignment.transferPacketSummary}</p>
+          {assignment.remainingScope ? (
+            <p className="mt-2 leading-6">Remaining scope: {assignment.remainingScope}</p>
+          ) : null}
+          {assignment.transferReason ? (
+            <p className="mt-2 leading-6">Reason: {assignment.transferReason}</p>
+          ) : null}
+        </div>
+      ) : null}
+
       <div className="mt-4">
         <DocumentationUploadPlaceholder label="Field photo/document placeholder" />
       </div>
 
       <div className="mt-4 grid gap-2 sm:grid-cols-3">
         <Button
-          disabled={isRejected || isSubmitted}
+          disabled={isClosedForAction}
           onClick={() => onStatus(assignment.id, "accepted")}
         >
           <Check className="h-4 w-4" />
           Accept
         </Button>
         <Button
-          disabled={isRejected || isSubmitted}
+          disabled={isClosedForAction}
           variant="secondary"
           onClick={() => onStatus(assignment.id, "in_progress")}
         >
@@ -169,7 +226,7 @@ function AssignmentCard({
           Start
         </Button>
         <Button
-          disabled={isSubmitted}
+          disabled={isSubmitted || isTransferRequested}
           variant="destructive"
           onClick={() => onStatus(assignment.id, "rejected")}
         >
@@ -177,6 +234,40 @@ function AssignmentCard({
           Reject
         </Button>
       </div>
+
+      <form
+        className="mt-4 rounded-md border bg-[var(--background)] p-3"
+        onSubmit={(event) => {
+          event.preventDefault();
+          onRequestTransfer(
+            assignment.id,
+            transferReason || "Contractor requested transfer because remaining work cannot be completed."
+          );
+          setTransferReason("");
+        }}
+      >
+        <div className="flex items-center gap-2 text-sm font-semibold">
+          <Repeat2 className="h-4 w-4 text-[var(--primary)]" />
+          Request transfer
+        </div>
+        <p className="mt-2 text-sm leading-6 text-[var(--muted-foreground)]">
+          Use when work is partial, blocked, or another contractor/team must finish the remaining scope.
+        </p>
+        <label className="mt-3 block text-sm font-medium">
+          Transfer reason
+          <textarea
+            className="mt-2 min-h-20 w-full rounded-md border bg-white px-3 py-2 text-sm outline-none ring-[var(--ring)] focus:ring-2"
+            disabled={isClosedForAction}
+            onChange={(event) => setTransferReason(event.target.value)}
+            placeholder="Example: customer access closed before after photos, needs lead installer to verify site condition."
+            value={transferReason}
+          />
+        </label>
+        <Button className="mt-3 w-full sm:w-auto" disabled={isClosedForAction} variant="secondary" type="submit">
+          <Repeat2 className="h-4 w-4" />
+          Request transfer mock
+        </Button>
+      </form>
 
       <form
         className="mt-4 space-y-3"
@@ -190,13 +281,13 @@ function AssignmentCard({
           Completion note
           <textarea
             className="mt-2 min-h-24 w-full rounded-md border bg-white px-3 py-2 text-sm outline-none ring-[var(--ring)] focus:ring-2"
-            disabled={isRejected}
+            disabled={isRejected || isTransferRequested}
             onChange={(event) => setNote(event.target.value)}
             placeholder="Add completion notes, blockers, or documentation context."
             value={note}
           />
         </label>
-        <Button className="w-full sm:w-auto" disabled={isRejected} type="submit">
+        <Button className="w-full sm:w-auto" disabled={isRejected || isTransferRequested} type="submit">
           Submit completion mock
         </Button>
       </form>

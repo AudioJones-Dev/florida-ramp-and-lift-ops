@@ -366,15 +366,22 @@ export const mockJobs: Job[] = [
     customerId: "customer_007",
     customerName: "Documentation Missing Demo",
     jobType: "Ramp takedown",
-    status: "documentation_review",
+    status: "transfer_review",
     siteAddress: "Residential site, Fort Myers area",
     scheduledFor: "Yesterday",
     assignedTo: "Helper C",
     documentationStatus: "missing",
     invoiceReadinessStatus: "blocked",
     invoiceReadyForReview: false,
-    invoiceReadiness: "Blocked by missing after photos",
-    notes: "Scenario 4: job is blocked by missing proof-of-work."
+    invoiceReadiness: "Blocked until transfer closeout and after photos are complete",
+    notes: "Scenario 4: partial takedown needs another qualified contractor to finish closeout.",
+    transferStatus: "transfer_requested",
+    transferReason: "Original contractor could not complete after-photo closeout and remaining site verification.",
+    remainingScope: "Return to site, verify no trip hazard remains, capture after photos, and submit completion notes.",
+    previousAssignee: "Helper C",
+    transferTarget: "Lead Installer A or Senior Lead B",
+    transferPacketSummary:
+      "Partial takedown completed. Billing stays blocked until a new contractor finishes verification and proof-of-work."
   },
   {
     id: "job_008",
@@ -1097,8 +1104,13 @@ export const mockContractorAssignments: ContractorAssignment[] = [
     location: "Residential site, Fort Myers area",
     siteContact: "C. Brooks",
     scheduledWindow: "Yesterday",
-    status: "submitted",
+    status: "transfer_requested",
     scope: "Complete takedown and upload after photos.",
+    remainingScope: "Return to verify site condition, capture after photos, and close out the documentation blocker.",
+    transferReason: "Helper C submitted partial work but cannot complete required after-photo verification.",
+    transferTarget: "Lead Installer A or Senior Lead B",
+    transferPacketSummary:
+      "Transfer packet holds payout and invoice readiness until the replacement contractor submits final evidence.",
     requiredEquipment: ["Removal tools", "Truck access"],
     requiredDocumentation: ["After photos", "Completion notes"],
     documentationStatus: "Missing after photos",
@@ -1106,7 +1118,7 @@ export const mockContractorAssignments: ContractorAssignment[] = [
     safetyRequirements: ["Document site condition", "Confirm no remaining trip hazard"],
     ppeStatus: "Compliant",
     payout: "Held",
-    notes: "Scenario 4 assignment blocked by missing documentation."
+    notes: "Scenario 4 assignment moved into transfer review because the job is partial and documentation is missing."
   },
   {
     id: "assignment-8",
@@ -1232,8 +1244,8 @@ export const demoScenarios: DemoScenario[] = [
     assignmentId: "assignment-7",
     validation: {
       lead: "Customer work completed",
-      job: "Job in documentation review",
-      assignment: "Completion submitted",
+      job: "Job in transfer review",
+      assignment: "Transfer requested",
       documentation: "After photos missing",
       approval: "Documentation exception held",
       invoiceReadiness: "Blocked"

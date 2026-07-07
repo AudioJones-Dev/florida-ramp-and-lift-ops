@@ -36,9 +36,17 @@ export type JobStatus =
   | "paid"
   | "closed"
   | "incomplete"
+  | "transfer_review"
   | "return_needed"
   | "on_hold"
   | "cancelled";
+
+export type JobTransferStatus =
+  | "transfer_requested"
+  | "transfer_review"
+  | "transfer_approved"
+  | "transferred"
+  | "partial_complete";
 
 export type ContractorStatus =
   | "candidate"
@@ -152,6 +160,12 @@ export type Job = ManualRecord & {
   invoiceReadyForReview: boolean;
   invoiceReadiness: string;
   notes: string;
+  transferStatus?: JobTransferStatus;
+  transferReason?: string;
+  remainingScope?: string;
+  previousAssignee?: string;
+  transferTarget?: string;
+  transferPacketSummary?: string;
 };
 
 export type Contractor = ManualRecord & {
@@ -242,7 +256,11 @@ export type ContractorAssignmentStatus =
   | "accepted"
   | "rejected"
   | "in_progress"
-  | "submitted";
+  | "submitted"
+  | "transfer_requested"
+  | "transfer_approved"
+  | "transferred"
+  | "partial_complete";
 
 export type ContractorAssignment = {
   id: string;
@@ -255,6 +273,10 @@ export type ContractorAssignment = {
   scheduledWindow: string;
   status: ContractorAssignmentStatus;
   scope: string;
+  remainingScope?: string;
+  transferReason?: string;
+  transferTarget?: string;
+  transferPacketSummary?: string;
   requiredEquipment: string[];
   requiredDocumentation: string[];
   documentationStatus: string;

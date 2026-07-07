@@ -10,7 +10,7 @@ import type { QueueDefinition } from "@/lib/queues";
 export function QueueView({ queue }: { queue: QueueDefinition }) {
   const Icon = queue.icon;
   const blockedCount = queue.items.filter((item) =>
-    ["missing", "needs_review", "held", "open", "unanswered", "requested"].includes(item.status)
+    ["missing", "needs_review", "held", "open", "unanswered", "requested", "transfer_requested", "transfer_review"].includes(item.status)
   ).length;
 
   return (

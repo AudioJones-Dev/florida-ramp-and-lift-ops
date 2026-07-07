@@ -47,7 +47,7 @@ export const dashboardKpis = [
   {
     label: "Jobs requiring attention",
     value: mockJobs.filter((job) =>
-      ["documentation_review", "invoice_review", "on_hold", "incomplete", "return_needed"].includes(
+      ["documentation_review", "invoice_review", "on_hold", "incomplete", "transfer_review", "return_needed"].includes(
         job.status
       )
     ).length,
@@ -273,7 +273,7 @@ function getExecutiveSummaryHeadline() {
 }
 
 export const dashboardBusinessRules = [
-  "Jobs in documentation_review, invoice_review, on_hold, incomplete, or return_needed count as requiring attention.",
+  "Jobs in documentation_review, invoice_review, on_hold, incomplete, transfer_review, or return_needed count as requiring attention.",
   "Jobs with required, missing, submitted, needs_review, rejected, or held documentation count as documentation blockers.",
   "Jobs with invoiceReadyForReview true or invoiceReadinessStatus ready_for_review count as ready for invoice review.",
   "Approvals in requested or held states count as open approvals.",

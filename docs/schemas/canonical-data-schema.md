@@ -274,13 +274,13 @@ Communication / Alert / Task / Approval / AuditLog
 | Purpose | Atomic unit of field work executed by Florida Ramp & Lift. Job is the operational hub. |
 | Primary owner | Office Admin / Dispatcher. |
 | Required fields | `job_id`, `organization_id`, `customer_id`, `job_type`, `status`, `location_id`, `site_address`, `site_city`, `crew_members`, `scope_line_items`, `safety_record_id`, `notes`, `created_at`, `updated_at`, `version`. |
-| Optional fields | `lead_id`, `work_order_id`, `scheduled_date`, `scheduled_window`, `zone_id`, `trip_charge_classification`, `trip_charge_amount`, `completion_submitted_at`, `approved_at`, `approved_by_user_id`, `metadata`. |
+| Optional fields | `lead_id`, `work_order_id`, `scheduled_date`, `scheduled_window`, `zone_id`, `trip_charge_classification`, `trip_charge_amount`, `completion_submitted_at`, `approved_at`, `approved_by_user_id`, `transfer_status`, `transfer_reason`, `previous_assignee_id`, `remaining_scope`, `transfer_packet_summary`, `metadata`. |
 | Relationships | Belongs to Customer and Location; may reference Lead, WorkOrder, DispatchAssignment, Contractors, Equipment, DocumentationArtifacts, Invoice, ContractorPayout, Communications, Alerts, Tasks, Approvals, AuditLogs. |
-| Lifecycle states | `pending`, `scheduled`, `in_progress`, `submitted`, `approved`, `invoiced`, `paid`, `incomplete`, `return_needed`, `on_hold`, `cancelled`. |
+| Lifecycle states | `pending`, `scheduled`, `in_progress`, `submitted`, `approved`, `invoiced`, `paid`, `incomplete`, `transfer_review`, `return_needed`, `on_hold`, `cancelled`. |
 | Role access notes | Owner and Office Admin can manage. Dispatcher can schedule/assign. Lead Installer/Contractor can view assigned jobs and submit completion evidence. Finance can read approved/billing-relevant jobs. Client can see released own-job data in future client access. |
 | Agent access notes | Agents may validate fields, recommend state changes, detect missing documentation, generate summaries, and create alerts/tasks. Agents may not approve Jobs, dispatch crews externally, or invoice Jobs without approval. |
-| Dashboard usage | Core status counts, open jobs, scheduled today, completed this week, missing documentation, invoice readiness, dispatch queue, contractor portal job list. |
-| Audit requirements | Log all status transitions, crew changes, schedule changes, field submissions, approval decisions, invoice linkage, trip-charge overrides, and safety/documentation blockers. |
+| Dashboard usage | Core status counts, open jobs, scheduled today, completed this week, missing documentation, transfer review, invoice readiness, dispatch queue, contractor portal job list. |
+| Audit requirements | Log all status transitions, crew changes, transfer requests, remaining-scope changes, schedule changes, field submissions, approval decisions, invoice linkage, trip-charge overrides, and safety/documentation blockers. |
 
 ### WorkOrder
 
