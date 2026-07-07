@@ -24,6 +24,8 @@ Docs are the governing layer for this repo. Treat them as product and architectu
 
 ## Directory Map
 
+- `docs/DOCUMENTATION_INDEX.md`: AJ Digital Tier 4 layer coverage map over the current docs tree.
+- `docs/00-STRATEGY/` through `docs/06-REFERENCE/`: canonical layer entrypoints that point to existing source docs. Do not duplicate detailed source-of-truth content there unless a future branch explicitly migrates the docs tree.
 - `docs/architecture/`: platform architecture, source-of-truth boundaries, implementation gates.
 - `docs/prds/`: product requirements.
 - `docs/schemas/`: human-readable schema and state-machine planning.
@@ -32,6 +34,11 @@ Docs are the governing layer for this repo. Treat them as product and architectu
 - `docs/guardrails/`: safety, financial, agent, and approval constraints.
 - `docs/agents/`: future agent role specs.
 - `docs/system/`: repo operating protocols for human/agent collaboration.
+- `docs/governance/`: definitions of ready/done/stable, decision log, risk register, and repo governance artifacts.
+- `docs/quality/`: security, observability, testing, and failure-mode planning.
+- `docs/delivery/`: release, migration, and changelog planning.
+- `docs/execution/`: worktree planning and requirements traceability.
+- `docs/reference/`: glossary, dependency map, and open questions.
 
 ## Documentation Safety
 

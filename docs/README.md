@@ -18,6 +18,8 @@ This repo remains documentation-first. No app framework, Firebase, cloud infrast
 
 | Folder | Purpose |
 |---|---|
+| `DOCUMENTATION_INDEX.md` | Tier 4 layer coverage map for the existing domain-oriented docs tree. |
+| `00-STRATEGY/` through `06-REFERENCE/` | Canonical AJ Digital Tier 4 layer entrypoints. These point to source docs; they do not replace the domain folders. |
 | `architecture/` | Platform architecture decisions, access model, and implementation direction. |
 | `product-roadmaps/` | Product sequencing for each FLR operating domain. |
 | `prds/` | Product requirement documents for the domain systems and dashboard. |
@@ -27,10 +29,15 @@ This repo remains documentation-first. No app framework, Firebase, cloud infrast
 | `guardrails/` | Safety, financial, agent, and human-approval constraints. |
 | `agents/` | Agent role specifications for future implementation. |
 | `system/` | Repo operating protocols, agent-governance rules, and documentation architecture. |
+| `governance/` | DoR, DoD, DoS, decision log, risk register, and agent/repo governance artifacts. |
+| `quality/` | Security, observability, testing, and failure-mode planning. |
+| `delivery/` | Release, migration, and changelog planning. |
+| `execution/` | Worktree planning and requirements traceability. |
+| `reference/` | Glossary, dependency map, and open questions. |
 | `scope/` | Existing Phase 1 scope and canonical operational object docs. |
 | `automation/` | Existing automation specifications. Specs only; no live integrations. |
 | `training/` | Existing crew onboarding and safety training docs. |
 
 ## Preservation Rule
 
-Existing Phase 1 docs remain authoritative until explicitly replaced. New files in this folder are placeholders or planning surfaces unless marked as approved implementation specs.
+Existing Phase 1 docs remain authoritative until explicitly replaced. New files in this folder are planning surfaces unless marked as approved implementation specs.

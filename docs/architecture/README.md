@@ -2,10 +2,11 @@
 
 This folder contains platform architecture decisions for the Florida Ramp & Lift Operational Intelligence Platform.
 
-These documents are planning-level specifications. They do not implement app code, integrations, authentication, storage, deployments, or third-party services.
+These documents are planning-level specifications unless explicitly marked as an implementation note. `auth-foundation.md` records the approved Clerk auth scaffold; it does not authorize database, storage, deployment, or third-party workflow integrations.
 
 ## Current Docs
 
+- `auth-foundation.md` records the approved Clerk user-auth scaffold, current runtime boundary, required env keys, and remaining setup gates.
 - `ai-stack-and-cost-control.md` defines the AI, automation, communications, model routing, budget, and vendor-risk policy.
 - `event-driven-architecture.md` defines how state transitions produce events consumed by dashboards, agents, alerts, approvals, audit logs, portals, and future automations.
 - `hubspot-crm-integration-model.md` defines HubSpot as the CRM/intake layer while preserving FLR as operational source of truth and QuickBooks as accounting ledger.

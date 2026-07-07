@@ -51,6 +51,10 @@ These should mirror the approved docs and must not drift into independent archit
 
 ## 3. Placement Rules
 
+Use `docs/DOCUMENTATION_INDEX.md` to map the existing docs tree to the AJ Digital Tier 4 documentation layers.
+
+Use `docs/00-STRATEGY/` through `docs/06-REFERENCE/` as layer navigation entrypoints. These folders reconcile the canonical layer model with the existing domain folders; they should not duplicate detailed source-of-truth content unless a future migration branch explicitly adopts numbered folders as the primary structure.
+
 Use `docs/architecture/` for durable platform decisions.
 
 Use `docs/prds/` for product requirements and user-facing scope.
@@ -60,6 +64,16 @@ Use `docs/schemas/` for human-readable object/state/access modeling.
 Use root `schemas/` for machine-readable JSON Schemas.
 
 Use `docs/system/` for repo governance, agent loops, and documentation process.
+
+Use `docs/governance/` for DoR, DoD, DoS, decisions, risks, and durable project governance artifacts.
+
+Use `docs/quality/` for security, observability, testing, and failure-mode planning.
+
+Use `docs/delivery/` for release, migration, and changelog planning.
+
+Use `docs/execution/` for worktree plans, implementation sequencing, and traceability.
+
+Use `docs/reference/` for glossary, dependencies, and open questions.
 
 Use `docs/qa/` for point-in-time reviews, readiness assessments, and go/no-go decisions.
 

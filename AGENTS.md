@@ -80,7 +80,12 @@ Default section order:
 
 ## Child DOX Index
 
-This project is not yet indexed. Before continuing you must scan the project, build the DOX tree and replace this message with the actual index. Go deep and scan files recursively to properly evaluate complexity and create nested DOX files where needed.
+- `docs/AGENTS.md` governs `docs/`, including architecture, PRDs, schemas, workflows, SOPs, guardrails, agents, system protocols, governance, quality, delivery, execution, and reference documentation.
+- `schemas/AGENTS.md` governs root machine-readable schema contracts.
+- `src/AGENTS.md` governs source code.
+- `src/app/AGENTS.md` governs Next.js app routes and page-level behavior.
+- `src/components/AGENTS.md` governs React components.
+- `src/lib/AGENTS.md` governs shared library utilities and domain logic.
 
 ---
 
@@ -98,6 +103,7 @@ The repo must not drift into live persistence, auth, HubSpot, QuickBooks, email/
 
 - Product scope: `docs/architecture/mvp-definition.md`
 - Implementation gate: `docs/architecture/implementation-readiness-gate.md`
+- Auth foundation: `docs/architecture/auth-foundation.md`
 - Persistence design: `docs/architecture/persistence-design.md`
 - Canonical schema planning: `docs/schemas/canonical-data-schema.md`
 - State machine: `docs/schemas/operational-state-machine.md`
@@ -110,6 +116,7 @@ If these documents conflict, stop and report the contradiction before editing.
 
 - Documentation/governance branches may not change app runtime behavior.
 - No package installs or dependency changes unless the branch objective explicitly authorizes them.
+- Clerk user-auth foundation is the current approved auth scaffold. This does not authorize Supabase setup, storage, migrations, live integrations, production deployment, or committed secrets.
 - No secrets, credentials, customer PDFs, private rate sheets, or sensitive client files.
 - No Firebase packages, config, environment names, or implementation path.
 - No live third-party writes or runtime integrations.
