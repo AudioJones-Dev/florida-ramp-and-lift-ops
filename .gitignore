@@ -1,0 +1,12 @@
+.claude/
+.agents/
+.env
+.env*
+!.env.example
+node_modules/
+.next/
+out/
+dist/
+coverage/
+*.tsbuildinfo
+.DS_Store
