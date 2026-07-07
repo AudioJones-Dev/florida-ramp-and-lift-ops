@@ -101,10 +101,15 @@ export default function DemoScenariosPage() {
         </div>
       </section>
 
-      <section className="grid gap-4 md:grid-cols-3">
+      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <ScenarioSurface href="/dashboard" label="Dashboard" detail="Confirm derived counts and high-priority signals." />
         <ScenarioSurface href="/queues" label="Queues" detail="Confirm each scenario lands in the expected operational queue." />
         <ScenarioSurface href="/approvals" label="Approval Center" detail="Confirm approval packets explain evidence and blockers." />
+        <ScenarioSurface
+          href="/dispatch"
+          label="Dispatch Planner"
+          detail="Compare vendor fit, route viability, and invoice stack suggestions before review."
+        />
       </section>
     </div>
   );

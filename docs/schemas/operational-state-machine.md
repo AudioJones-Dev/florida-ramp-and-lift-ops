@@ -100,6 +100,9 @@ Events should use past-tense business names:
 - `DispatchApproved`
 - `DispatchSent`
 - `JobStarted`
+- `JobTransferRequested`
+- `JobTransferApproved`
+- `JobTransferred`
 - `PhotosUploaded`
 - `DocumentationSubmitted`
 - `DocumentationApproved`
@@ -172,15 +175,16 @@ Event naming should describe what happened, not the button clicked.
 | `scheduled` | Job has scheduled date/window. | `assigned`, `on_hold`, `cancelled`, `return_needed` | `JobScheduled` | Dispatcher | Schedule review | Dispatch Agent suggests crew. |
 | `assigned` | Contractor/crew assigned. | `dispatch_ready`, `on_hold`, `cancelled` | `JobAssigned` | Dispatcher | Crew assignment review | Skill/PPE match check. |
 | `dispatch_ready` | Required dispatch data is present. | `in_progress`, `on_hold`, `cancelled` | `JobDispatchReady` | Dispatcher | Dispatch send approval | Dispatch package prepared. |
-| `in_progress` | Crew is executing work. | `submitted`, `incomplete`, `return_needed`, `on_hold` | `JobStarted` | Lead Installer / Contractor | Safety exceptions require review | Documentation checklist starts. |
-| `submitted` | Crew submitted completion package. | `documentation_review`, `incomplete`, `return_needed`, `on_hold` | `JobSubmitted` | Contractor / Lead Installer | No final approval yet | Documentation Agent checks completeness. |
-| `documentation_review` | Evidence is under review. | `approved`, `incomplete`, `return_needed`, `on_hold` | `JobDocumentationReviewStarted` | Office Admin | Required | Missing evidence alerts. |
+| `in_progress` | Crew is executing work. | `submitted`, `incomplete`, `transfer_review`, `return_needed`, `on_hold` | `JobStarted` | Lead Installer / Contractor | Safety exceptions require review | Documentation checklist starts. |
+| `submitted` | Crew submitted completion package. | `documentation_review`, `incomplete`, `transfer_review`, `return_needed`, `on_hold` | `JobSubmitted` | Contractor / Lead Installer | No final approval yet | Documentation Agent checks completeness. |
+| `documentation_review` | Evidence is under review. | `approved`, `incomplete`, `transfer_review`, `return_needed`, `on_hold` | `JobDocumentationReviewStarted` | Office Admin | Required | Missing evidence alerts. |
 | `approved` | Job approved for billing. | `invoice_review`, `on_hold` | `JobApproved` | Office Admin | Required | Invoice Agent checks readiness. |
 | `invoice_review` | Job is being reviewed for invoice inclusion. | `invoiced`, `on_hold` | `JobInvoiceReviewStarted` | Finance | Required | Financial checks. |
 | `invoiced` | Job included in Invoice. | `paid`, `on_hold` | `JobInvoiced` | Finance | Invoice approval gates apply | Dashboard updates outstanding invoices. |
 | `paid` | Financial lifecycle complete. | `closed` | `JobPaid` | Finance | Reconciliation outside MVP | Executive rollup updates. |
 | `closed` | Job lifecycle complete. | `reopened` | `JobClosed` | Office Admin / Finance | Reason for reopen | Audit only. |
-| `incomplete` | Work incomplete. | `scheduled`, `return_needed`, `on_hold`, `cancelled` | `JobIncomplete` | Office Admin | Triage required | Alert created. |
+| `incomplete` | Work incomplete. | `scheduled`, `transfer_review`, `return_needed`, `on_hold`, `cancelled` | `JobIncomplete` | Office Admin | Triage required | Alert created. |
+| `transfer_review` | Work is partial or blocked and another contractor/team may need to finish the remaining scope. | `scheduled`, `assigned`, `return_needed`, `on_hold`, `cancelled` | `JobTransferRequested` | Dispatcher / Office Admin | Required | Dispatch Agent prepares continuation recommendations. |
 | `return_needed` | Future visit needed. | `scheduled`, `on_hold`, `cancelled` | `JobReturnNeeded` | Office Admin / Dispatcher | Review required | Dispatch Agent watches. |
 | `on_hold` | Paused for triage. | Any valid prior or next operational state | `JobHeld` | Office Admin / Owner | Reason required | Alert remains active. |
 | `cancelled` | Job cancelled. | `reopened` | `JobCancelled` | Office Admin / Owner | Reason required | Audit only. |
@@ -195,6 +199,10 @@ Event naming should describe what happened, not the button clicked.
 | `sent` | Dispatch instructions released. | `in_progress`, `revised` | `DispatchSent` | Dispatcher | Approval already required | Contractor portal updates. |
 | `in_progress` | Crew day active. | `completed`, `held`, `revised` | `DispatchStarted` | Dispatcher / Lead Installer | Exceptions require review | Job status monitoring. |
 | `completed` | Dispatch assignment complete. | `closed` | `DispatchCompleted` | Dispatcher | Closeout review | Dashboard clears active dispatch. |
+| `partial_complete` | Some work was finished, but remaining scope must be transferred or rescheduled. | `transfer_requested`, `held`, `closed` | `DispatchPartiallyCompleted` | Contractor / Lead Installer | Reason required | Transfer packet is prepared. |
+| `transfer_requested` | Contractor/admin requested another contractor or team to finish the remaining scope. | `needs_review`, `held`, `cancelled` | `JobTransferRequested` | Contractor / Office Admin | Dispatcher review required | Dispatch Agent suggests eligible continuation contractors. |
+| `transfer_approved` | Human approved the transfer packet and remaining scope. | `transferred`, `revised`, `held` | `JobTransferApproved` | Dispatcher / Office Admin | Required | Contractor portal can show replacement assignment after release. |
+| `transferred` | Original assignment is closed as transferred and a replacement assignment may be created. | `closed` | `JobTransferred` | Dispatcher | Required before replacement release | Dashboard clears original assignment but keeps audit context. |
 | `revised` | Assignment changed. | `needs_review`, `approved` | `DispatchRevised` | Dispatcher | Re-approval if after approval/sent | Audit and alerts update. |
 | `held` | Paused due to blocker. | `needs_review`, `cancelled` | `DispatchHeld` | Dispatcher / Office Admin | Reason required | Alert remains visible. |
 | `cancelled` | Dispatch assignment cancelled. | `draft` | `DispatchCancelled` | Dispatcher | Reason required | Audit only. |
@@ -311,6 +319,7 @@ Event naming should describe what happened, not the button clicked.
 | Lead `contact_needed` or Communication `unanswered` | Missed follow-up queue. |
 | Lead `estimate_requested` | Executive/Office estimate action queue. |
 | Job `scheduled`, `assigned`, `dispatch_ready` | Jobs scheduled today and dispatch queue. |
+| Job `incomplete`, `transfer_review`, or `return_needed` | Job transfer queue and dispatch triage. |
 | DispatchAssignment `needs_review` or `held` | Dispatch blockers. |
 | Job `submitted` or `documentation_review` | Documentation review queue. |
 | DocumentationArtifact `missing`, `needs_review`, `rejected`, `held` | Jobs missing documentation. |
@@ -340,6 +349,7 @@ Human approval is required for:
 - Lead conversion to Job when pricing or incomplete data is involved.
 - WorkOrder acceptance after parser/extraction.
 - DispatchAssignment approval and external dispatch send.
+- Job transfer or reassignment after partial/incomplete work.
 - Job submitted -> approved.
 - DocumentationArtifact approval for billing/safety evidence.
 - Invoice approval and client-facing release.

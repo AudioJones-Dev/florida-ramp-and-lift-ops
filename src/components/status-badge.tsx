@@ -11,6 +11,8 @@ const urgentStatuses = new Set([
   "held",
   "rejected",
   "incomplete",
+  "transfer_requested",
+  "transfer_review",
   "return_needed",
   "cancelled",
   "voided",
@@ -28,6 +30,9 @@ const readyStatuses = new Set([
   "resolved",
   "acknowledged",
   "submitted",
+  "partial_complete",
+  "transfer_approved",
+  "transferred",
   "lead_installer",
   "senior_lead"
 ]);

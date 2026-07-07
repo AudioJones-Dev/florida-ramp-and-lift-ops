@@ -5,7 +5,8 @@ import {
   FileCheck2,
   FileText,
   HardHat,
-  MessageSquare
+  MessageSquare,
+  Repeat2
 } from "lucide-react";
 import {
   mockAlerts,
@@ -22,6 +23,7 @@ export type QueueKey =
   | "approvals"
   | "alerts"
   | "contractor-assignments"
+  | "job-transfers"
   | "follow-up";
 
 export type QueueItem = ManualRecord & {
@@ -99,12 +101,31 @@ const activeAlerts = mockAlerts
 const contractorAssignments = mockContractorAssignments.map((assignment) => ({
   id: `queue-assignment-${assignment.id}`,
   title: `${assignment.jobNumber} - ${assignment.jobTitle}`,
-  detail: `Action: verify acceptance, PPE, and required documentation. ${assignment.scope}. Documentation: ${assignment.documentationStatus}`,
+  detail:
+    assignment.status === "transfer_requested"
+      ? `Action: review transfer packet and assign continuation work. ${assignment.transferPacketSummary}`
+      : `Action: verify acceptance, PPE, and required documentation. ${assignment.scope}. Documentation: ${assignment.documentationStatus}`,
   owner: "Dispatcher",
   status: assignment.status,
-  href: "/contractor",
+  href: assignment.status === "transfer_requested" ? `/jobs/${assignment.jobId}` : "/contractor",
   assignmentId: assignment.id
 }));
+
+const jobTransfers = mockJobs
+  .filter(
+    (job) =>
+      job.transferStatus ||
+      ["incomplete", "transfer_review", "return_needed"].includes(job.status)
+  )
+  .map((job) => ({
+    id: `queue-transfer-${job.id}`,
+    title: `${job.jobNumber} - ${job.customerName}`,
+    detail: `Action: review remaining scope and assign a continuation contractor. ${job.transferPacketSummary ?? job.notes}`,
+    owner: "Dispatcher",
+    status: job.transferStatus ?? job.status,
+    href: `/jobs/${job.id}`,
+    jobId: job.jobId
+  }));
 
 const communicationsRequiringFollowUp = mockCommunications
   .filter((communication) => ["unanswered", "needs_review", "new"].includes(communication.status))
@@ -173,6 +194,17 @@ export const queueDefinitions: QueueDefinition[] = [
     emptyDescription: "No mock contractor assignments are currently available.",
     icon: HardHat,
     items: contractorAssignments
+  },
+  {
+    key: "job-transfers",
+    title: "Job Transfers",
+    description: "Transfer review queue for partial, incomplete, or return-needed work that another contractor or team must finish.",
+    href: "/queues/job-transfers",
+    ownerLabel: "Transfer owner",
+    emptyTitle: "No transfer reviews",
+    emptyDescription: "No mock jobs currently require transfer review.",
+    icon: Repeat2,
+    items: jobTransfers
   },
   {
     key: "follow-up",

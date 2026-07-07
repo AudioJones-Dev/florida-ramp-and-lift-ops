@@ -22,7 +22,11 @@ export default function JobsPage() {
         { name: "jobNumber", label: "Job number", placeholder: "FLR-####" },
         { name: "customerName", label: "Customer", placeholder: "Customer name" },
         { name: "jobType", label: "Job type", placeholder: "Ramp install" },
-        { name: "status", label: "Status", options: ["pending", "scheduled", "assigned", "on_hold"] },
+        {
+          name: "status",
+          label: "Status",
+          options: ["pending", "scheduled", "assigned", "incomplete", "transfer_review", "return_needed", "on_hold"]
+        },
         { name: "scheduledFor", label: "Scheduled for", placeholder: "Today, tomorrow, date window" }
       ]}
     />
