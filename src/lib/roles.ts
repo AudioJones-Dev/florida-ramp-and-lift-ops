@@ -47,3 +47,39 @@ export const mockRoles = [
 ] as const;
 
 export type MockRoleId = (typeof mockRoles)[number]["id"];
+
+export const mockLoginAccounts = [
+  {
+    id: "platform",
+    label: "Platform Login",
+    tenantLabel: "Platform",
+    email: "dev@ajdigital.app",
+    roleId: "support_admin",
+    description: "AJ Digital platform/operator preview."
+  },
+  {
+    id: "admin",
+    label: "Admin Login",
+    tenantLabel: "Admin",
+    email: "audiojones@ajdigital.app",
+    roleId: "office_admin",
+    description: "Office/admin workflow preview."
+  },
+  {
+    id: "contractor",
+    label: "Contractor Login",
+    tenantLabel: "Contractor",
+    email: "bookaudiojones@gmail.com",
+    roleId: "contractor",
+    description: "Assigned contractor portal preview."
+  }
+] as const satisfies readonly {
+  id: string;
+  label: string;
+  tenantLabel: string;
+  email: string;
+  roleId: MockRoleId;
+  description: string;
+}[];
+
+export type MockLoginAccountId = (typeof mockLoginAccounts)[number]["id"];
