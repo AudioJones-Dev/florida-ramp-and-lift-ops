@@ -1,5 +1,6 @@
 .claude/
 .agents/
+.vercel/
 .env
 .env*
 !.env.example
