@@ -80,7 +80,7 @@ Defines how the project ships, evolves, and migrates.
 | Expected artifact | Current source |
 |---|---|
 | Layer entrypoint | `docs/03-DELIVERY/README.md` |
-| Deployment | `docs/delivery/RELEASE_PLAN.md`, `docs/architecture/implementation-readiness-gate.md` |
+| Deployment | `docs/delivery/RELEASE_PLAN.md`, `docs/delivery/DEPLOYMENT_TARGET.md`, `docs/architecture/implementation-readiness-gate.md` |
 | Roadmap | `docs/product-roadmaps/` |
 | Changelog | `docs/delivery/CHANGELOG.md` |
 | Release plan | `docs/delivery/RELEASE_PLAN.md` |
