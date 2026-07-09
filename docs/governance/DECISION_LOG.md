@@ -33,6 +33,7 @@ Use individual ADR files under `docs/governance/adr/` when a decision needs deep
 |---|---|---|
 | Numbered layer folders | Not adopted. Current domain folders remain. | Decide later whether to physically migrate to `00-STRATEGY` through `06-REFERENCE`. |
 | Runtime persistence provider | Not approved. | Decide only after implementation readiness gate is accepted. |
+| Phase 2 closure acceptance | Proposed. `docs/delivery/PHASE_2_CLOSURE_CHECKLIST.md` defines the closure evidence and operator acceptance statement. | Decide whether the current mock/manual MVP scaffold is accepted as the Phase 2 baseline for Phase B planning. |
 | Storage provider for photos/PDFs | Not approved. | Decide after security/storage policy is accepted. |
 | CRM integration timing | HubSpot is future boundary. | Decide after manual/mock FLR workflows exist. |
 | Accounting integration timing | QuickBooks is future final ledger boundary. | Decide after invoice readiness and approval flows are validated manually. |

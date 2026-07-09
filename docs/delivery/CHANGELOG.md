@@ -13,6 +13,7 @@ Use Git history for exact diffs. Use this file for operator-readable milestone c
 
 ## Unreleased
 
+- Added Phase 2 closure checklist for Phase A of the live-app gap-closure plan, including operator acceptance language and Phase B handoff criteria.
 - Updated the risk register and open questions to track the remaining ops-domain Terms/Privacy publication and support/legal contact gates.
 - Added Florida-law legal/privacy doctrine for Florida Ramp and Lift LLC, including the `floridarampandliftops.com` ops-domain Terms/Privacy gate, FIPA baseline, Florida Digital Bill of Rights alignment, and sensitive operational data restrictions.
 - Recorded the internal pilot deployment posture for `floridarampandliftops.com`, clarified the boundary from the `floridarampandlift.com` marketing site, clarified that persistence is not required for the protected mock/manual pilot, and replaced the deployment target rollback placeholder with an internal-pilot rollback runbook.

@@ -20,6 +20,8 @@ No delivery step should skip the implementation readiness gate, security review,
 | Delivery need | Source |
 |---|---|
 | Release plan | `../delivery/RELEASE_PLAN.md` |
+| Live app gap-closure plan | `../delivery/LIVE_APP_GAP_CLOSURE_PLAN.md` |
+| Phase 2 closure checklist | `../delivery/PHASE_2_CLOSURE_CHECKLIST.md` |
 | Migration plan | `../delivery/MIGRATION_PLAN.md` |
 | Changelog | `../delivery/CHANGELOG.md` |
 | Product roadmaps | `../product-roadmaps/` |
