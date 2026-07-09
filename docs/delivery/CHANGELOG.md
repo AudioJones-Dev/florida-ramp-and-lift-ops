@@ -13,6 +13,7 @@ Use Git history for exact diffs. Use this file for operator-readable milestone c
 
 ## Unreleased
 
+- Recorded the internal pilot deployment posture for `app.floridarampandlift.com`, clarified that persistence is not required for the protected mock/manual pilot, and replaced the deployment target rollback placeholder with an internal-pilot rollback runbook.
 - Added deployment target decision record (`docs/delivery/DEPLOYMENT_TARGET.md`) recommending a new Git-linked Vercel project `florida-ramp-and-lift-ops`, with gated Clerk/link/preview/production checklists and a production-domain hard blocker; added `.vercel/` to `.gitignore`.
 - Added Tier 4 documentation coverage map in `docs/DOCUMENTATION_INDEX.md`.
 - Added governance artifacts for Definition of Ready, Definition of Done, Definition of Stable, decision log, and risk register.

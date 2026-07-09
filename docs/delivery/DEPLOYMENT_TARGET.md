@@ -13,9 +13,10 @@ preview or production deployment. It exists so the target decision, approval
 gates, and environment variable contract are explicit before any deploy work
 begins.
 
-## Current Deployment State (verified 2026-07-07)
+## Current Deployment State (verified 2026-07-09)
 
 - The repo is not linked to any Vercel project. `.vercel/project.json` does not exist.
+- No Vercel project currently exists for `florida-ramp-and-lift-ops`.
 - Vercel team `audiojones` contains an existing project `floridaplatformliftpros`
   (created 2026-05-04). It has no connected Git repository, only default
   `*.vercel.app` domains, and its deployments were CLI-pushed with 10–32 second
@@ -26,6 +27,25 @@ begins.
   (`docs/architecture/implementation-readiness-gate.md` §22) is not satisfied.
 - `docs/delivery/RELEASE_PLAN.md` places the repo at Phase 2 (mock/manual MVP
   scaffold); production release gates (Phases 3–5) are not met.
+
+## Internal Pilot Decision
+
+The next live milestone is an authenticated internal pilot at
+`app.floridarampandlift.com`.
+
+Internal pilot scope:
+
+- Protected mock/manual app scaffold only.
+- Sanitized fixture/demo records only.
+- No real customer data, private rate sheets, production files, or signed
+  documents.
+- No persistence, storage, migrations, live integrations, external sends,
+  invoice release, payout release, runtime AI, or production automation.
+
+Persistence, RLS/object-level access, and storage are not required before the
+internal pilot because the pilot is not allowed to handle real operational data.
+They remain required before production operations, real records, customer files,
+or external integrations.
 
 ## Recommended Target
 
@@ -97,8 +117,10 @@ Clerk production instances require a domain the operator owns, with DNS access
 for CNAME verification. Production publishable keys are domain-bound and do
 not work on `*.vercel.app` domains. Consequences:
 
-- A production domain decision (for example `ops.` or `app.` on an owned
-  domain) must precede Clerk production setup.
+- The internal pilot and future production domain is
+  `app.floridarampandlift.com`.
+- DNS access for `floridarampandlift.com` is required before Clerk production
+  setup.
 - Changing the production domain later regenerates the Clerk publishable key,
   so production env vars must not be set until the domain is final.
 - Production deploy is blocked until the domain is chosen, DNS records are
@@ -168,16 +190,44 @@ Explicit operator approval (`proceed`) is required, separately, before each of:
 - [ ] `vercel deploy --prod` run; deployment verified; result logged in
       CHANGELOG.
 
-## Rollback Plan (placeholder)
+## Rollback Runbook
 
-To be completed before any production deploy. Must define:
+This runbook applies to the protected mock/manual internal pilot only. It does
+not authorize production operations, real data handling, persistence, storage,
+or live integrations.
 
-- How to promote the previous Ready deployment (`vercel rollback` in Vercel).
-- Who may trigger rollback and how it is logged.
-- How env variable changes are reverted.
-- Clerk instance fallback behavior, if any.
+Before any production promotion:
 
-A production deploy is blocked while this section is a placeholder.
+- Confirm at least one previous Ready deployment exists:
+  `vercel list florida-ramp-and-lift-ops`.
+- Record the current deployment URL and the previous Ready deployment URL in
+  `docs/delivery/CHANGELOG.md`.
+- Confirm the operator responsible for rollback.
+
+Rollback trigger:
+
+- Clerk sign-in fails on the pilot domain.
+- Protected routes become publicly accessible.
+- Mock/manual labels disappear from pilot-critical surfaces.
+- The deploy introduces a build/runtime failure that blocks dashboard access.
+
+Rollback command:
+
+```powershell
+vercel rollback <previous-ready-deployment-url-or-id>
+```
+
+Post-rollback:
+
+- Verify `/`, `/sign-in`, `/mock-sign-in`, and `/dashboard`.
+- Record the rollback in `docs/delivery/CHANGELOG.md` with deployment URLs,
+  trigger, operator, and verification result.
+- If env variables caused the failure, update the Vercel environment through
+  the dashboard or `vercel env` commands without printing values.
+
+Production operations remain blocked until the implementation readiness gate,
+persistence/object-level access, storage policy, security review, and explicit
+operator production approval are complete.
 
 ## Risks
 
@@ -196,8 +246,8 @@ A production deploy is blocked while this section is a placeholder.
 - Who created `.env.production.local` on 2026-07-07, and with what keys?
 - What content does `floridaplatformliftpros` actually serve, and should it be
   archived later?
-- Which owned domain/subdomain will serve production (required before Clerk
-  production setup)?
+- Who owns DNS access for `app.floridarampandlift.com`, and when will Vercel
+  and Clerk records be added?
 - When is the readiness gate §22 review session scheduled, and who signs off?
 
 ## Acceptance Criteria
@@ -207,7 +257,7 @@ A production deploy is blocked while this section is a placeholder.
 - Lists required env variable names without values.
 - Records the production domain requirement as a hard blocker.
 - Defines operator-gated checklists for Clerk, link, preview, and production.
-- Contains a rollback placeholder that blocks production deploy.
+- Contains a concrete internal-pilot rollback runbook.
 - States explicitly what it does not authorize.
 
 ## Does Not Authorize
