@@ -86,6 +86,7 @@ Defines how the project ships, evolves, and migrates.
 | Roadmap | `docs/product-roadmaps/` |
 | Changelog | `docs/delivery/CHANGELOG.md` |
 | Release plan | `docs/delivery/RELEASE_PLAN.md` |
+| Live app gap-closure plan | `docs/delivery/LIVE_APP_GAP_CLOSURE_PLAN.md` |
 | Migration plan | `docs/delivery/MIGRATION_PLAN.md` |
 
 ## Layer 4 Governance
