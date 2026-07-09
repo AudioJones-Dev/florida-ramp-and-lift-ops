@@ -29,7 +29,8 @@ Phase 2+ builds the actual mobile-first PWA, automation layer, and CRM pipeline 
 
 The next live milestone is a protected internal pilot for the mock/manual scaffold, not production operations.
 
-- Target app domain: `app.floridarampandlift.com`.
+- Target app domain: `floridarampandliftops.com`.
+- Domain boundary: `floridarampandlift.com` remains the front-facing marketing site; `floridarampandliftops.com` is the isolated internal operations and client-ops surface.
 - Deployment target: a new Git-linked Vercel project named `florida-ramp-and-lift-ops`.
 - Pilot data posture: sanitized mock/manual records only; no real customer files, private rate sheets, production persistence, storage, or live integrations.
 - CI and preview deployments are allowed as delivery infrastructure when they preserve the mock/manual boundary.

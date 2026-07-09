@@ -31,7 +31,13 @@ begins.
 ## Internal Pilot Decision
 
 The next live milestone is an authenticated internal pilot at
-`app.floridarampandlift.com`.
+`floridarampandliftops.com`.
+
+Domain boundary:
+
+- `floridarampandlift.com` remains the front-facing marketing site.
+- `floridarampandliftops.com` is the isolated internal operations and
+  client-ops surface.
 
 Internal pilot scope:
 
@@ -117,9 +123,9 @@ Clerk production instances require a domain the operator owns, with DNS access
 for CNAME verification. Production publishable keys are domain-bound and do
 not work on `*.vercel.app` domains. Consequences:
 
-- The internal pilot and future production domain is
-  `app.floridarampandlift.com`.
-- DNS access for `floridarampandlift.com` is required before Clerk production
+- The internal pilot and future production ops domain is
+  `floridarampandliftops.com`.
+- DNS access for `floridarampandliftops.com` is required before Clerk production
   setup.
 - Changing the production domain later regenerates the Clerk publishable key,
   so production env vars must not be set until the domain is final.
@@ -246,7 +252,7 @@ operator production approval are complete.
 - Who created `.env.production.local` on 2026-07-07, and with what keys?
 - What content does `floridaplatformliftpros` actually serve, and should it be
   archived later?
-- Who owns DNS access for `app.floridarampandlift.com`, and when will Vercel
+- Who owns DNS access for `floridarampandliftops.com`, and when will Vercel
   and Clerk records be added?
 - When is the readiness gate §22 review session scheduled, and who signs off?
 
