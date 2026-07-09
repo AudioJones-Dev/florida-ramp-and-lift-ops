@@ -87,6 +87,7 @@ Defines how the project ships, evolves, and migrates.
 | Changelog | `docs/delivery/CHANGELOG.md` |
 | Release plan | `docs/delivery/RELEASE_PLAN.md` |
 | Live app gap-closure plan | `docs/delivery/LIVE_APP_GAP_CLOSURE_PLAN.md` |
+| Phase 2 closure checklist | `docs/delivery/PHASE_2_CLOSURE_CHECKLIST.md` |
 | Migration plan | `docs/delivery/MIGRATION_PLAN.md` |
 
 ## Layer 4 Governance
