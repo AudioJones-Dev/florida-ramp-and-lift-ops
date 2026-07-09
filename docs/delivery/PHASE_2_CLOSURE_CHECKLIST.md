@@ -90,8 +90,8 @@ to committed docs, PRs, or validation output.
 | No live persistence | No database, migration, RLS, storage, or API client is authorized by Phase 2 closure. | `../qa/build-docs-readiness-audit.md`, `../architecture/persistence-design.md` | Ready for operator review |
 | No live integrations | No HubSpot, QuickBooks, ResponseOS, email/SMS, PDF, AI, or third-party writes are authorized. | `RELEASE_PLAN.md`, `../architecture/mvp-definition.md` | Ready for operator review |
 | Legal/domain gates | Ops-domain legal/privacy and deployment gates remain separate Phase B approvals. | `DEPLOYMENT_TARGET.md`, `../legal/LEGAL_PRIVACY_DOCTRINE.md` | Not closed by Phase 2 |
-| Validation | Local checks are green for the closure branch. | To be filled by PR validation | Pending |
-| Decision log | Phase 2 closure acceptance is recorded only after operator approval. | `../governance/DECISION_LOG.md` open candidate | Pending operator decision |
+| Validation | Local checks are green for the closure branch. | `Validate` CI pass on merged PR #12; `typecheck` / `lint` / `build` green on the acceptance branch | Green |
+| Decision log | Phase 2 closure acceptance is recorded only after operator approval. | `../governance/DECISION_LOG.md` Current Decisions (accepted 2026-07-09) | Accepted |
 
 ## Required Operator Decision
 
