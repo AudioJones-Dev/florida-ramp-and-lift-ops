@@ -1,6 +1,6 @@
 # Phase B Internal Pilot Checklist
 
-Status: Git Spec-ready draft — pending operator review
+Status: Active — G0 accepted by operator 2026-07-09; gates G1–G7 pending, each behind its own operator `proceed`
 Scope: Phase B planning checklist for the authenticated internal pilot at `floridarampandliftops.com`
 Runtime impact: None
 Implementation status: Documentation only — no Clerk, Vercel, DNS, env, or deploy action is performed or authorized by this document
@@ -79,10 +79,12 @@ Gates execute in order. Each requires its own explicit operator `proceed`, and
 later gates assume the evidence of earlier ones. Provider actions are performed
 by the operator or with the operator present, per `DEPLOYMENT_TARGET.md`.
 
-### G0 — Accept this checklist
+### G0 — Accept this checklist — ✅ ACCEPTED 2026-07-09
 
-- [ ] Operator reviews and accepts this checklist as the Phase B sequence.
-- [ ] Acceptance recorded in [`../governance/DECISION_LOG.md`](../governance/DECISION_LOG.md).
+- [x] Operator reviews and accepts this checklist as the Phase B sequence
+      (operator acceptance, 2026-07-09).
+- [x] Acceptance recorded in [`../governance/DECISION_LOG.md`](../governance/DECISION_LOG.md)
+      (Current Decisions, 2026-07-09).
 
 ### G1 — DNS / domain ownership confirmation (hard blocker)
 

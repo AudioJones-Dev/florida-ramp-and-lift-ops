@@ -27,13 +27,13 @@ Use individual ADR files under `docs/governance/adr/` when a decision needs deep
 | 2026-07-03 | Use the AJ Digital Tier 4 layer model as a coverage map without renaming the existing docs tree yet. | Active | Existing docs already contain project context; moving files first would create churn without improving truth. | Maintain `docs/DOCUMENTATION_INDEX.md` and add missing contextual docs. |
 | 2026-07-07 | Apply behavioral UX psychology to FRL product planning with explicit dark-pattern guardrails. | Active | Contractor, admin, billing, client, and AI-assisted surfaces need smart defaults, real progress, factual risk visibility, contextual money framing, and human approval preservation. | Maintain `docs/product/ux/FLR_PLATFORM_UX_PSYCHOLOGY_INTEGRATION.md` and keep it aligned with readiness gates. |
 | 2026-07-09 | Accept Phase 2 closure: the mock/manual MVP scaffold is the accepted baseline for Phase B. | Active | Operator accepted the Phase 2 closure statement in `docs/delivery/PHASE_2_CLOSURE_CHECKLIST.md`; the manual/mock baseline is coherent, documented, and validated. Does not authorize production auth config, deploys, persistence, storage, migrations, live integrations, real operational data, or client portal work. | Phase B (authenticated internal pilot) planning may begin; each Phase B action requires a separate operator `proceed`. |
+| 2026-07-09 | Accept the Phase B gate ladder (G0): `docs/delivery/PHASE_B_INTERNAL_PILOT_CHECKLIST.md` is the accepted Phase B sequence. | Active | Operator accepted G0. The ladder sequences DNS/domain confirmation, Clerk production setup, Vercel project/link, env var writes, preview deploy, production pilot deploy, and rollback checks. Acceptance authorizes no provider action — each gate G1–G7 requires its own operator `proceed` at execution time. | Next decision is G1: DNS/domain ownership confirmation for `floridarampandliftops.com` (hard blocker; confirmation only, no records written). |
 
 ## Open Decision Candidates
 
 | Topic | Current posture | Needed decision |
 |---|---|---|
 | Numbered layer folders | Not adopted. Current domain folders remain. | Decide later whether to physically migrate to `00-STRATEGY` through `06-REFERENCE`. |
-| Phase B internal pilot gate ladder (G0) | Proposed. `docs/delivery/PHASE_B_INTERNAL_PILOT_CHECKLIST.md` sequences DNS, Clerk, Vercel, env, preview, production-pilot, and rollback gates. | Decide whether to accept the gate ladder as the Phase B sequence; each gate then still requires its own operator `proceed`. |
 | Runtime persistence provider | Not approved. | Decide only after implementation readiness gate is accepted. |
 | Storage provider for photos/PDFs | Not approved. | Decide after security/storage policy is accepted. |
 | CRM integration timing | HubSpot is future boundary. | Decide after manual/mock FLR workflows exist. |
