@@ -33,6 +33,7 @@ Use individual ADR files under `docs/governance/adr/` when a decision needs deep
 | Topic | Current posture | Needed decision |
 |---|---|---|
 | Numbered layer folders | Not adopted. Current domain folders remain. | Decide later whether to physically migrate to `00-STRATEGY` through `06-REFERENCE`. |
+| Phase B internal pilot gate ladder (G0) | Proposed. `docs/delivery/PHASE_B_INTERNAL_PILOT_CHECKLIST.md` sequences DNS, Clerk, Vercel, env, preview, production-pilot, and rollback gates. | Decide whether to accept the gate ladder as the Phase B sequence; each gate then still requires its own operator `proceed`. |
 | Runtime persistence provider | Not approved. | Decide only after implementation readiness gate is accepted. |
 | Storage provider for photos/PDFs | Not approved. | Decide after security/storage policy is accepted. |
 | CRM integration timing | HubSpot is future boundary. | Decide after manual/mock FLR workflows exist. |
