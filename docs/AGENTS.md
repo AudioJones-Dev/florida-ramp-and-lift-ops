@@ -37,6 +37,7 @@ Docs are the governing layer for this repo. Treat them as product and architectu
 - `docs/system/`: repo operating protocols for human/agent collaboration.
 - `docs/governance/`: definitions of ready/done/stable, decision log, risk register, and repo governance artifacts.
 - `docs/legal/`: legal/privacy doctrine, notice requirements, public legal URL requirements, and attorney/operator review gates.
+- `docs/qa/`: readiness reviews and implementation-vs-docs audits.
 - `docs/quality/`: security, observability, testing, and failure-mode planning.
 - `docs/delivery/`: release, migration, changelog, and deployment-target planning.
 - `docs/execution/`: worktree planning and requirements traceability.

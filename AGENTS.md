@@ -99,6 +99,40 @@ This repository is the Florida Ramp & Lift operational intelligence platform for
 
 The repo must not drift into live persistence, auth, HubSpot, QuickBooks, email/SMS, PDF generation, storage, runtime AI, or production automation until the relevant design docs are accepted and a specific implementation branch authorizes the work.
 
+## Repo Identity / Anti-Confusion
+
+This repository is easy to confuse with similarly named siblings on this machine.
+Confirm identity before editing; never carry another repo's assumptions into this one.
+
+Canonical identity:
+
+- Local path: `C:\dev\florida-ramp-and-lift-ops`
+- Remote `origin`: `https://github.com/AudioJones-Dev/florida-ramp-and-lift-ops.git`
+- Production branch: `main`
+- Product: Florida Ramp & Lift **operational intelligence platform** (Next.js + Clerk mock/manual MVP scaffold)
+
+Identity check (reinforces Required Work Pattern step 1) — run before editing:
+
+```powershell
+pwd
+git remote -v
+git rev-parse --show-toplevel
+```
+
+STOP if `origin` is not `…florida-ramp-and-lift-ops.git`.
+
+Do not confuse with — and do not import assumptions from:
+
+- `FRL-CONTRACTOR-PORTAL` (`git@github.com:AudioJones-Dev/FRL-CONTRACTOR-PORTAL.git`,
+  `C:\dev\frl-contractor-portal`) — a **separate** contractor-portal product with a
+  different stack (Supabase / Render, live migrations, storage, deployed domains).
+  None of that exists in this repo.
+- `floridaplatformliftpros` (`https://github.com/AudioJones-Dev/floridaplatformliftpros.git`,
+  `C:\dev\florida platform lift pros`) — a separate repo.
+
+Full boundary table: `docs/system/REPO_BOUNDARY_MAP.md`. Canonical identity card:
+`REPO_IDENTITY.md`.
+
 ## Source Of Truth
 
 - Product scope: `docs/architecture/mvp-definition.md`

@@ -69,6 +69,7 @@ Defines how the project is tested, secured, monitored, and stabilized.
 | Privacy/legal compliance | `docs/legal/LEGAL_PRIVACY_DOCTRINE.md`, `docs/quality/SECURITY.md` |
 | Observability | `docs/quality/OBSERVABILITY.md` |
 | Test strategy | `docs/quality/TEST_STRATEGY.md`, `docs/qa/` |
+| Current build-docs readiness audit | `docs/qa/build-docs-readiness-audit.md` |
 | Acceptance test plan | `docs/architecture/implementation-readiness-gate.md`, `docs/quality/TEST_STRATEGY.md` |
 | Performance | Future implementation artifact; no runtime performance target is accepted yet. |
 | Failure modes | `docs/quality/FAILURE_MODES.md` |
@@ -94,7 +95,8 @@ Defines the rules for starting, completing, reviewing, and stabilizing work.
 | Expected artifact | Current source |
 |---|---|
 | Layer entrypoint | `docs/04-GOVERNANCE/README.md` |
-| Project constitution | `AGENTS.md`, `docs/AGENTS.md`, `docs/system/` |
+| Project constitution | `AGENTS.md`, `docs/AGENTS.md`, `REPO_IDENTITY.md`, `CLAUDE.md`, `docs/system/` |
+| Repo boundary / anti-confusion map | `REPO_IDENTITY.md`, `CLAUDE.md`, `docs/system/REPO_BOUNDARY_MAP.md` |
 | Legal/privacy doctrine | `docs/legal/LEGAL_PRIVACY_DOCTRINE.md` |
 | Definition of Ready | `docs/governance/DEFINITION_OF_READY.md` |
 | Definition of Done | `docs/governance/DEFINITION_OF_DONE.md` |

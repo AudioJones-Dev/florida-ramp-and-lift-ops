@@ -12,7 +12,7 @@ These domains roll up into one Centralized Control Dashboard.
 
 ## Current Status
 
-This repo remains documentation-first. No app framework, Firebase, cloud infrastructure, live CRM, dispatch, billing, email, SMS, or AI integration is implemented in this phase.
+This repo has a mock/manual Next.js MVP scaffold backed by documentation-first architecture. Firebase, cloud infrastructure, live CRM, live dispatch, billing, email, SMS, storage, database persistence, production deploys, and runtime AI integrations are not implemented in this phase.
 
 ## Documentation Map
 
@@ -32,6 +32,7 @@ This repo remains documentation-first. No app framework, Firebase, cloud infrast
 | `system/` | Repo operating protocols, agent-governance rules, and documentation architecture. |
 | `governance/` | DoR, DoD, DoS, decision log, risk register, and agent/repo governance artifacts. |
 | `quality/` | Security, observability, testing, and failure-mode planning. |
+| `qa/` | Readiness reviews and implementation-vs-docs audits. |
 | `delivery/` | Release, migration, and changelog planning. |
 | `execution/` | Worktree planning and requirements traceability. |
 | `reference/` | Glossary, dependency map, and open questions. |

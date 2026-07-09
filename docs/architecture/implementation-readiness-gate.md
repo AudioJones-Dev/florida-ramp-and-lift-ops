@@ -1,33 +1,33 @@
 # Implementation Readiness Gate
 
-Status: Git Spec-Ready Draft
+Status: Git Spec-Ready Draft; reconciled against current mock/manual scaffold
 Owner: AJ Digital LLC / Audio Jones
 Repo: `AudioJones-Dev/florida-ramp-and-lift-ops`
 Scope: Florida Ramp & Lift Operational Intelligence Platform
-Last updated: 2026-06-04
+Last updated: 2026-07-09
 
 ## 1. Purpose
 
-This document defines the checkpoint that must be satisfied before the Florida Ramp & Lift repo moves from docs/spec-first architecture into app scaffolding or implementation.
+This document defines the checkpoint that must be satisfied before the Florida Ramp & Lift repo moves from its current mock/manual scaffold into any new implementation phase.
 
-The repo is currently documentation-first. This gate prevents premature app scaffolding, live integrations, secret sprawl, Firebase drift, and implementation work before the operating model is stable.
+The repo currently has a mock/manual Next.js MVP scaffold and an approved Clerk user-auth shell recorded in `docs/architecture/auth-foundation.md`. This gate prevents premature persistence, live integrations, secret sprawl, Firebase drift, production auth configuration, and implementation work before the operating model is stable.
 
 ## 2. Implementation Readiness Doctrine
 
 - Architecture must be stable before implementation starts.
 - Manual/mock workflows must exist before live integrations.
 - Source-of-truth boundaries must be explicit before sync logic.
-- Role and object access must be defined before auth implementation.
+- Role and object access must be defined before production auth configuration or live record access.
 - State transitions and events must be defined before workflow automation.
 - Human approval gates must be explicit before financial, dispatch, client-facing, or safety-sensitive workflows.
 - Cost-control policy must exist before runtime AI/API usage.
 - GitHub remains the execution/spec system.
 - Obsidian remains the business memory/decision system.
-- No implementation work is ready until the go/no-go checklist is satisfied.
+- No new implementation phase is ready until the go/no-go checklist for that phase is satisfied.
 
 ## 3. Required Pre-Implementation Artifacts
 
-These artifacts must exist and be reviewed before app scaffolding:
+These artifacts must exist and be reviewed before new implementation phases:
 
 | Artifact | Path | Required Status |
 |---|---|---|
@@ -41,7 +41,7 @@ These artifacts must exist and be reviewed before app scaffolding:
 | HubSpot CRM integration model | `docs/architecture/hubspot-crm-integration-model.md` | Defines CRM boundary. |
 | Worksie integration strategy | `docs/architecture/worksie-integration-strategy.md` | Defines embedded module boundary. |
 
-Implementation is blocked if any required artifact is missing, materially contradictory, or not reviewed.
+Implementation beyond the current mock/manual scaffold is blocked if any required artifact is missing, materially contradictory, or not reviewed.
 
 ## 4. Product Scope Gate
 
@@ -166,7 +166,7 @@ Access model:
 - Client access is later and limited to released customer-facing records.
 - AI Agent role is restricted and cannot approve sensitive actions.
 
-Implementation is blocked if auth is scaffolded without role-aware routing and object-level access design.
+Implementation is blocked if production auth configuration or live record access proceeds without role-aware routing and object-level access design. The current Clerk shell is an approved scaffold only; it is not production authorization.
 
 ## 10. HubSpot Boundary Gate
 
@@ -369,10 +369,10 @@ MVP decision: Michael Keegan has final approval authority for client-facing invo
 
 This document does not authorize:
 
-- App code.
-- Next.js scaffolding.
-- Auth setup.
-- Clerk setup.
+- New app code beyond the approved mock/manual MVP scaffold.
+- Replacement Next.js scaffolding.
+- Production auth setup.
+- Clerk production configuration, organizations, invitations, real-user creation, or secret handling.
 - Supabase/Neon setup.
 - Database migrations.
 - HubSpot integration.
@@ -402,10 +402,11 @@ This readiness gate is accepted when:
 - It defines the approved MVP implementation sequence.
 - It preserves Michael Keegan's MVP invoice-release authority.
 - It does not add app code, runtime setup, integrations, secrets, or Firebase.
+- It recognizes the approved mock/manual scaffold and Clerk auth shell as the current baseline without authorizing production auth, persistence, integrations, secrets, or deploys.
 
 ## 22. Go / No-Go Checklist
 
-Do not mark implementation ready unless every required item below is checked.
+Do not mark a new implementation phase ready unless every required item below is checked or explicitly scoped as already satisfied by the current mock/manual scaffold.
 
 ### Architecture
 
@@ -449,7 +450,16 @@ Do not mark implementation ready unless every required item below is checked.
 - [ ] No private rate sheets in repo.
 - [ ] No live third-party integrations before manual/mock workflows.
 
+### Current Baseline Reconciliation
+
+- [x] Mock/manual Next.js MVP scaffold exists.
+- [x] Clerk user-auth shell exists as an approved scaffold.
+- [ ] Phase 2 closure criteria formally accepted.
+- [ ] Production Clerk configuration approved.
+- [ ] Object-level authorization approved.
+- [ ] Persistence implementation approved.
+
 ### Go / No-Go Decision
 
-- [ ] Go: all gates satisfied and implementation may begin with app scaffold.
+- [ ] Go: all gates satisfied for the next explicitly scoped implementation phase.
 - [ ] No-go: one or more gates unresolved; continue docs/spec work.
