@@ -33,6 +33,7 @@ The next live milestone is a protected internal pilot for the mock/manual scaffo
 - Domain boundary: `floridarampandlift.com` remains the front-facing marketing site; `floridarampandliftops.com` is the isolated internal operations and client-ops surface.
 - Deployment target: a new Git-linked Vercel project named `florida-ramp-and-lift-ops`.
 - Pilot data posture: sanitized mock/manual records only; no real customer files, private rate sheets, production persistence, storage, or live integrations.
+- Legal/privacy posture: `docs/legal/LEGAL_PRIVACY_DOCTRINE.md` defines the Florida-law doctrine and keeps ops-domain Terms/Privacy publication behind attorney/operator review.
 - CI and preview deployments are allowed as delivery infrastructure when they preserve the mock/manual boundary.
 - Production operations remain blocked until the implementation readiness gate, rollback plan, persistence/object access, storage, security review, and human approval gates are satisfied.
 

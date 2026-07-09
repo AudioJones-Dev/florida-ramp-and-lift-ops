@@ -43,6 +43,8 @@ Internal pilot scope:
 
 - Protected mock/manual app scaffold only.
 - Sanitized fixture/demo records only.
+- Legal/privacy doctrine recorded before the ops domain is circulated beyond
+  tightly controlled internal review.
 - No real customer data, private rate sheets, production files, or signed
   documents.
 - No persistence, storage, migrations, live integrations, external sends,
@@ -78,6 +80,8 @@ GitHub repository, once the operator approves.
 - `docs/delivery/RELEASE_PLAN.md` owns release phase sequencing and gates.
 - `docs/architecture/implementation-readiness-gate.md` owns go/no-go criteria.
 - `docs/architecture/auth-foundation.md` owns Clerk auth scope and its gates.
+- `docs/legal/LEGAL_PRIVACY_DOCTRINE.md` owns Florida-law legal/privacy
+  doctrine and future Terms/Privacy URL gates.
 - Secrets live in `.env.local`, Vercel environment variables, or an approved
   secret manager — never in Git or in this doc.
 
@@ -143,7 +147,8 @@ Explicit operator approval (`proceed`) is required, separately, before each of:
    with production keys.
 4. Writing any environment variable to Vercel.
 5. Any preview deploy.
-6. Any production deploy — additionally gated on the implementation readiness
+6. Publishing or linking Terms/Privacy URLs for the ops domain.
+7. Any production deploy — additionally gated on the implementation readiness
    gate §22 checklist and RELEASE_PLAN release gates.
 
 ## Clerk Production Setup Checklist (blocked until approved)
@@ -175,6 +180,8 @@ Explicit operator approval (`proceed`) is required, separately, before each of:
 ## Preview Deploy Checklist (blocked until approved)
 
 - [ ] Link checklist complete.
+- [ ] Legal/privacy doctrine accepted; no public Terms/Privacy links point to
+      the marketing site unless operator/counsel confirms coverage.
 - [ ] `npm run typecheck`, `npm run lint`, `npm run build` pass at the deploy SHA.
 - [ ] Preview env vars present (Clerk development-instance keys only).
 - [ ] `vercel deploy` (preview) run with operator approval.
@@ -189,6 +196,8 @@ Explicit operator approval (`proceed`) is required, separately, before each of:
 - [ ] Implementation readiness gate §22 go/no-go checklist satisfied.
 - [ ] RELEASE_PLAN release gates satisfied (DoR/DoD/DoS, security review,
       role/object permissions, no secrets in repo, rollback plan).
+- [ ] Ops-domain Terms/Privacy URL plan accepted per
+      `docs/legal/LEGAL_PRIVACY_DOCTRINE.md`.
 - [ ] Clerk production checklist complete, including verified domain.
 - [ ] Preview deploy verified.
 - [ ] Rollback plan below completed (no longer a placeholder).
@@ -254,6 +263,8 @@ operator production approval are complete.
   archived later?
 - Who owns DNS access for `floridarampandliftops.com`, and when will Vercel
   and Clerk records be added?
+- Who will review and approve ops-domain Terms/Privacy copy before public
+  publication?
 - When is the readiness gate §22 review session scheduled, and who signs off?
 
 ## Acceptance Criteria
