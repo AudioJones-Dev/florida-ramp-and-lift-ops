@@ -69,6 +69,7 @@ Defines how the project is tested, secured, monitored, and stabilized.
 | Privacy/legal compliance | `docs/legal/LEGAL_PRIVACY_DOCTRINE.md`, `docs/quality/SECURITY.md` |
 | Observability | `docs/quality/OBSERVABILITY.md` |
 | Test strategy | `docs/quality/TEST_STRATEGY.md`, `docs/qa/` |
+| Current build-docs readiness audit | `docs/qa/build-docs-readiness-audit.md` |
 | Acceptance test plan | `docs/architecture/implementation-readiness-gate.md`, `docs/quality/TEST_STRATEGY.md` |
 | Performance | Future implementation artifact; no runtime performance target is accepted yet. |
 | Failure modes | `docs/quality/FAILURE_MODES.md` |

@@ -11,7 +11,7 @@ This plan defines safe release sequencing for the Florida Ramp & Lift platform.
 
 ## Current Release State
 
-The repo is documentation-first. No production app release is authorized by this document.
+The repo has a mock/manual Next.js MVP scaffold backed by documentation-first architecture. No production app release, persistence layer, live integration, secret configuration, or production deployment is authorized by this document.
 
 ## Release Phases
 
