@@ -25,6 +25,7 @@ This register tracks the main risks that can destabilize the Florida Ramp & Lift
 | Client-facing invoice release without Michael approval. | High | MVP docs require Michael Keegan final authority. | Owner / finance reviewer |
 | Treating mock data as production truth. | High | Root AGENTS requires mock data remain mock. | All agents |
 | Secrets or customer files committed to repo. | High | Docs and AGENTS prohibit secrets, credentials, customer PDFs, private rate sheets, and sensitive client files. | All contributors |
+| Ops-domain Terms/Privacy pages or support/legal contact method missing before broader pilot circulation. | High | Legal/privacy doctrine defines `floridarampandliftops.com` Terms/Privacy gates; deployment target blocks marketing-site legal links unless operator/counsel confirms coverage. | Operator / counsel |
 | Competing schemas for the same business object. | Medium | Canonical schema doc defines object names; readiness gate blocks competing meanings. | Architecture reviewer |
 | Documentation layer sprawl. | Medium | Documentation index maps existing docs to Tier 4 layers. | Documentation owner |
 | Wording drift that authorizes production behavior. | Medium | New docs must include runtime impact and "does not authorize" boundaries. | Documentation reviewer |

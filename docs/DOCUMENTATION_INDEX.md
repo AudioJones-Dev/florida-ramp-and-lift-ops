@@ -66,6 +66,7 @@ Defines how the project is tested, secured, monitored, and stabilized.
 |---|---|
 | Layer entrypoint | `docs/02-QUALITY/README.md` |
 | Security | `docs/quality/SECURITY.md`, `docs/guardrails/` |
+| Privacy/legal compliance | `docs/legal/LEGAL_PRIVACY_DOCTRINE.md`, `docs/quality/SECURITY.md` |
 | Observability | `docs/quality/OBSERVABILITY.md` |
 | Test strategy | `docs/quality/TEST_STRATEGY.md`, `docs/qa/` |
 | Acceptance test plan | `docs/architecture/implementation-readiness-gate.md`, `docs/quality/TEST_STRATEGY.md` |
@@ -94,6 +95,7 @@ Defines the rules for starting, completing, reviewing, and stabilizing work.
 |---|---|
 | Layer entrypoint | `docs/04-GOVERNANCE/README.md` |
 | Project constitution | `AGENTS.md`, `docs/AGENTS.md`, `docs/system/` |
+| Legal/privacy doctrine | `docs/legal/LEGAL_PRIVACY_DOCTRINE.md` |
 | Definition of Ready | `docs/governance/DEFINITION_OF_READY.md` |
 | Definition of Done | `docs/governance/DEFINITION_OF_DONE.md` |
 | Definition of Stable | `docs/governance/DEFINITION_OF_STABLE.md` |

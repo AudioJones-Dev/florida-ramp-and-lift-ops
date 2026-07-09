@@ -2,7 +2,7 @@
 
 **Owner:** AJ Digital LLC / Audio Jones
 **Repo:** `AudioJones-Dev/florida-ramp-and-lift-ops`
-**Phase:** Phase 2 — Mock-only app scaffold on top of the documentation-first foundation
+**Phase:** Phase 2 — Mock/manual app scaffold on top of the documentation-first foundation
 **Internal system name:** **FLR Dynamic Contractor Billing Engine**
 
 ---
@@ -11,7 +11,7 @@
 
 This repo is the operational intelligence foundation for Florida Ramp & Lift — a real field-operations business handling accessibility installations, ramps, lifts, modular project support, WillScot / Mobile Mini workflows, dispatch, billing, field safety, and crew onboarding.
 
-Phase 1 began as a documentation-first foundation. The current branch now adds an initial mock-only Next.js scaffold for the MVP shell while keeping live integrations, production data, secrets, and database connections out of scope.
+Phase 1 began as a documentation-first foundation. The current repo now includes an initial mock/manual Next.js scaffold for the MVP shell while keeping live integrations, production data, secrets, and database connections out of scope.
 
 The documentation foundation includes:
 
@@ -24,6 +24,20 @@ The documentation foundation includes:
 - Sanitized sample data illustrating the WillScot intake (`samples/`)
 
 Phase 2+ builds the actual mobile-first PWA, automation layer, and CRM pipeline on top of this scaffold.
+
+## Internal pilot delivery posture
+
+The next live milestone is a protected internal pilot for the mock/manual scaffold, not production operations.
+
+- Target app domain: `floridarampandliftops.com`.
+- Domain boundary: `floridarampandlift.com` remains the front-facing marketing site; `floridarampandliftops.com` is the isolated internal operations and client-ops surface.
+- Deployment target: a new Git-linked Vercel project named `florida-ramp-and-lift-ops`.
+- Pilot data posture: sanitized mock/manual records only; no real customer files, private rate sheets, production persistence, storage, or live integrations.
+- Legal/privacy posture: `docs/legal/LEGAL_PRIVACY_DOCTRINE.md` defines the Florida-law doctrine and keeps ops-domain Terms/Privacy publication behind attorney/operator review.
+- CI and preview deployments are allowed as delivery infrastructure when they preserve the mock/manual boundary.
+- Production operations remain blocked until the implementation readiness gate, rollback plan, persistence/object access, storage, security review, and human approval gates are satisfied.
+
+See `docs/delivery/DEPLOYMENT_TARGET.md` for the gated deployment checklist.
 
 ---
 
@@ -40,15 +54,16 @@ Phase 2+ builds the actual mobile-first PWA, automation layer, and CRM pipeline 
 
 ---
 
-## Non-goals (explicitly out of scope for Phase 1)
+## Non-goals (explicitly out of scope for Phase 1 and production operations)
 
 - ❌ No Firebase
 - ❌ No cloud infrastructure provisioning
-- ❌ No production application behavior beyond the mock-only Next.js scaffold
-- ❌ No real customer PDFs or sensitive client documents committed
-- ❌ No invented operational claims (no fake numbers, no fake zones, no fake roster)
-- ❌ No automated final approval of invoices, billing submission, or client communication without human review
-- ❌ No deployment, no CI, no preview environments
+- No production application behavior beyond the mock/manual Next.js scaffold.
+- No real customer PDFs or sensitive client documents committed.
+- No invented operational claims, live operational metrics, fake zones, or fake roster.
+- No automated final approval of invoices, billing submission, or client communication without human review.
+- No ungated production operations deployment.
+- No live third-party writes, persistence, storage, customer file ingestion, CRM/accounting sync, email/SMS sending, PDF generation, or runtime AI.
 
 ---
 
@@ -130,4 +145,4 @@ This repo is governed by the AJ Digital canonical doctrine layer (business memor
 - No real customer PDFs or sensitive documents in this repo, ever.
 - No automated final approval of billing, invoicing, or client communication without explicit human review gate.
 - Treat all construction-site work as safety-sensitive — PPE checks and human review are non-negotiable.
-- No Firebase, no cloud infrastructure provisioning, and no production behavior beyond the mock-only scaffold.
+- No Firebase, no cloud infrastructure provisioning outside the approved internal-pilot delivery path, and no production behavior beyond the mock/manual scaffold.

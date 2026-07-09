@@ -18,6 +18,13 @@ This file tracks unresolved questions so agents do not fill gaps with assumption
 | Which users besides Michael can approve client-facing invoice release later? | Not decided. Michael remains final MVP authority. |
 | Which contractor onboarding fields belong in this ops repo versus the contractor portal repo? | Needs cross-repo reconciliation before implementation. |
 
+## Legal And Privacy Questions
+
+| Question | Current posture |
+|---|---|
+| Who will approve and publish `https://floridarampandliftops.com/privacy` and `https://floridarampandliftops.com/terms`? | Attorney/operator review required before publication; do not link ops app legal surfaces to marketing-site pages unless counsel confirms coverage. |
+| What support/legal contact method should the ops-domain Terms and Privacy pages expose? | Not decided. Must be approved before broader pilot circulation or any real data collection. |
+
 ## Technical Questions
 
 | Question | Current posture |
