@@ -13,6 +13,7 @@ Use Git history for exact diffs. Use this file for operator-readable milestone c
 
 ## Unreleased
 
+- Updated the risk register and open questions to track the remaining ops-domain Terms/Privacy publication and support/legal contact gates.
 - Added Florida-law legal/privacy doctrine for Florida Ramp and Lift LLC, including the `floridarampandliftops.com` ops-domain Terms/Privacy gate, FIPA baseline, Florida Digital Bill of Rights alignment, and sensitive operational data restrictions.
 - Recorded the internal pilot deployment posture for `floridarampandliftops.com`, clarified the boundary from the `floridarampandlift.com` marketing site, clarified that persistence is not required for the protected mock/manual pilot, and replaced the deployment target rollback placeholder with an internal-pilot rollback runbook.
 - Added deployment target decision record (`docs/delivery/DEPLOYMENT_TARGET.md`) recommending a new Git-linked Vercel project `florida-ramp-and-lift-ops`, with gated Clerk/link/preview/production checklists and a production-domain hard blocker; added `.vercel/` to `.gitignore`.
