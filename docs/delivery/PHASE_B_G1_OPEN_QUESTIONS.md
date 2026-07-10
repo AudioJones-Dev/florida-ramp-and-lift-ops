@@ -47,9 +47,15 @@ Qn — YYYY-MM-DD — (operator statement, quoted)
 ## Sequencing Notes
 
 - Q1 + Q2 together constitute the G1 confirmation; G1 is answered when both
-  carry dated operator statements. No DNS records are written at G1.
+  carry dated operator statements. G1 confirms the final domain and that DNS
+  edit access is **available**; it does not authorize DNS changes — no DNS
+  record is written at G1 (DNS work happens under G2, operator-executed).
   **Q2 is answered (2026-07-10); G1 now waits only on Q1** — a registrar
   identification plus verified DNS edit access statement from the operator.
+- Domain framing (operator, 2026-07-10): `floridarampandlift.com` is the
+  public-facing marketing domain; `floridarampandliftops.com` is the live ops
+  product domain (pseudo-intranet, multi-tenant operational ecosystem), and the
+  internal pilot is its first deployment stage — not a temporary domain.
 - Q3 must be resolved before any Clerk production key is generated (G2) —
   unclear-provenance credentials rotate first (risk register: secrets are a
   standing high risk).

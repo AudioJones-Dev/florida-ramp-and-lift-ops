@@ -33,11 +33,18 @@ begins.
 The next live milestone is an authenticated internal pilot at
 `floridarampandliftops.com`.
 
-Domain boundary:
+Domain boundary (clarified by the operator 2026-07-10):
 
-- `floridarampandlift.com` remains the front-facing marketing site.
-- `floridarampandliftops.com` is the isolated internal operations and
-  client-ops surface.
+- `floridarampandlift.com` is the **public-facing website / marketing domain**.
+- `floridarampandliftops.com` is the **live ops product domain** — the
+  pseudo-intranet, multi-tenant operational ecosystem. It is the permanent home
+  of the ops product, not a temporary or provisional domain.
+- The internal pilot is the **first deployment stage** on
+  `floridarampandliftops.com`; later stages (persistence-backed operations per
+  `LIVE_APP_GAP_CLOSURE_PLAN.md` Phases C–F) ship on the same domain behind
+  their own gates.
+- G1 confirms the final domain and that DNS edit access is available; it does
+  **not** authorize DNS changes (those occur under G2, operator-executed).
 
 Internal pilot scope:
 
