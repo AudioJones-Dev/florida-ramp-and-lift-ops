@@ -56,16 +56,27 @@ One row per check; all rows must be complete before G5.
 
 | Check | File(s) reviewed | Method | Reviewer | Date | Result |
 |---|---|---|---|---|---|
-| S1 | | | | | Pending |
-| S2 | | | | | Pending |
-| S3 | | | | | Pending |
-| S4 | | | | | Pending |
-| S5 | | | | | Pending |
-| S6 | | | | | Pending |
-| S7 | | | | | Pending |
-| S8 | | | | | Pending |
-| S9 | | | | | Pending |
-| S10 | | | | | Pending |
+| S1 | All `src/lib/*.ts` | Grep email/phone patterns + name-field review | Claude Code (agent) | 2026-07-10 | **Conditional — finding F1.** Fixture emails all `@example.com`; phones all fictional `(555)`; names initial-style fictional (`M. Reynolds`, `S. Patel`). But `src/lib/roles.ts` mock login accounts carry real-looking emails — see F1. |
+| S2 | `mock-data.ts`, `dispatch-demo.ts` | Grep address/coordinate fields + manual review | Claude Code (agent) | 2026-07-10 | Pass — all site addresses generic (`"Residential site, Tampa area"` style); no street addresses; no coordinates (grep hits were false positives, e.g. "coordination"). |
+| S3 | `mock-data.ts` contractor records | Manual review of names/contacts | Claude Code (agent) | 2026-07-10 | Pass — `Lead Installer A` / `Senior Lead B` / `Helper C`, `@example.com` emails, `(555)` phones; no emergency-contact PII. |
+| S4 | `mock-data.ts`, `dispatch-demo.ts` | Grep money/rate fields + manual review | Claude Code (agent) | 2026-07-10 | Pass with note — rates are descriptive labels (`"Standard lead split"`, `"Helper hourly"`); amounts are round demo figures (`$2,450`, `$8,900`) tied to fictional parties. Operator note F2: confirm demo amounts do not mirror actual FRL contract pricing (only the operator can know). |
+| S5 | All `src/lib/*.ts` | Grep file/image/upload references | Claude Code (agent) | 2026-07-10 | Pass — zero file, photo, or upload-path references in fixtures. |
+| S6 | All `src/lib/*.ts` | Grep disability/medical/insurance terms | Claude Code (agent) | 2026-07-10 | Pass — no person-linked sensitive context; no disability/medical/insurance narratives. |
+| S7 | All `src/lib/*.ts` | Grep key/token/secret/URL patterns | Claude Code (agent) | 2026-07-10 | Pass — zero secrets, tokens, keys, or http(s) URLs in fixtures. |
+| S8 | `mock-data.ts`, `dispatch-demo.ts` | Grep ID conventions | Claude Code (agent) | 2026-07-10 | Pass — IDs are visibly non-production (`job_3001`, `lead_001`, `apq-1`). |
+| S9 | Runtime surfaces | Pilot verification run, Section D | — | — | Deferred by design — verified at the G5/G6 run per [`PILOT_VERIFICATION_SCRIPT.md`](./PILOT_VERIFICATION_SCRIPT.md). |
+| S10 | All `src/lib/*.ts` | Grep minor/child/age terms | Claude Code (agent) | 2026-07-10 | Pass — no minors' data (grep hits were false positives, e.g. "Facilities manager", "stage"). |
+
+## Findings
+
+| ID | Finding | Location | Recommended resolution | Status |
+|---|---|---|---|---|
+| F1 | Mock login preview accounts use real-looking emails: `dev@ajdigital.app`, `audiojones@ajdigital.app` (business identities), and `bookaudiojones@gmail.com` (**personal Gmail — real personal contact data in a bundle that will deploy publicly**). | `src/lib/roles.ts` (`mockLoginAccounts`) | Operator decision: (a) replace with fictional/alias addresses (e.g. `contractor.preview@example.com`) on an approved branch — a `src/lib` runtime-file edit, out of scope for this docs-only pass; or (b) explicitly accept the business `@ajdigital.app` identities and replace only the personal Gmail. | **Open — blocks S1, and therefore G5, until resolved.** |
+| F2 | Demo invoice amounts (`$2,450` … `$12,400`) look generic but only the operator can confirm they do not mirror real FRL contract pricing. | `src/lib/mock-data.ts` invoices | One-line operator confirmation recorded here. | Open — confirmation requested (low risk). |
+
+Agent-review caveat: the agent verified data is *fictional in form*; it cannot
+know FRL's real customer roster. Operator spot-confirmation that no fixture
+name coincides with a real customer/contractor closes that residual risk.
 
 ## Failure Rule
 
