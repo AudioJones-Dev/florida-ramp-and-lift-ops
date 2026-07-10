@@ -69,7 +69,7 @@ export const mockLoginAccounts = [
     id: "contractor",
     label: "Contractor Login",
     tenantLabel: "Contractor",
-    email: "bookaudiojones@gmail.com",
+    email: "contractor.preview@example.com",
     roleId: "contractor",
     description: "Assigned contractor portal preview."
   }
