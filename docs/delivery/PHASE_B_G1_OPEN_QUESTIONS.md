@@ -24,7 +24,7 @@ operator `proceed` at execution time (governance kernel rule).
 |---|---|---|---|---|---|
 | Q1 | Who owns the registrar account for `floridarampandliftops.com`, and is DNS edit access verified in-hand? | **G1** (hard blocker for everything downstream) | Operator | Confirmation of DNS management + edit-access availability (operator chose provider-free wording; registrar identity deliberately kept out of repo docs; no credentials in repo) | **Answered 2026-07-10** |
 | Q2 | Is `floridarampandliftops.com` final as the pilot/production ops domain? (Changing it later regenerates the Clerk publishable key and voids env work.) | **G1** | Operator | Dated operator confirmation of finality | **Answered 2026-07-10** |
-| Q3 | Who created `.env.production.local` on 2026-07-07, with what keys — and are those keys rotated if provenance is unclear? | **G2** (credential-rotation precondition) | Operator | Provenance statement + rotation confirmation (key values never recorded) | Unanswered |
+| Q3 | Who created `.env.production.local` on 2026-07-07, with what keys — and are those keys rotated if provenance is unclear? | **G2** (credential-rotation precondition) | Operator | Provenance statement + rotation confirmation (key values never recorded) | **Answered 2026-07-10** |
 | Q4 | What does the existing Vercel project `floridaplatformliftpros` actually serve, and is it archived later or left untouched? | G3 (context only — new project is already the accepted recommendation) | Operator | Statement; any archival is a separate gated decision | Unanswered |
 | Q5 | Who is on the internal reviewer list allowed to receive the pilot URL under the tightly-controlled-circulation rule? | **G5** | Operator | Named reviewer list (roles suffice; no personal contact details in repo) | Unanswered |
 | Q6 | Who reviews and approves ops-domain Terms/Privacy copy (counsel and/or operator), and when? | **G5/G6** (legal publication gate) | Operator / counsel | Reviewer identity + target date per [`../legal/LEGAL_PRIVACY_DOCTRINE.md`](../legal/LEGAL_PRIVACY_DOCTRINE.md) publication gate | Unanswered |
@@ -50,6 +50,15 @@ Qn — YYYY-MM-DD — (operator statement, quoted)
   both answered, **the G1 confirmation is complete** — see
   [`PHASE_B_INTERNAL_PILOT_CHECKLIST.md`](./PHASE_B_INTERNAL_PILOT_CHECKLIST.md)
   G1 and [`../governance/DECISION_LOG.md`](../governance/DECISION_LOG.md).
+- Q3 — 2026-07-10 — Provenance remained unclear. A names-only local audit
+  found an untracked production-tier Clerk key pair in
+  `.env.production.local`; the publishable key matched the existing, unused
+  Production instance of `My Application`. Clerk Platform API usage reported
+  zero MAU, MAO, and SMS activity. Under the operator's explicit rotation
+  approval, the old Production Secret Key was rotated through the Clerk CLI
+  with immediate expiration. The replacement Secret Key was neither printed
+  nor persisted, the Publishable Key was unchanged, the local file was
+  deleted, and Git history remained empty. **Q3 is resolved.**
 
 ## Sequencing Notes
 
@@ -63,9 +72,10 @@ Qn — YYYY-MM-DD — (operator statement, quoted)
   public-facing marketing domain; `floridarampandliftops.com` is the live ops
   product domain (pseudo-intranet, multi-tenant operational ecosystem), and the
   internal pilot is its first deployment stage — not a temporary domain.
-- Q3 must be resolved before any Clerk production key is generated (G2) —
-  unclear-provenance credentials rotate first (risk register: secrets are a
-  standing high risk).
+- Q3 was resolved 2026-07-10 before planned G2 configuration: the
+  unclear-provenance Production Secret Key was rotated with immediate old-key
+  expiration, no replacement was persisted, and the local file was deleted.
+  G2 still requires its own operator `proceed`.
 - Q5 and Q6 gate circulation, not deployment mechanics: a deploy can be
   verified by the operator alone before the reviewer list or legal copy exist,
   but the pilot URL must not circulate beyond tightly controlled internal

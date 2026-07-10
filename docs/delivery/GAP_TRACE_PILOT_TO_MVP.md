@@ -111,7 +111,7 @@ client-deliverable MVP bypasses it (validation procedure above).
 | T4 | Storage/security policy unaccepted (blocks Phase D) | MVP boundary: no real customer PDFs before storage policy ([`mvp-definition.md`](../architecture/mvp-definition.md)) | Storage policy + bucket/metadata design acceptance |
 | T5 | Readiness-gate §22 go/no-go never convened (blocks G6 and Phase E) | Q7 unanswered in [`PHASE_B_G1_OPEN_QUESTIONS.md`](./PHASE_B_G1_OPEN_QUESTIONS.md) | Scheduled review session + recorded sign-off |
 | T6 | Ops-domain Terms/Privacy unpublished (blocks pilot circulation and Phase E) | Gap plan → [Legal Doctrine](../legal/LEGAL_PRIVACY_DOCTRINE.md) edge; Q6 unanswered | Counsel/operator-approved legal copy + publication gate |
-| T7 | Pilot execution gates G2–G7 unexecuted (block Phase B completion) | Runbooks exist; Q3 unanswered; no provider state | Operator `proceed` per gate; Q3 provenance/rotation first |
+| T7 | Pilot execution gates G2–G7 unexecuted (block Phase B completion) | Runbooks exist; Q3 resolved 2026-07-10; no G2–G7 completion evidence | Operator `proceed` per gate; G2 Clerk configuration next |
 
 Graph-quality note: the highest-degree nodes (`draft_job`, `draft_work_order`,
 schema primitives like `null`/`string`) reflect schema-property normalization

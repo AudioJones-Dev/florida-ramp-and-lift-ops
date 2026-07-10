@@ -136,8 +136,8 @@ not work on `*.vercel.app` domains. Consequences:
 
 - The internal pilot and future production ops domain is
   `floridarampandliftops.com` — **confirmed final by the operator 2026-07-10**
-  (Q2 in `PHASE_B_G1_OPEN_QUESTIONS.md`). Registrar/DNS edit-access
-  confirmation (Q1) remains pending.
+  (Q2 in `PHASE_B_G1_OPEN_QUESTIONS.md`). DNS management and edit-access
+  availability were confirmed 2026-07-10 (Q1, provider-free wording).
 - DNS access for `floridarampandliftops.com` is required before Clerk production
   setup.
 - Changing the production domain later regenerates the Clerk publishable key,
@@ -152,8 +152,9 @@ Explicit operator approval (`proceed`) is required, separately, before each of:
 1. Accepting this document and the new-project recommendation.
 2. Creating the Vercel project and linking this repo (`vercel link` writes
    `.vercel/project.json` — a deployment config change).
-3. Choosing the production domain and creating a Clerk production instance
-   with production keys.
+3. Configuring the existing Clerk Production instance for the chosen domain
+   and establishing deployment credentials. Deleting/replacing the instance
+   requires separate explicit approval.
 4. Writing any environment variable to Vercel.
 5. Any preview deploy.
 6. Publishing or linking Terms/Privacy URLs for the ops domain.
@@ -162,10 +163,13 @@ Explicit operator approval (`proceed`) is required, separately, before each of:
 
 ## Clerk Production Setup Checklist (blocked until approved)
 
-- [ ] Production domain chosen and owned by the operator (hard blocker; see
-      Production Domain Requirement above).
-- [ ] Operator confirms Clerk production instance may be created.
-- [ ] Production instance created in Clerk dashboard by the operator.
+- [x] Production domain chosen and controlled by the operator (Q1/Q2 complete
+      2026-07-10; see Production Domain Requirement above).
+- [x] Existing Clerk Production instance discovered and matched through a
+      names-only Clerk Platform API inventory (Q3, 2026-07-10).
+- [ ] Operator confirms the existing Production instance may be retained and
+      configured; deleting/replacing it requires separate explicit approval.
+- [ ] Existing Production instance configured for the final ops domain.
 - [ ] DNS records added and verified; Clerk certificates issued.
 - [ ] Production publishable and secret keys (`pk_live_` / `sk_live_`)
       generated; stored only in Vercel env or approved secret manager.
@@ -259,9 +263,10 @@ operator production approval are complete.
 ## Risks
 
 - Reusing the wrong project would inherit unknown env state and history.
-- A locally created `.env.production.local` of unconfirmed provenance was
-  observed on 2026-07-07; its origin must be explained and keys rotated if
-  unclear.
+- The locally created `.env.production.local` observed on 2026-07-07 had
+  unclear provenance. Q3 closed 2026-07-10: its Production Secret Key was
+  rotated with immediate old-key expiration, no replacement was persisted,
+  the local file was deleted, and Git history was empty.
 - Linking creates `.vercel/project.json`; `.vercel/` must remain gitignored so
   project/org IDs stay out of Git.
 - Clerk auth alone does not provide object-level authorization; production
@@ -270,11 +275,9 @@ operator production approval are complete.
 
 ## Open Questions
 
-- Who created `.env.production.local` on 2026-07-07, and with what keys?
 - What content does `floridaplatformliftpros` actually serve, and should it be
   archived later?
-- Who owns DNS access for `floridarampandliftops.com`, and when will Vercel
-  and Clerk records be added?
+- When will Vercel and Clerk DNS records be added under their approved gates?
 - Who will review and approve ops-domain Terms/Privacy copy before public
   publication?
 - When is the readiness gate §22 review session scheduled, and who signs off?

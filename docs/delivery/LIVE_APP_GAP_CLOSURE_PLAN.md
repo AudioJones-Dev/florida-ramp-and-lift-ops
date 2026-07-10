@@ -139,9 +139,9 @@ surfaces on a real URL. No real operational data is present.
 **Required implementation work.** (Operator-gated; per `DEPLOYMENT_TARGET.md`.)
 - Choose and confirm the production domain `floridarampandliftops.com` and DNS
   access — a **hard blocker** for Clerk production keys (domain-bound).
-- Create the Clerk production instance; configure sign-in/up + redirect URLs;
-  generate `pk_live_`/`sk_live_` stored only in Vercel env / approved secret
-  manager (never in Git).
+- Verify and configure the existing Clerk Production instance; configure
+  sign-in/up + redirect URLs; establish `pk_live_`/`sk_live_` credentials stored
+  only in Vercel env / approved secret manager (never in Git).
 - Create the Vercel project `florida-ramp-and-lift-ops` (audiojones team), link the
   repo (`.vercel/` gitignored), set the five env var names.
 - Accept legal/privacy doctrine coverage before circulating the ops domain
@@ -150,10 +150,12 @@ surfaces on a real URL. No real operational data is present.
   pilot deploy; record in `CHANGELOG.md`. Keep the rollback runbook current.
 
 **Approval gates.** Each of these is a separate `proceed` per `DEPLOYMENT_TARGET.md`
-§Human Approval Gates: accept the target doc; create/link the Vercel project; choose
-the domain + create the Clerk production instance; write any env var; preview
-deploy; publish/link Terms/Privacy; production pilot deploy. Rotate any credential
-of unclear provenance (e.g. the `.env.production.local` open question) first.
+§Human Approval Gates: accept the target doc; create/link the Vercel project;
+configure the existing Clerk Production instance for the confirmed domain;
+write any env var; preview deploy; publish/link Terms/Privacy; production pilot
+deploy. The unclear-provenance `.env.production.local` Secret Key was rotated
+and Q3 closed 2026-07-10; deleting/replacing the existing instance remains a
+separate destructive approval.
 
 **Out of scope.**
 - Any persistence, storage, migrations, real records, or live integrations.
