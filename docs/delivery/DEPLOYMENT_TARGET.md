@@ -178,13 +178,15 @@ Explicit operator approval (`proceed`) is required, separately, before each of:
 ## Vercel Link Checklist (blocked until approved)
 
 - [ ] Operator approves new project name `florida-ramp-and-lift-ops`.
-- [ ] `vercel project add florida-ramp-and-lift-ops --scope audiojones` and
-      `vercel link` run by operator or with operator present.
+- [ ] `vercel link --yes --project florida-ramp-and-lift-ops --scope audiojones`
+      run by operator or with operator present.
 - [ ] `.vercel/` confirmed gitignored before commit.
-- [ ] Git integration connected to `AudioJones-Dev/florida-ramp-and-lift-ops`
-      with production branch `main`.
+- [ ] Git integration remains disconnected through G6; Phase B preview and
+      production deployments are executed only through their gated CLI
+      commands (accepted G3 default; see
+      `G3_G4_VERCEL_ENV_RUNBOOK.md`).
 - [ ] All five env variable names present in the target environment
-      (`vercel env list <environment>` — names only).
+      (`vercel env ls <environment>` — names only).
 
 ## Preview Deploy Checklist (blocked until approved)
 

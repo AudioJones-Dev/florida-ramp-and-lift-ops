@@ -26,11 +26,12 @@ completes the operator playbook set up to the G5 preview deploy gate.
 
 ## ⚠ Gate-interaction rule — Git auto-deploy (accepted G3 default)
 
-`DEPLOYMENT_TARGET.md`'s link checklist includes "Git integration connected …
-production branch `main`." **Vercel's Git integration auto-deploys by default:
-every branch push gets a preview deploy and every merge to `main` becomes a
-production deploy.** Connecting it at G3 would let routine merges bypass the
-G5/G6 deploy gates.
+**Vercel's Git integration auto-deploys by default: every branch push gets a
+preview deploy and every merge to `main` becomes a production deploy.**
+Connecting it at G3 would let routine merges bypass the G5/G6 deploy gates.
+(`DEPLOYMENT_TARGET.md`'s link checklist originally required "Git integration
+connected … production branch `main`"; it was reconciled to this rule on
+2026-07-10.)
 
 **Accepted G3 default: the Git integration stays disconnected through G6.**
 All Phase B deployments are gated CLI deployments only — the G5 preview deploy
