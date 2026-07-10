@@ -1,6 +1,6 @@
 # Phase B Internal Pilot Checklist
 
-Status: Active — G0 accepted by operator 2026-07-09; gates G1–G7 pending, each behind its own operator `proceed`
+Status: Active — G0 accepted 2026-07-09; G1 confirmed 2026-07-10; gates G2–G7 pending, each behind its own operator `proceed`
 Scope: Phase B planning checklist for the authenticated internal pilot at `floridarampandliftops.com`
 Runtime impact: None
 Implementation status: Documentation only — no Clerk, Vercel, DNS, env, or deploy action is performed or authorized by this document
