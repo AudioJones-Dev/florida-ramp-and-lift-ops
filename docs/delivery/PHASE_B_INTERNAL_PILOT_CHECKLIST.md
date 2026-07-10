@@ -145,9 +145,12 @@ all Phase B deploys are gated CLI deployments only.
 
 - [ ] Operator approves creating project `florida-ramp-and-lift-ops` under the
       `audiojones` team (new project; do not reuse `floridaplatformliftpros`).
-- [ ] `vercel link` run by/with the operator; `.vercel/` confirmed gitignored.
-- [ ] Git integration connected to `AudioJones-Dev/florida-ramp-and-lift-ops`,
-      production branch `main`.
+- [ ] `vercel link --yes --project florida-ramp-and-lift-ops --scope audiojones`
+      run by/with the operator; `.vercel/` confirmed gitignored and
+      `git status` shows no `.vercel/` entries after linking.
+- [ ] Git integration remains disconnected through G6; Phase B preview and
+      production deployments are executed only through their gated CLI
+      commands.
 
 ### G4 — Environment variable write gate
 

@@ -94,6 +94,7 @@ Defines how the project ships, evolves, and migrates.
 | Fixture sanitization checklist | `docs/delivery/FIXTURE_SANITIZATION_CHECKLIST.md` |
 | G2 Clerk production runbook | `docs/delivery/G2_CLERK_PRODUCTION_RUNBOOK.md` |
 | G3/G4 Vercel and env runbook | `docs/delivery/G3_G4_VERCEL_ENV_RUNBOOK.md` |
+| Gap trace: pilot to MVP | `docs/delivery/GAP_TRACE_PILOT_TO_MVP.md` |
 | Migration plan | `docs/delivery/MIGRATION_PLAN.md` |
 
 ## Layer 4 Governance

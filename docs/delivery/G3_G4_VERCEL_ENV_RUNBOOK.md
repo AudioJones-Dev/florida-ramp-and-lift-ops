@@ -16,10 +16,10 @@ completes the operator playbook set up to the G5 preview deploy gate.
 
 ## Preconditions
 
-- G0 accepted (2026-07-09) and G1 confirmed (2026-07-10). Per the gate summary,
-  **G3 depends only on G0** and may run before or in parallel with G2; **G4
-  depends on G2 (production keys exist) and G3 (project exists)** — preview-env
-  writes need only G3 plus the Clerk development-instance keys.
+- **G3's only prerequisite is G0** (accepted 2026-07-09); G3 may run before or
+  in parallel with G2, and G1 is not a G3 prerequisite. **G4 depends on G2
+  (production keys exist) and G3 (project exists)** — preview-env writes need
+  only G3 plus the Clerk development-instance keys.
 - Operator has access to the Vercel `audiojones` team and the Clerk dashboard.
 - Each gate still takes its own explicit operator `proceed` at execution time.
   This runbook is not that approval.

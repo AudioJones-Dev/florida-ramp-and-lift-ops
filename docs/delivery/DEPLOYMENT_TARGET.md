@@ -181,6 +181,7 @@ Explicit operator approval (`proceed`) is required, separately, before each of:
 - [ ] `vercel link --yes --project florida-ramp-and-lift-ops --scope audiojones`
       run by operator or with operator present.
 - [ ] `.vercel/` confirmed gitignored before commit.
+- [ ] `git status` shows no `.vercel/` entries after linking.
 - [ ] Git integration remains disconnected through G6; Phase B preview and
       production deployments are executed only through their gated CLI
       commands (accepted G3 default; see
