@@ -94,13 +94,16 @@ by the operator or with the operator present, per `DEPLOYMENT_TARGET.md`.
 - [x] Acceptance recorded in [`../governance/DECISION_LOG.md`](../governance/DECISION_LOG.md)
       (Current Decisions, 2026-07-09).
 
-### G1 — DNS / domain ownership confirmation (hard blocker)
+### G1 — DNS / domain ownership confirmation — ✅ CONFIRMED 2026-07-10
 
 Clerk production keys are domain-bound; nothing downstream can start until this
-is settled.
+is settled. Confirmed complete 2026-07-10 (Q1 + Q2 both answered).
 
-- [ ] Operator confirms `floridarampandliftops.com` is owned and controlled by
-      the operator (registrar account identified, DNS edit access verified).
+- [x] Operator confirms `floridarampandliftops.com` is owned and controlled by
+      the operator — answered 2026-07-10 (Q1, provider-free wording by operator
+      choice): "DNS management for `floridarampandliftops.com` is confirmed,
+      and DNS edit access is available when needed." Registrar identity is
+      deliberately kept out of repo docs.
 - [x] Operator confirms this domain is final for the pilot (changing it later
       regenerates the Clerk publishable key and voids downstream env work) —
       confirmed 2026-07-10 as the final live product/ops domain (Q2 in
@@ -110,15 +113,16 @@ is settled.
       `floridarampandliftops.com` is the live ops product domain
       (pseudo-intranet, multi-tenant operational ecosystem), with the internal
       pilot as its first deployment stage.
-- [ ] G1 confirms the final domain and that DNS edit access is available; it
-      does **not** authorize DNS changes — no DNS records are written at this
-      gate (DNS work happens under G2, operator-executed).
+- [x] G1 confirms the final domain and that DNS edit access is available; it
+      does **not** authorize DNS changes — no DNS records were written at this
+      gate; DNS work happens under G2, operator-executed (rule acknowledged at
+      G1 closure, 2026-07-10).
 
 ### G2 — Clerk production setup gate
 
 Owning checklist: `DEPLOYMENT_TARGET.md` → "Clerk Production Setup Checklist".
 
-- [ ] G1 complete.
+- [x] G1 complete (confirmed 2026-07-10 — Q1 + Q2 answered).
 - [ ] Operator approves creating the Clerk production instance.
 - [ ] Instance created by the operator; DNS records added and verified;
       certificates issued.
