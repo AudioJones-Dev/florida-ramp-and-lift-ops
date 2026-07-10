@@ -93,8 +93,10 @@ is settled.
 
 - [ ] Operator confirms `floridarampandliftops.com` is owned and controlled by
       the operator (registrar account identified, DNS edit access verified).
-- [ ] Operator confirms this domain is final for the pilot (changing it later
-      regenerates the Clerk publishable key and voids downstream env work).
+- [x] Operator confirms this domain is final for the pilot (changing it later
+      regenerates the Clerk publishable key and voids downstream env work) —
+      confirmed 2026-07-10 as the final live product/ops domain (Q2 in
+      [`PHASE_B_G1_OPEN_QUESTIONS.md`](./PHASE_B_G1_OPEN_QUESTIONS.md)).
 - [ ] Domain boundary reaffirmed: `floridarampandlift.com` stays marketing-only.
 - [ ] No DNS records are written at this gate — confirmation only.
 
