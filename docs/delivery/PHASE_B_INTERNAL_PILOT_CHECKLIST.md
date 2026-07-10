@@ -140,8 +140,8 @@ generation).
 
 Owning checklist: `DEPLOYMENT_TARGET.md` → "Vercel Link Checklist".
 Operator playbook: [`G3_G4_VERCEL_ENV_RUNBOOK.md`](./G3_G4_VERCEL_ENV_RUNBOOK.md)
-— note its Git auto-deploy gate-interaction warning (recommended: CLI-only link
-at G3; Git integration deferred to the operator's recorded decision).
+— accepted G3 default: the Git integration stays **disconnected through G6**;
+all Phase B deploys are gated CLI deployments only.
 
 - [ ] Operator approves creating project `florida-ramp-and-lift-ops` under the
       `audiojones` team (new project; do not reuse `floridaplatformliftpros`).

@@ -24,7 +24,7 @@ completes the operator playbook set up to the G5 preview deploy gate.
 - Each gate still takes its own explicit operator `proceed` at execution time.
   This runbook is not that approval.
 
-## ⚠ Gate-interaction warning — Git auto-deploy (decision point)
+## ⚠ Gate-interaction rule — Git auto-deploy (accepted G3 default)
 
 `DEPLOYMENT_TARGET.md`'s link checklist includes "Git integration connected …
 production branch `main`." **Vercel's Git integration auto-deploys by default:
@@ -32,31 +32,26 @@ every branch push gets a preview deploy and every merge to `main` becomes a
 production deploy.** Connecting it at G3 would let routine merges bypass the
 G5/G6 deploy gates.
 
-Safe default (recommended): at G3, create and link the project **CLI-only** —
-do **not** connect the Git integration yet. Run the G5 preview deploy and G6
-production pilot deploy via explicit `vercel deploy` / `vercel deploy --prod`
-under their own gates. Connect the Git integration only when the operator
-decides ongoing auto-deploys are acceptable (at/after G6), or connect it
-earlier only with deployment protection/pause configured so no automatic
-production deploy can occur.
-
-The operator chooses at Step G3.4; the choice and rationale are recorded in
-[`CHANGELOG.md`](./CHANGELOG.md).
+**Accepted G3 default: the Git integration stays disconnected through G6.**
+All Phase B deployments are gated CLI deployments only — the G5 preview deploy
+and the G6 production pilot deploy run via explicit `vercel deploy` /
+`vercel deploy --prod`, each under its own operator `proceed`. Connecting the
+Git integration is a separate, later operator decision (at/after G6) and is
+out of scope for this runbook.
 
 ## Gate G3 — Vercel project and link (operator)
 
 1. Operator approves the project name `florida-ramp-and-lift-ops` under the
    `audiojones` team (new project — do **not** reuse `floridaplatformliftpros`,
    per the accepted `DEPLOYMENT_TARGET.md` rationale).
-2. Run, operator-present:
-   `vercel project add florida-ramp-and-lift-ops --scope audiojones`
-   then `vercel link` from the repo root, selecting that project.
+2. Run from the repo root, operator-present:
+   `vercel link --yes --project florida-ramp-and-lift-ops --scope audiojones`
 3. Confirm `.vercel/` is gitignored **before** any commit — already true at
    `.gitignore` line 3 (`.vercel/`); verify `git status` shows no `.vercel/`
    entries after linking.
-4. **Git integration decision** (see warning above): defer (recommended) or
-   connect with deployment protection/pause. Record the choice in
-   `CHANGELOG.md`.
+4. Confirm the Git integration remains **disconnected through G6** (accepted
+   G3 default; see the gate-interaction rule above) — all deploys are gated
+   CLI deployments. Record the confirmation in `CHANGELOG.md`.
 5. Record G3 completion: check the G3 boxes in
    [`PHASE_B_INTERNAL_PILOT_CHECKLIST.md`](./PHASE_B_INTERNAL_PILOT_CHECKLIST.md)
    with dates.
@@ -89,17 +84,24 @@ Steps:
 
 ## Abort / rollback
 
-Before any deploy exists, G3/G4 are fully reversible with no blast radius:
-remove env vars, unlink (`rm -rf .vercel/` locally), and delete the Vercel
-project from the dashboard. Nothing else references the project until G5.
+Before any deploy exists, the reversible abort steps are: remove the env vars
+added under G4, and remove the local `.vercel/` link directory (delete it with
+your platform's normal file-removal method; it is gitignored and local-only).
+
+Deleting the Vercel **project** itself is a **destructive rollback action** —
+it is not covered by the G3/G4 `proceed`s and requires its own separate,
+explicit operator approval before execution (`AGENTS.md`: destructive
+operations are always operator-gated).
 
 ## What G3/G4 authorize — and do not
 
-With their respective `proceed`s: G3 covers project creation, repo link, and
-the recorded Git-integration decision; G4 covers entering the five named env
-values into Vercel per the key-tier rule. Neither covers: any deploy (G5/G6),
-Clerk configuration (G2), DNS changes, custom domains on Vercel, real data, or
-connecting auto-deploying Git integration without the recorded decision.
+With their respective `proceed`s: G3 covers project creation via the CLI link
+and the recorded confirmation that the Git integration stays disconnected
+through G6; G4 covers entering the five named env values into Vercel per the
+key-tier rule. Neither covers: any deploy (G5/G6), Clerk configuration (G2),
+DNS changes, custom domains on Vercel, real data, connecting the Git
+integration (a separate at/after-G6 operator decision), or deleting the Vercel
+project (a destructive action with its own approval).
 
 ## Does Not Authorize
 
