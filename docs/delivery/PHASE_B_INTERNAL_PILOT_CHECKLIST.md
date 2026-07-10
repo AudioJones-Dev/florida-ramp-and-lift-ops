@@ -139,6 +139,9 @@ generation).
 ### G3 — Vercel project / link gate
 
 Owning checklist: `DEPLOYMENT_TARGET.md` → "Vercel Link Checklist".
+Operator playbook: [`G3_G4_VERCEL_ENV_RUNBOOK.md`](./G3_G4_VERCEL_ENV_RUNBOOK.md)
+— note its Git auto-deploy gate-interaction warning (recommended: CLI-only link
+at G3; Git integration deferred to the operator's recorded decision).
 
 - [ ] Operator approves creating project `florida-ramp-and-lift-ops` under the
       `audiojones` team (new project; do not reuse `floridaplatformliftpros`).
@@ -147,6 +150,9 @@ Owning checklist: `DEPLOYMENT_TARGET.md` → "Vercel Link Checklist".
       production branch `main`.
 
 ### G4 — Environment variable write gate
+
+Operator playbook: [`G3_G4_VERCEL_ENV_RUNBOOK.md`](./G3_G4_VERCEL_ENV_RUNBOOK.md)
+(per-environment name table + key-tier rules).
 
 - [ ] Operator approves each env write; values entered only in Vercel settings
       or an approved secret manager.
