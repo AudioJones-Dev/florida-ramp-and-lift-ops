@@ -22,7 +22,7 @@ operator `proceed` at execution time (governance kernel rule).
 
 | ID | Question | Blocks | Owner | Evidence to record | Status |
 |---|---|---|---|---|---|
-| Q1 | Who owns the registrar account for `floridarampandliftops.com`, and is DNS edit access verified in-hand? | **G1** (hard blocker for everything downstream) | Operator | Registrar name + confirmation of DNS edit access (no credentials in repo) | Unanswered |
+| Q1 | Who owns the registrar account for `floridarampandliftops.com`, and is DNS edit access verified in-hand? | **G1** (hard blocker for everything downstream) | Operator | Confirmation of DNS management + edit-access availability (operator chose provider-free wording; registrar identity deliberately kept out of repo docs; no credentials in repo) | **Answered 2026-07-10** |
 | Q2 | Is `floridarampandliftops.com` final as the pilot/production ops domain? (Changing it later regenerates the Clerk publishable key and voids env work.) | **G1** | Operator | Dated operator confirmation of finality | **Answered 2026-07-10** |
 | Q3 | Who created `.env.production.local` on 2026-07-07, with what keys — and are those keys rotated if provenance is unclear? | **G2** (credential-rotation precondition) | Operator | Provenance statement + rotation confirmation (key values never recorded) | Unanswered |
 | Q4 | What does the existing Vercel project `floridaplatformliftpros` actually serve, and is it archived later or left untouched? | G3 (context only — new project is already the accepted recommendation) | Operator | Statement; any archival is a separate gated decision | Unanswered |
@@ -43,6 +43,13 @@ Qn — YYYY-MM-DD — (operator statement, quoted)
   recorded in [`../governance/DECISION_LOG.md`](../governance/DECISION_LOG.md)
   (Current Decisions, 2026-07-10) and
   [`../governance/DELEGATION_AND_AUTONOMY.md`](../governance/DELEGATION_AND_AUTONOMY.md).
+- Q1 — 2026-07-10 — Operator: "DNS management for `floridarampandliftops.com`
+  is confirmed, and DNS edit access is available when needed." Recorded from a
+  live operator instruction using deliberately provider-free wording (registrar
+  identity kept out of repo docs; credentials never recorded). With Q1 + Q2
+  both answered, **the G1 confirmation is complete** — see
+  [`PHASE_B_INTERNAL_PILOT_CHECKLIST.md`](./PHASE_B_INTERNAL_PILOT_CHECKLIST.md)
+  G1 and [`../governance/DECISION_LOG.md`](../governance/DECISION_LOG.md).
 
 ## Sequencing Notes
 
@@ -50,8 +57,8 @@ Qn — YYYY-MM-DD — (operator statement, quoted)
   carry dated operator statements. G1 confirms the final domain and that DNS
   edit access is **available**; it does not authorize DNS changes — no DNS
   record is written at G1 (DNS work happens under G2, operator-executed).
-  **Q2 is answered (2026-07-10); G1 now waits only on Q1** — a registrar
-  identification plus verified DNS edit access statement from the operator.
+  **Both are answered (2026-07-10): the G1 confirmation is complete.** G2 and
+  every later gate still require their own operator `proceed`.
 - Domain framing (operator, 2026-07-10): `floridarampandlift.com` is the
   public-facing marketing domain; `floridarampandliftops.com` is the live ops
   product domain (pseudo-intranet, multi-tenant operational ecosystem), and the
