@@ -18,10 +18,10 @@ which owns the phase sequence.
 - Extracted 2026-07-10 from repository commit
   `b9cd3bb75b098fef84f2278726eb0c46057f3a96` (recorded as `built_at_commit`
   in `graphify-out/graph.json` and in `GRAPH_REPORT.md`).
-- Tool: repository-local Graphify `0.9.12`, OpenAI backend, API key injected
-  transiently via `doppler run` (never persisted). Extraction:
-  `graphify build .`; incremental refresh: `graphify update .` (per
-  `GRAPH_REPORT.md`).
+- Tool: repository-local Graphify `0.9.12`. Semantic extraction:
+  `doppler run -- graphify extract . --backend openai` (OpenAI API key
+  injected transiently; never persisted). `graphify update .` is the later
+  structural refresh only (no API cost, per `GRAPH_REPORT.md`).
 - Graph mode: **undirected** (`"directed": false` in `graph.json`); edge
   direction shown below follows the `references` relation's source→target as
   recorded per edge.
@@ -30,18 +30,25 @@ which owns the phase sequence.
   Diagnostics at extraction: zero duplicate, dangling, missing-endpoint, or
   self-loop edges. Graph outputs are local-only (`graphify-out/` excluded
   from Git); re-run the extraction to reproduce them.
-- Articulation validation procedure (reproducible): (1) load
-  `graphify-out/graph.json`; (2) select the pilot node set
+- Articulation validation procedure (reproducible; executed 2026-07-10 at the
+  snapshot commit): (1) load `graphify-out/graph.json` and build undirected
+  adjacency over `links`; (2) select the pilot node set
   {`docs_delivery_phase_b_internal_pilot_checklist_md`,
-  `docs_delivery_deployment_target`, the G2 and G3/G4 runbook nodes,
+  `docs_delivery_deployment_target`,
+  `docs_delivery_g2_clerk_production_runbook`,
+  `docs_delivery_g3_g4_vercel_env_runbook_md`,
   `docs_delivery_live_app_gap_closure_plan_md`} and the MVP node set
   {`docs_architecture_persistence_design`, `docs_architecture_mvp_definition`,
   `docs_architecture_saas_portal_access_model`,
-  `docs_architecture_event_driven_architecture`}; (3) enumerate all
-  `references` edges incident to both sets; (4) confirm every pilot↔MVP path
-  passes through `docs_architecture_implementation_readiness_gate`. The
-  articulation claim holds for these selected node sets at the snapshot
-  commit.
+  `docs_architecture_event_driven_architecture`}; (3) record baseline
+  reachability with the graph intact — only `docs_delivery_deployment_target`
+  and `docs_delivery_g2_clerk_production_runbook` reach the MVP set; the
+  checklist, G3/G4 runbook, and gap-closure plan have no MVP-set path at all
+  in the snapshot; (4) **remove
+  `docs_architecture_implementation_readiness_gate` from the graph and
+  re-check every selected pilot/MVP node pair — zero pilot→MVP paths
+  remain.** The gate's removal disconnects every selected pair, establishing
+  it as the sole bridge for these node sets at this snapshot.
 
 ## Dependency spine (graph-evidenced)
 
@@ -69,10 +76,12 @@ client-deliverable MVP bypasses it (validation procedure above).
 
 ## What the trace implies
 
-1. **Phase B (pilot) is deliberately persistence-free.** No edge requires
-   Persistence Design for any G1–G7 artifact; the pilot chain terminates at
-   Deployment Target. The pilot can ship on fixtures without touching the MVP
-   chain — as designed.
+1. **The validated pilot chain is persistence-free.** Within the validated
+   node set, no path reaches Persistence Design except through the readiness
+   gate — and three of the five selected pilot docs have no MVP-set path at
+   all in the snapshot. This is a claim about the selected node sets at the
+   snapshot commit, **not** about every G1–G7 artifact; it is consistent with
+   the design intent that the pilot ships on fixtures.
 2. **Everything MVP-ward funnels through the readiness gate.** The
    client-deliverable live MVP (gap-closure Phase E) is blocked by the
    readiness-gate requirements that reference Persistence Design, the SaaS
