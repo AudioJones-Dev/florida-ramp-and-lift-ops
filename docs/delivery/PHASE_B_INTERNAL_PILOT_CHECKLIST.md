@@ -121,6 +121,9 @@ is settled. Confirmed complete 2026-07-10 (Q1 + Q2 both answered).
 ### G2 — Clerk production setup gate
 
 Owning checklist: `DEPLOYMENT_TARGET.md` → "Clerk Production Setup Checklist".
+Operator playbook: [`G2_CLERK_PRODUCTION_RUNBOOK.md`](./G2_CLERK_PRODUCTION_RUNBOOK.md)
+(Step 0 = Q3 credential provenance/rotation, required before any key
+generation).
 
 - [x] G1 complete (confirmed 2026-07-10 — Q1 + Q2 answered).
 - [ ] Operator approves creating the Clerk production instance.
