@@ -73,10 +73,10 @@ standing constraints:
 - [ ] Confirm fixture data is sanitized and labeled — evidence recorded
       2026-07-10 in
       [`FIXTURE_SANITIZATION_CHECKLIST.md`](./FIXTURE_SANITIZATION_CHECKLIST.md):
-      **9 of 10 checks pass** (S1 resolved 2026-07-10 — F1 personal Gmail
-      removed from `src/lib/roles.ts` per operator direction); S9 deferred to
-      the pilot verification run by design. Remaining before this item closes:
-      F2 operator confirmation (demo amounts) and the S9 run record.
+      **9 of 10 checks pass; F1 and F2 both resolved 2026-07-10** (F1 personal
+      Gmail removed from `src/lib/roles.ts`; F2 demo-pricing confirmed by the
+      operator). The only remaining evidence is the **S9 run record**, produced
+      at the G5/G6 pilot verification run by design — this item closes then.
 - [ ] Keep `npm run typecheck`, `npm run lint`, `npm run build` green.
 
 None of this authorizes provider actions.
