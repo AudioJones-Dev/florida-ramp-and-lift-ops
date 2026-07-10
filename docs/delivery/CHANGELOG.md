@@ -13,6 +13,7 @@ Use Git history for exact diffs. Use this file for operator-readable milestone c
 
 ## Unreleased
 
+- Added Phase B planning-prep artifacts: pilot verification script (`docs/delivery/PILOT_VERIFICATION_SCRIPT.md`, route-grounded G5/G6 verification steps), G1 open-questions inventory (`docs/delivery/PHASE_B_G1_OPEN_QUESTIONS.md`, seven operator decisions with recording protocol), and fixture sanitization checklist (`docs/delivery/FIXTURE_SANITIZATION_CHECKLIST.md`, S1–S10 evidence rows blocking G5). Docs-only; no provider action authorized.
 - Added Phase B internal pilot planning checklist (`docs/delivery/PHASE_B_INTERNAL_PILOT_CHECKLIST.md`): a sequenced gate ladder (G0–G7) separating planning-only work from operator-gated DNS/domain confirmation, Clerk production setup, Vercel project/link, env var writes, preview deploy, production pilot deploy, and rollback/runbook checks. Planning-only; authorizes no provider action.
 - Added Phase 2 closure checklist for Phase A of the live-app gap-closure plan, including operator acceptance language and Phase B handoff criteria.
 - Updated the risk register and open questions to track the remaining ops-domain Terms/Privacy publication and support/legal contact gates.

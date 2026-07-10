@@ -89,6 +89,9 @@ Defines how the project ships, evolves, and migrates.
 | Live app gap-closure plan | `docs/delivery/LIVE_APP_GAP_CLOSURE_PLAN.md` |
 | Phase 2 closure checklist | `docs/delivery/PHASE_2_CLOSURE_CHECKLIST.md` |
 | Phase B internal pilot checklist | `docs/delivery/PHASE_B_INTERNAL_PILOT_CHECKLIST.md` |
+| Pilot verification script | `docs/delivery/PILOT_VERIFICATION_SCRIPT.md` |
+| Phase B G1 open questions | `docs/delivery/PHASE_B_G1_OPEN_QUESTIONS.md` |
+| Fixture sanitization checklist | `docs/delivery/FIXTURE_SANITIZATION_CHECKLIST.md` |
 | Migration plan | `docs/delivery/MIGRATION_PLAN.md` |
 
 ## Layer 4 Governance
