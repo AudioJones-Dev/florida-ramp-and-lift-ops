@@ -25,7 +25,11 @@ Phase B covers:
 
 - Real Clerk authentication (production instance) replacing shell-only keys.
 - A Vercel project linked to this repo, deploying the existing mock/manual app.
-- The ops domain `floridarampandliftops.com` serving the protected pilot.
+- The ops domain `floridarampandliftops.com` serving the protected pilot —
+  this is the **live ops product domain** (pseudo-intranet, multi-tenant
+  operational ecosystem), and the pilot is its **first deployment stage**, not
+  a temporary or provisional home (`floridarampandlift.com` remains the public
+  marketing site).
 - Sanitized fixture/demo records only, visibly labeled mock/manual.
 - Preview deploy first, then a production pilot deploy, each separately gated.
 
@@ -97,8 +101,14 @@ is settled.
       regenerates the Clerk publishable key and voids downstream env work) —
       confirmed 2026-07-10 as the final live product/ops domain (Q2 in
       [`PHASE_B_G1_OPEN_QUESTIONS.md`](./PHASE_B_G1_OPEN_QUESTIONS.md)).
-- [ ] Domain boundary reaffirmed: `floridarampandlift.com` stays marketing-only.
-- [ ] No DNS records are written at this gate — confirmation only.
+- [x] Domain boundary reaffirmed (operator, 2026-07-10):
+      `floridarampandlift.com` is the public-facing marketing domain;
+      `floridarampandliftops.com` is the live ops product domain
+      (pseudo-intranet, multi-tenant operational ecosystem), with the internal
+      pilot as its first deployment stage.
+- [ ] G1 confirms the final domain and that DNS edit access is available; it
+      does **not** authorize DNS changes — no DNS records are written at this
+      gate (DNS work happens under G2, operator-executed).
 
 ### G2 — Clerk production setup gate
 
