@@ -1,6 +1,6 @@
 # Phase B Internal Pilot Checklist
 
-Status: Active — G0 accepted by operator 2026-07-09; gates G1–G7 pending, each behind its own operator `proceed`
+Status: Active — G0 accepted 2026-07-09; G1 confirmed 2026-07-10; gates G2–G7 pending, each behind its own operator `proceed`
 Scope: Phase B planning checklist for the authenticated internal pilot at `floridarampandliftops.com`
 Runtime impact: None
 Implementation status: Documentation only — no Clerk, Vercel, DNS, env, or deploy action is performed or authorized by this document
@@ -139,14 +139,23 @@ generation).
 ### G3 — Vercel project / link gate
 
 Owning checklist: `DEPLOYMENT_TARGET.md` → "Vercel Link Checklist".
+Operator playbook: [`G3_G4_VERCEL_ENV_RUNBOOK.md`](./G3_G4_VERCEL_ENV_RUNBOOK.md)
+— accepted G3 default: the Git integration stays **disconnected through G6**;
+all Phase B deploys are gated CLI deployments only.
 
 - [ ] Operator approves creating project `florida-ramp-and-lift-ops` under the
       `audiojones` team (new project; do not reuse `floridaplatformliftpros`).
-- [ ] `vercel link` run by/with the operator; `.vercel/` confirmed gitignored.
-- [ ] Git integration connected to `AudioJones-Dev/florida-ramp-and-lift-ops`,
-      production branch `main`.
+- [ ] `vercel link --yes --project florida-ramp-and-lift-ops --scope audiojones`
+      run by/with the operator; `.vercel/` confirmed gitignored and
+      `git status` shows no `.vercel/` entries after linking.
+- [ ] Git integration remains disconnected through G6; Phase B preview and
+      production deployments are executed only through their gated CLI
+      commands.
 
 ### G4 — Environment variable write gate
+
+Operator playbook: [`G3_G4_VERCEL_ENV_RUNBOOK.md`](./G3_G4_VERCEL_ENV_RUNBOOK.md)
+(per-environment name table + key-tier rules).
 
 - [ ] Operator approves each env write; values entered only in Vercel settings
       or an approved secret manager.

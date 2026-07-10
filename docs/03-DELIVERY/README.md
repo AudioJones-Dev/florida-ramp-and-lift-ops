@@ -27,6 +27,8 @@ No delivery step should skip the implementation readiness gate, security review,
 | Phase B G1 open questions | `../delivery/PHASE_B_G1_OPEN_QUESTIONS.md` |
 | Fixture sanitization checklist | `../delivery/FIXTURE_SANITIZATION_CHECKLIST.md` |
 | G2 Clerk production runbook | `../delivery/G2_CLERK_PRODUCTION_RUNBOOK.md` |
+| G3/G4 Vercel and env runbook | `../delivery/G3_G4_VERCEL_ENV_RUNBOOK.md` |
+| Gap trace: pilot to MVP | `../delivery/GAP_TRACE_PILOT_TO_MVP.md` |
 | Migration plan | `../delivery/MIGRATION_PLAN.md` |
 | Changelog | `../delivery/CHANGELOG.md` |
 | Product roadmaps | `../product-roadmaps/` |
