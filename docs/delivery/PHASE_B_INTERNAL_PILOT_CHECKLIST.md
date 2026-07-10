@@ -57,18 +57,18 @@ If these documents conflict, stop and reconcile before executing any gate.
 Docs/analysis work that changes nothing outside the repo and may proceed under
 standing constraints:
 
-- [ ] Resolve `DEPLOYMENT_TARGET.md` open questions **as recorded answers**:
-      who owns registrar/DNS access for `floridarampandliftops.com`; who created
-      `.env.production.local` on 2026-07-07 and with what keys; what
-      `floridaplatformliftpros` serves; who reviews ops-domain Terms/Privacy;
-      when the readiness-gate §22 review session happens.
-- [ ] Draft the pilot verification script (manual steps for `/`, `/sign-in`,
-      `/mock-sign-in`, `/dashboard`, one route per role surface) as a docs
-      artifact.
-- [ ] Confirm the internal reviewer list for the pilot (who may receive the
-      pilot URL under the tightly-controlled-circulation rule).
-- [ ] Confirm fixture data is sanitized and labeled (no real names, addresses,
-      rates, or files) — evidence recorded here before any deploy gate.
+- [ ] Resolve `DEPLOYMENT_TARGET.md` open questions **as recorded answers** —
+      inventoried with owners and recording protocol in
+      [`PHASE_B_G1_OPEN_QUESTIONS.md`](./PHASE_B_G1_OPEN_QUESTIONS.md)
+      (Q1–Q7; answers pending).
+- [x] Draft the pilot verification script as a docs artifact — drafted as
+      [`PILOT_VERIFICATION_SCRIPT.md`](./PILOT_VERIFICATION_SCRIPT.md)
+      (route-grounded, Sections A–E + results record).
+- [ ] Confirm the internal reviewer list for the pilot — tracked as Q5 in
+      [`PHASE_B_G1_OPEN_QUESTIONS.md`](./PHASE_B_G1_OPEN_QUESTIONS.md).
+- [ ] Confirm fixture data is sanitized and labeled — evidence rows defined in
+      [`FIXTURE_SANITIZATION_CHECKLIST.md`](./FIXTURE_SANITIZATION_CHECKLIST.md)
+      (S1–S10; all pending; blocks G5 until complete).
 - [ ] Keep `npm run typecheck`, `npm run lint`, `npm run build` green.
 
 None of this authorizes provider actions.

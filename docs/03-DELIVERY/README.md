@@ -23,6 +23,9 @@ No delivery step should skip the implementation readiness gate, security review,
 | Live app gap-closure plan | `../delivery/LIVE_APP_GAP_CLOSURE_PLAN.md` |
 | Phase 2 closure checklist | `../delivery/PHASE_2_CLOSURE_CHECKLIST.md` |
 | Phase B internal pilot checklist | `../delivery/PHASE_B_INTERNAL_PILOT_CHECKLIST.md` |
+| Pilot verification script | `../delivery/PILOT_VERIFICATION_SCRIPT.md` |
+| Phase B G1 open questions | `../delivery/PHASE_B_G1_OPEN_QUESTIONS.md` |
+| Fixture sanitization checklist | `../delivery/FIXTURE_SANITIZATION_CHECKLIST.md` |
 | Migration plan | `../delivery/MIGRATION_PLAN.md` |
 | Changelog | `../delivery/CHANGELOG.md` |
 | Product roadmaps | `../product-roadmaps/` |
