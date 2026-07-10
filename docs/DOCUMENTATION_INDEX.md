@@ -92,6 +92,7 @@ Defines how the project ships, evolves, and migrates.
 | Pilot verification script | `docs/delivery/PILOT_VERIFICATION_SCRIPT.md` |
 | Phase B G1 open questions | `docs/delivery/PHASE_B_G1_OPEN_QUESTIONS.md` |
 | Fixture sanitization checklist | `docs/delivery/FIXTURE_SANITIZATION_CHECKLIST.md` |
+| G2 Clerk production runbook | `docs/delivery/G2_CLERK_PRODUCTION_RUNBOOK.md` |
 | Migration plan | `docs/delivery/MIGRATION_PLAN.md` |
 
 ## Layer 4 Governance
