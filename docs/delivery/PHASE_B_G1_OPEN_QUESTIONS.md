@@ -23,7 +23,7 @@ operator `proceed` at execution time (governance kernel rule).
 | ID | Question | Blocks | Owner | Evidence to record | Status |
 |---|---|---|---|---|---|
 | Q1 | Who owns the registrar account for `floridarampandliftops.com`, and is DNS edit access verified in-hand? | **G1** (hard blocker for everything downstream) | Operator | Registrar name + confirmation of DNS edit access (no credentials in repo) | Unanswered |
-| Q2 | Is `floridarampandliftops.com` final as the pilot/production ops domain? (Changing it later regenerates the Clerk publishable key and voids env work.) | **G1** | Operator | Dated operator confirmation of finality | Unanswered |
+| Q2 | Is `floridarampandliftops.com` final as the pilot/production ops domain? (Changing it later regenerates the Clerk publishable key and voids env work.) | **G1** | Operator | Dated operator confirmation of finality | **Answered 2026-07-10** |
 | Q3 | Who created `.env.production.local` on 2026-07-07, with what keys — and are those keys rotated if provenance is unclear? | **G2** (credential-rotation precondition) | Operator | Provenance statement + rotation confirmation (key values never recorded) | Unanswered |
 | Q4 | What does the existing Vercel project `floridaplatformliftpros` actually serve, and is it archived later or left untouched? | G3 (context only — new project is already the accepted recommendation) | Operator | Statement; any archival is a separate gated decision | Unanswered |
 | Q5 | Who is on the internal reviewer list allowed to receive the pilot URL under the tightly-controlled-circulation rule? | **G5** | Operator | Named reviewer list (roles suffice; no personal contact details in repo) | Unanswered |
@@ -38,12 +38,18 @@ Record answers here as they arrive, one dated entry per question:
 Qn — YYYY-MM-DD — (operator statement, quoted)
 ```
 
-*(none recorded yet)*
+- Q2 — 2026-07-10 — Operator: "`floridarampandliftops.com` is the final live
+  product / ops domain." Recorded from a live operator instruction; also
+  recorded in [`../governance/DECISION_LOG.md`](../governance/DECISION_LOG.md)
+  (Current Decisions, 2026-07-10) and
+  [`../governance/DELEGATION_AND_AUTONOMY.md`](../governance/DELEGATION_AND_AUTONOMY.md).
 
 ## Sequencing Notes
 
 - Q1 + Q2 together constitute the G1 confirmation; G1 is answered when both
   carry dated operator statements. No DNS records are written at G1.
+  **Q2 is answered (2026-07-10); G1 now waits only on Q1** — a registrar
+  identification plus verified DNS edit access statement from the operator.
 - Q3 must be resolved before any Clerk production key is generated (G2) —
   unclear-provenance credentials rotate first (risk register: secrets are a
   standing high risk).

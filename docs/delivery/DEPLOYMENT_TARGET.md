@@ -128,7 +128,9 @@ for CNAME verification. Production publishable keys are domain-bound and do
 not work on `*.vercel.app` domains. Consequences:
 
 - The internal pilot and future production ops domain is
-  `floridarampandliftops.com`.
+  `floridarampandliftops.com` — **confirmed final by the operator 2026-07-10**
+  (Q2 in `PHASE_B_G1_OPEN_QUESTIONS.md`). Registrar/DNS edit-access
+  confirmation (Q1) remains pending.
 - DNS access for `floridarampandliftops.com` is required before Clerk production
   setup.
 - Changing the production domain later regenerates the Clerk publishable key,
