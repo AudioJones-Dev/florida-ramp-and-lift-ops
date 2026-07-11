@@ -130,8 +130,9 @@ generation).
       instance (G2 `proceed`, 2026-07-10, CLI-first staged execution);
       deleting/replacing it still requires separate explicit approval.
       Execution evidence: [`G2_EXECUTION_RECORD.md`](./G2_EXECUTION_RECORD.md).
-- [ ] Existing Production instance verified and configured; DNS records added
-      and verified; certificates issued.
+- [ ] Existing Production instance verified and configured; five DNS records
+      added unproxied and publicly resolving (2026-07-11); Clerk dns/ssl/mail
+      verification and certificate issuance still pending.
 - [x] `pk_live_` / `sk_live_` keys generated and held **only** in an approved
       secret manager — never Git, docs, chat, or shell history. Entering them
       into Vercel env is gate **G4's separate `proceed`**. (Done 2026-07-10/11:
@@ -140,7 +141,9 @@ generation).
       configuration as `CLERK_SECRET_KEY` and
       `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, verified present by name; values
       never printed or persisted.)
-- [ ] Sign-in/sign-up URLs and fallback redirects configured for the domain.
+- [x] Clerk sign-in/sign-up paths configured for the domain (2026-07-11):
+      `/sign-in` for both entry paths and `/dashboard` as home. Production
+      fallback redirect env writes remain G4.
 - [x] Unclear-provenance 2026-07-07 Production Secret Key rotated with
       immediate old-key expiration; replacement not persisted; local
       `.env.production.local` deleted; Git history empty (Q3, 2026-07-10).

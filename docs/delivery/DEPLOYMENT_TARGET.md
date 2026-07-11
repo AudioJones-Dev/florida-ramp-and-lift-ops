@@ -169,17 +169,18 @@ Explicit operator approval (`proceed`) is required, separately, before each of:
       2026-07-10; see Production Domain Requirement above).
 - [x] Existing Clerk Production instance discovered and matched through a
       names-only Clerk Platform API inventory (Q3, 2026-07-10).
-- [ ] Operator confirms the existing Production instance may be retained and
+- [x] Operator confirms the existing Production instance may be retained and
       configured; deleting/replacing it requires separate explicit approval.
-- [ ] Existing Production instance configured for the final ops domain.
-- [ ] DNS records added and verified; Clerk certificates issued.
-- [ ] Production publishable and secret keys (`pk_live_` / `sk_live_`)
+- [x] Existing Production instance configured for the final ops domain.
+- [ ] DNS records added unproxied and publicly resolving (2026-07-11); Clerk
+      dns/ssl/mail verification and certificate issuance remain pending.
+- [x] Production publishable and secret keys (`pk_live_` / `sk_live_`)
       generated; held only in an approved secret manager at this stage —
       entering values into Vercel env is the env-write gate's separate
       approval.
-- [ ] Sign-in/sign-up URLs and fallback redirects configured for the
-      production domain.
-- [ ] Any credential previously exposed in chat or local files of unclear
+- [x] Clerk sign-in/sign-up paths configured for the production domain;
+      fallback redirect env writes remain G4.
+- [x] Any credential previously exposed in chat or local files of unclear
       provenance is rotated.
 - [ ] `clerk doctor` (or dashboard verification) is clean.
 
