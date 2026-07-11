@@ -1,6 +1,6 @@
 # Phase B Internal Pilot Checklist
 
-Status: Active — G0 accepted 2026-07-09; G1 confirmed 2026-07-10; G2 and G3 complete 2026-07-11; gates G4–G7 pending, each behind its own operator `proceed`
+Status: Active — G0 accepted 2026-07-09; G1 confirmed 2026-07-10; G2 and G3 complete 2026-07-11; G4 Preview complete and G4 Production pending; gates G5–G7 pending, each behind its own operator `proceed`
 Scope: Phase B planning checklist for the authenticated internal pilot at `ops.floridarampandliftops.com`
 Runtime impact: None
 Implementation status: Documentation only — no Clerk, Vercel, DNS, env, or deploy action is performed or authorized by this document
@@ -184,18 +184,22 @@ Git auto-connect was removed before any deployment was created.
 Operator playbook: [`G3_G4_VERCEL_ENV_RUNBOOK.md`](./G3_G4_VERCEL_ENV_RUNBOOK.md)
 (per-environment name table + key-tier rules).
 
-- [ ] Operator approves each env write; values entered only in Vercel settings
-      or an approved secret manager.
-- [ ] All five names from `.env.example` present in the target environment
-      (verified by name only — values never printed).
-- [ ] Key-tier rule enforced: preview = `pk_test_`/`sk_test_` only;
-      production = `pk_live_`/`sk_live_` only, and only after G1/G2 complete.
+- [x] Preview writes approved and completed 2026-07-11; values entered without
+      printing or persistence outside the approved source and Vercel.
+- [x] All five names from `.env.example` present in Preview (names-only
+      verification; zero unexpected names).
+- [x] Preview key-tier rule enforced: `pk_test_`/`sk_test_` only.
+- [ ] Production writes require separate approval and must use
+      `pk_live_`/`sk_live_` only.
+
+Preview evidence:
+[`G4_PREVIEW_ENV_EXECUTION_RECORD.md`](./G4_PREVIEW_ENV_EXECUTION_RECORD.md).
 
 ### G5 — Preview deploy gate
 
 Owning checklist: `DEPLOYMENT_TARGET.md` → "Preview Deploy Checklist".
 
-- [ ] G3 + G4 complete for the preview environment.
+- [x] G3 + G4 complete for the Preview environment (2026-07-11).
 - [ ] Legal/privacy doctrine accepted for pilot circulation; no Terms/Privacy
       links point at `floridarampandlift.com` unless operator/counsel confirms
       coverage ([`../legal/LEGAL_PRIVACY_DOCTRINE.md`](../legal/LEGAL_PRIVACY_DOCTRINE.md)).
@@ -218,6 +222,8 @@ Owning checklist: `DEPLOYMENT_TARGET.md` → "Production Deploy Checklist".
       gate before the pilot circulates beyond tightly controlled internal review.
 - [x] Exact application origin approved:
       `https://ops.floridarampandliftops.com`; sibling-host ownership reconciled.
+- [ ] All five approved Production environment names present and verified by
+      name only, using Clerk production-tier values (`pk_live_` / `sk_live_`).
 - [ ] `ops` host DNS configured and verified without changing existing hosts.
 - [x] G2 complete (2026-07-11).
 - [ ] G5 verified.

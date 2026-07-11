@@ -18,8 +18,9 @@ begins.
 - The repo is locally linked to the Vercel project
   `audiojones/florida-ramp-and-lift-ops`; `.vercel/project.json` exists locally
   and remains gitignored.
-- The project has zero deployments and zero environment variables. Its Git
-  integration was verified disconnected at G3.
+- The project has zero deployments. Five approved names are configured for
+  Preview only with Clerk development-tier values; Production and Development
+  targets remain empty. Git integration is disconnected.
 - Vercel assigned the default `florida-ramp-and-lift-ops.vercel.app` domain;
   no custom domain or DNS configuration has been added.
 - Vercel team `audiojones` contains an existing project `floridaplatformliftpros`
@@ -223,7 +224,8 @@ Environment-variable presence is owned by G4 and remains pending.
 - [ ] Legal/privacy doctrine accepted; no public Terms/Privacy links point to
       the marketing site unless operator/counsel confirms coverage.
 - [ ] `npm run typecheck`, `npm run lint`, `npm run build` pass at the deploy SHA.
-- [ ] Preview env vars present (Clerk development-instance keys only).
+- [x] Preview env vars present (2026-07-11; five approved names, Clerk
+      development-instance keys only; names-only verification).
 - [ ] Git integration re-verified disconnected immediately before deployment.
 - [ ] `vercel deploy` (preview) run with operator approval.
 - [ ] Sign-in flow, protected dashboard routes, and `/mock-sign-in` preview
@@ -240,6 +242,8 @@ Environment-variable presence is owned by G4 and remains pending.
 - [ ] Ops-domain Terms/Privacy URL plan accepted per
       `docs/legal/LEGAL_PRIVACY_DOCTRINE.md`.
 - [ ] Clerk production checklist complete, including verified domain.
+- [ ] All five approved Production environment names present and verified by
+      name only, using Clerk production-tier values (`pk_live_` / `sk_live_`).
 - [ ] `ops.floridarampandliftops.com` DNS configured and verified without
       altering existing Render-backed hosts.
 - [ ] Preview deploy verified.
