@@ -13,10 +13,15 @@ preview or production deployment. It exists so the target decision, approval
 gates, and environment variable contract are explicit before any deploy work
 begins.
 
-## Current Deployment State (verified 2026-07-09)
+## Current Deployment State (verified 2026-07-11)
 
-- The repo is not linked to any Vercel project. `.vercel/project.json` does not exist.
-- No Vercel project currently exists for `florida-ramp-and-lift-ops`.
+- The repo is locally linked to the Vercel project
+  `audiojones/florida-ramp-and-lift-ops`; `.vercel/project.json` exists locally
+  and remains gitignored.
+- The project has zero deployments and zero environment variables. Its Git
+  integration was verified disconnected at G3.
+- Vercel assigned the default `florida-ramp-and-lift-ops.vercel.app` domain;
+  no custom domain or DNS configuration has been added.
 - Vercel team `audiojones` contains an existing project `floridaplatformliftpros`
   (created 2026-05-04). It has no connected Git repository, only default
   `*.vercel.app` domains, and its deployments were CLI-pushed with 10–32 second
@@ -197,27 +202,29 @@ Explicit operator approval (`proceed`) is required, separately, before each of:
       `ops.floridarampandliftops.com`; existing Render-backed apex, `www`,
       `admin`, `client`, `contractor`, and `platform` hosts are preserved.
 
-## Vercel Link Checklist (blocked until approved)
+## Vercel Link Checklist (G3 complete 2026-07-11)
 
-- [ ] Operator approves new project name `florida-ramp-and-lift-ops`.
-- [ ] `vercel link --yes --project florida-ramp-and-lift-ops --scope audiojones`
+- [x] Operator approves new project name `florida-ramp-and-lift-ops`.
+- [x] `vercel link --yes --project florida-ramp-and-lift-ops --scope audiojones`
       run by operator or with operator present.
-- [ ] `.vercel/` confirmed gitignored before commit.
-- [ ] `git status` shows no `.vercel/` entries after linking.
-- [ ] Git integration remains disconnected through G6; Phase B preview and
-      production deployments are executed only through their gated CLI
-      commands (accepted G3 default; see
+- [x] `.vercel/` confirmed gitignored before commit.
+- [x] `git status` shows no `.vercel/` entries after linking.
+- [x] Git integration verified disconnected at G3 (2026-07-11). It must remain
+      disconnected through G6 and be re-verified at G5 and G6; Phase B deploys
+      use only their gated CLI commands (accepted default; see
       `G3_G4_VERCEL_ENV_RUNBOOK.md`).
-- [ ] All five env variable names present in the target environment
-      (`vercel env ls <environment>` — names only).
+
+Execution evidence: [`G3_EXECUTION_RECORD.md`](./G3_EXECUTION_RECORD.md).
+Environment-variable presence is owned by G4 and remains pending.
 
 ## Preview Deploy Checklist (blocked until approved)
 
-- [ ] Link checklist complete.
+- [x] Link checklist complete (G3, 2026-07-11).
 - [ ] Legal/privacy doctrine accepted; no public Terms/Privacy links point to
       the marketing site unless operator/counsel confirms coverage.
 - [ ] `npm run typecheck`, `npm run lint`, `npm run build` pass at the deploy SHA.
 - [ ] Preview env vars present (Clerk development-instance keys only).
+- [ ] Git integration re-verified disconnected immediately before deployment.
 - [ ] `vercel deploy` (preview) run with operator approval.
 - [ ] Sign-in flow, protected dashboard routes, and `/mock-sign-in` preview
       behavior verified on the preview URL. Expect protected routes to
@@ -237,6 +244,7 @@ Explicit operator approval (`proceed`) is required, separately, before each of:
       altering existing Render-backed hosts.
 - [ ] Preview deploy verified.
 - [ ] Rollback plan below completed (no longer a placeholder).
+- [ ] Git integration re-verified disconnected immediately before deployment.
 - [ ] Operator issues explicit production `proceed`.
 - [ ] `vercel deploy --prod` run; deployment verified; result logged in
       CHANGELOG.
