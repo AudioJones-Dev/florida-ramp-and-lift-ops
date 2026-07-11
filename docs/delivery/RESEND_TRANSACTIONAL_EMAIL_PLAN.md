@@ -141,10 +141,17 @@ until the runtime implementation branch is separately approved.
 ### E2 - DNS Apply And Domain Verification
 
 - Require a dedicated operator `proceed` for the production DNS mutation.
+- After approval and immediately before any write, re-read the Cloudflare zone
+  and reclassify every proposed record. Abort with zero writes if the zone,
+  domain, existing records, or conflict state differs from the approved E1
+  preflight.
 - Create only missing records and keep applicable records unproxied.
 - Track IDs created in the invocation and roll them back on partial failure.
 - Preserve unrelated Clerk, Render, marketing, and sibling-product records.
 - Wait for Resend to report the sending domain verified.
+- Publish a documented DMARC policy at the correct domain label for the sending
+  design; do not invent or copy a policy value without reviewing existing
+  organizational-domain policy and alignment requirements.
 
 ### E3 - Credentials And Runtime Implementation
 
@@ -155,20 +162,25 @@ until the runtime implementation branch is separately approved.
   dedicated feature branch.
 - Require idempotency, auditable send intent, provider message ID storage,
   retry limits, and delivery-event reconciliation.
+- Require webhook replay protection: enforce unique provider event IDs, define
+  a bounded replay window from the provider's supported timestamp semantics,
+  and make event persistence and reconciliation idempotent.
 - Keep every customer-facing send behind its applicable human release gate.
 
 ### E4 - Controlled Verification
 
 - Verify sender, recipient, subject, and non-sensitive body before release.
 - Send one operator-approved production test to an approved recipient.
-- Confirm delivery and DKIM/SPF authentication.
-- Confirm webhook signature validation and event persistence.
+- Confirm delivery plus DKIM, SPF, and DMARC alignment/authentication.
+- Confirm webhook signature validation, duplicate-event rejection, replay-window
+  enforcement, and idempotent event persistence.
 - Exercise bounce/complaint handling without using real customer data.
 - Record evidence without message bodies, addresses, or secret values.
 
 ## Failure And Rollback Rules
 
 - DNS conflict: write nothing and report the complete classification.
+- Preflight drift: abort with zero writes and require a new reviewed preflight.
 - Partial DNS failure: remove only records created by that invocation.
 - Domain verification failure: disable sending; do not weaken DNS validation.
 - Credential exposure: revoke and rotate immediately, then audit Git and logs.
@@ -198,6 +210,8 @@ existing named human authority regardless of technical readiness.
 
 - Resend verifies `mail.floridarampandliftops.com`.
 - Provider-required DNS records match exactly and are not incorrectly proxied.
+- A reviewed DMARC policy is published for the sending design, and controlled
+  delivery evidence reports `dmarc=pass`.
 - Clerk remains responsible for identity-related email.
 - All application email uses an approved sender identity.
 - Sender identities are not represented as monitored inboxes.
@@ -205,8 +219,10 @@ existing named human authority regardless of technical readiness.
 - Production credentials exist only in the approved secret manager and deploy
   environment authorized for their use.
 - Outbound sends are human-gated where required, idempotent, and auditable.
-- Delivery, bounce, and complaint webhooks are signature-verified and recorded.
-- A controlled test proves delivery plus DKIM/SPF authentication.
+- Delivery, bounce, and complaint webhooks are signature-verified, protected by
+  unique provider event IDs and a bounded replay window, and reconciled
+  idempotently.
+- A controlled test proves delivery plus DKIM/SPF/DMARC authentication.
 - No Google Workspace dependency is introduced.
 
 ## Next Executable Artifact

@@ -1,7 +1,7 @@
 # Phase B Internal Pilot Checklist
 
 Status: Active — G0 accepted 2026-07-09; G1 confirmed 2026-07-10; gates G2–G7 pending, each behind its own operator `proceed`
-Scope: Phase B planning checklist for the authenticated internal pilot at `floridarampandliftops.com`
+Scope: Phase B planning checklist for the authenticated internal pilot on an approved host within the `floridarampandliftops.com` domain family
 Runtime impact: None
 Implementation status: Documentation only — no Clerk, Vercel, DNS, env, or deploy action is performed or authorized by this document
 
@@ -25,11 +25,12 @@ Phase B covers:
 
 - Real Clerk authentication (production instance) replacing shell-only keys.
 - A Vercel project linked to this repo, deploying the existing mock/manual app.
-- The ops domain `floridarampandliftops.com` serving the protected pilot —
-  this is the **live ops product domain** (pseudo-intranet, multi-tenant
+- An approved application host within the `floridarampandliftops.com` domain
+  family serving the protected pilot — this is the **live ops product domain
+  family** (pseudo-intranet, multi-tenant
   operational ecosystem), and the pilot is its **first deployment stage**, not
   a temporary or provisional home (`floridarampandlift.com` remains the public
-  marketing site).
+  marketing site). The exact host remains pending sibling-host ownership.
 - Sanitized fixture/demo records only, visibly labeled mock/manual.
 - Preview deploy first, then a production pilot deploy, each separately gated.
 
@@ -110,9 +111,10 @@ is settled. Confirmed complete 2026-07-10 (Q1 + Q2 both answered).
       [`PHASE_B_G1_OPEN_QUESTIONS.md`](./PHASE_B_G1_OPEN_QUESTIONS.md)).
 - [x] Domain boundary reaffirmed (operator, 2026-07-10):
       `floridarampandlift.com` is the public-facing marketing domain;
-      `floridarampandliftops.com` is the live ops product domain
+      `floridarampandliftops.com` is the live ops product domain family
       (pseudo-intranet, multi-tenant operational ecosystem), with the internal
-      pilot as its first deployment stage.
+      pilot as its first deployment stage; this does not assign the application
+      origin to an existing sibling-owned host.
 - [x] G1 confirms the final domain and that DNS edit access is available; it
       does **not** authorize DNS changes — no DNS records were written at this
       gate; DNS work happens under G2, operator-executed (rule acknowledged at
