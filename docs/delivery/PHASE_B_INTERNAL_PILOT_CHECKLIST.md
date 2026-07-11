@@ -64,7 +64,7 @@ standing constraints:
 - [ ] Resolve `DEPLOYMENT_TARGET.md` open questions **as recorded answers** —
       inventoried with owners and recording protocol in
       [`PHASE_B_G1_OPEN_QUESTIONS.md`](./PHASE_B_G1_OPEN_QUESTIONS.md)
-      (Q1–Q7; answers pending).
+      (Q1–Q3 answered; Q4–Q7 pending).
 - [x] Draft the pilot verification script as a docs artifact — drafted as
       [`PILOT_VERIFICATION_SCRIPT.md`](./PILOT_VERIFICATION_SCRIPT.md)
       (route-grounded, Sections A–E + results record).
@@ -126,14 +126,17 @@ Operator playbook: [`G2_CLERK_PRODUCTION_RUNBOOK.md`](./G2_CLERK_PRODUCTION_RUNB
 generation).
 
 - [x] G1 complete (confirmed 2026-07-10 — Q1 + Q2 answered).
-- [ ] Operator approves creating the Clerk production instance.
-- [ ] Instance created by the operator; DNS records added and verified;
-      certificates issued.
-- [ ] `pk_live_` / `sk_live_` keys generated and stored **only** in Vercel env
-      or an approved secret manager — never Git, docs, chat, or shell history.
+- [ ] Operator approves retaining/configuring the existing Clerk Production
+      instance; deleting/replacing it requires separate explicit approval.
+- [ ] Existing Production instance verified and configured; DNS records added
+      and verified; certificates issued.
+- [ ] `pk_live_` / `sk_live_` keys generated and held **only** in an approved
+      secret manager — never Git, docs, chat, or shell history. Entering them
+      into Vercel env is gate **G4's separate `proceed`**.
 - [ ] Sign-in/sign-up URLs and fallback redirects configured for the domain.
-- [ ] Any credential of unclear provenance (including the 2026-07-07
-      `.env.production.local` keys) rotated before use.
+- [x] Unclear-provenance 2026-07-07 Production Secret Key rotated with
+      immediate old-key expiration; replacement not persisted; local
+      `.env.production.local` deleted; Git history empty (Q3, 2026-07-10).
 - [ ] `clerk doctor` or dashboard verification clean.
 
 ### G3 — Vercel project / link gate

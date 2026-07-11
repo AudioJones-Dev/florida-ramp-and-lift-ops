@@ -1,6 +1,6 @@
 # G2 Clerk Production Runbook
 
-Status: Git Spec-ready draft — pending operator review
+Status: Active planning runbook — Q3 complete 2026-07-10; G2 execution pending operator `proceed`
 Scope: Step-by-step operator playbook for gate G2 (Clerk production setup) on `floridarampandliftops.com`
 Runtime impact: None
 Implementation status: Documentation only — no Clerk, DNS, env, or deploy action is performed or authorized by this document; every step below is operator-executed under the G2 `proceed`
@@ -21,8 +21,7 @@ operator or with the operator present**.
 - [x] G1 confirmed (2026-07-10): domain final; DNS management confirmed and
       edit access available (Q1/Q2 in
       [`PHASE_B_G1_OPEN_QUESTIONS.md`](./PHASE_B_G1_OPEN_QUESTIONS.md)).
-- [ ] **Q3 resolved via Step 0 below — hard precondition for any key
-      generation.**
+- [x] **Q3 resolved via Step 0 below (2026-07-10).**
 - [ ] Operator has access to the Clerk dashboard account that will own the
       production instance, and to DNS management for
       `floridarampandliftops.com`.
@@ -31,28 +30,38 @@ operator or with the operator present**.
 
 ## Step 0 — Q3: credential provenance and rotation (REQUIRED first)
 
-The 2026-07-07 `.env.production.local` file has unclear provenance
+The 2026-07-07 `.env.production.local` file had unclear provenance
 (`DEPLOYMENT_TARGET.md` open question; risk register: secrets are a standing
-high risk). Before any production key exists:
+high risk). Before planned G2 configuration:
 
 1. Operator states who created `.env.production.local` and with what keys
    (identity of keys only — never values).
-2. If provenance is unclear or the keys were ever exposed: **treat as
-   compromised** — in the Clerk dashboard, revoke/rotate any keys that file
-   contained; delete the local file.
+2. If provenance is unclear or the Secret Key was ever exposed: **treat the
+   Secret Key as compromised** — rotate it through Clerk CLI or the Clerk
+   dashboard, then delete the local file. The Publishable Key is public and
+   does not require rotation.
 3. Verify the file was never committed:
    `git log --all --oneline -- .env.production.local` must return nothing.
 4. Record the provenance statement + rotation confirmation as Q3's answer in
    [`PHASE_B_G1_OPEN_QUESTIONS.md`](./PHASE_B_G1_OPEN_QUESTIONS.md)
    (values never recorded anywhere).
 
-Do not proceed to Step 4 (key generation) until Q3 is recorded.
+Completed 2026-07-10: a names-only audit matched the file's production-tier
+credentials to the existing, unused Production instance of `My Application`.
+The old Secret Key was rotated through the Clerk CLI with immediate expiration;
+the replacement was neither printed nor persisted; the Publishable Key was
+unchanged; the local file was deleted; and Git history remained empty. Q3 is
+recorded in `PHASE_B_G1_OPEN_QUESTIONS.md`.
 
-## Step 1 — Create the Clerk production instance (operator)
+## Step 1 — Verify and configure the existing Clerk production instance (operator)
 
-1. Clerk Dashboard → the FLR application → **Create production instance**
-   (clone of the development instance or fresh, per dashboard flow).
-2. Set the production domain: `floridarampandliftops.com` (final per G1/Q2 —
+1. Clerk Platform API inventory confirms `My Application` already has a
+   Production instance. Verify it is the intended FLR application before
+   configuration; do not create a duplicate instance.
+2. Retain and configure that instance unless the operator separately approves
+   deleting/replacing it. Instance deletion is destructive and is not covered
+   by the G2 `proceed`.
+3. Set the production domain: `floridarampandliftops.com` (final per G1/Q2 —
    changing it later regenerates the publishable key and voids downstream
    work).
 
@@ -82,12 +91,14 @@ Match the repo's env-name contract (`.env.example`; names only):
 - Allowed origins/redirects include the production domain (and preview domain
   only for the development-instance keys, per the key-tier rule).
 
-## Step 4 — Generate production keys (operator; Q3 must be recorded)
+## Step 4 — Establish production keys (operator; Q3 is recorded)
 
-1. Generate `pk_live_` / `sk_live_` for the production instance.
-2. Storage rule: **only** Vercel project environment settings or an approved
-   secret manager. Never Git, docs, chat logs, shell history, screenshots, or
-   loose local files.
+1. After the final production domain is configured, use its resulting
+   `pk_live_` Publishable Key and create a new named `sk_live_` Secret Key for
+   the deployment. Do not reuse the Q3 credential.
+2. Storage rule at G2: **only** an approved secret manager. Never Git, docs,
+   chat logs, shell history, screenshots, or loose local files. Entering
+   values into Vercel environment settings is gate **G4** (see item 4).
 3. Key-tier rule (from `DEPLOYMENT_TARGET.md`): preview environment uses
    development-instance `pk_test_`/`sk_test_` only; production uses
    `pk_live_`/`sk_live_` only.
@@ -107,10 +118,12 @@ Match the repo's env-name contract (`.env.example`; names only):
 
 ## Abort / rollback
 
-If G2 is aborted mid-way: remove the DNS records added in Step 2, revoke any
-keys generated in Step 4, and delete the production instance if unusable.
-Nothing downstream depends on G2 until G3 (Vercel link) begins, so a clean
-abort has no blast radius beyond the Clerk dashboard and DNS records
+If G2 is aborted mid-way: remove the DNS records added in Step 2 and revoke
+any keys generated in Step 4. **Deleting the production instance — even an
+unusable one — is a destructive action requiring its own separate operator
+approval; it is not covered by the G2 `proceed` or by this abort path** (see
+Step 1). Nothing downstream depends on G2 until G3 (Vercel link) begins, so a
+clean abort has no blast radius beyond the Clerk dashboard and DNS records
 themselves.
 
 ## What G2 authorizes — and does not
