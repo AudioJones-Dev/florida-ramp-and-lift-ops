@@ -12,6 +12,18 @@ future Resend integration without expanding the current Phase B pilot or
 bypassing the controlled-integration gate in
 [`RELEASE_PLAN.md`](./RELEASE_PLAN.md).
 
+## Canonical Operations Domain
+
+The canonical Florida Ramp & Lift operations-platform domain is:
+
+`floridarampandliftops.com`
+
+This spelling is authoritative and must be used consistently in DNS, sender
+identities, environment variables, application URLs, webhook configuration,
+deployment documentation, and production-secret scoping.
+
+The variant `floridarampandliftsops.com` is invalid and must not be used.
+
 ## Source-of-Truth Boundaries
 
 - Clerk owns authentication, verification, password recovery, and other
