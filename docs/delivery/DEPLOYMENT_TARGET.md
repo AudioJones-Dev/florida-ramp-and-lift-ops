@@ -242,6 +242,8 @@ Environment-variable presence is owned by G4 and remains pending.
 - [ ] Ops-domain Terms/Privacy URL plan accepted per
       `docs/legal/LEGAL_PRIVACY_DOCTRINE.md`.
 - [ ] Clerk production checklist complete, including verified domain.
+- [ ] All five approved Production environment names present and verified by
+      name only, using Clerk production-tier values (`pk_live_` / `sk_live_`).
 - [ ] `ops.floridarampandliftops.com` DNS configured and verified without
       altering existing Render-backed hosts.
 - [ ] Preview deploy verified.

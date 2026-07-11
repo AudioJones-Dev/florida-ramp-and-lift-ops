@@ -222,6 +222,8 @@ Owning checklist: `DEPLOYMENT_TARGET.md` → "Production Deploy Checklist".
       gate before the pilot circulates beyond tightly controlled internal review.
 - [x] Exact application origin approved:
       `https://ops.floridarampandliftops.com`; sibling-host ownership reconciled.
+- [ ] All five approved Production environment names present and verified by
+      name only, using Clerk production-tier values (`pk_live_` / `sk_live_`).
 - [ ] `ops` host DNS configured and verified without changing existing hosts.
 - [x] G2 complete (2026-07-11).
 - [ ] G5 verified.
