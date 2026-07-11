@@ -96,9 +96,9 @@ Match the repo's env-name contract (`.env.example`; names only):
 1. After the final production domain is configured, use its resulting
    `pk_live_` Publishable Key and create a new named `sk_live_` Secret Key for
    the deployment. Do not reuse the Q3 credential.
-2. Storage rule: **only** Vercel project environment settings or an approved
-   secret manager. Never Git, docs, chat logs, shell history, screenshots, or
-   loose local files.
+2. Storage rule at G2: **only** an approved secret manager. Never Git, docs,
+   chat logs, shell history, screenshots, or loose local files. Entering
+   values into Vercel environment settings is gate **G4** (see item 4).
 3. Key-tier rule (from `DEPLOYMENT_TARGET.md`): preview environment uses
    development-instance `pk_test_`/`sk_test_` only; production uses
    `pk_live_`/`sk_live_` only.

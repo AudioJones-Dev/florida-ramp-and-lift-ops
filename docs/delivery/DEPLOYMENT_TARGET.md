@@ -124,9 +124,11 @@ Key-tier rule:
 - Production environment uses Clerk production-instance keys (`pk_live_` /
   `sk_live_`) only, and only after the production domain is verified.
 
-Production values must come from a Clerk production instance and be entered
-directly into Vercel environment settings or an approved secret manager. No
-value may appear in Git, docs, chat logs, or shell history.
+Production values must come from a Clerk production instance. At the Clerk
+setup stage (G2) they are held **only in an approved secret manager**;
+entering them into Vercel environment settings happens at the env-write gate
+(G4) under its own approval. No value may ever appear in Git, docs, chat
+logs, or shell history.
 
 ## Production Domain Requirement (hard blocker)
 
