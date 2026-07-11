@@ -30,6 +30,7 @@ No delivery step should skip the implementation readiness gate, security review,
 | G2 execution record | `../delivery/G2_EXECUTION_RECORD.md` |
 | G3/G4 Vercel and env runbook | `../delivery/G3_G4_VERCEL_ENV_RUNBOOK.md` |
 | G3 execution record | `../delivery/G3_EXECUTION_RECORD.md` |
+| G4 Preview environment execution record | `../delivery/G4_PREVIEW_ENV_EXECUTION_RECORD.md` |
 | Gap trace: pilot to MVP | `../delivery/GAP_TRACE_PILOT_TO_MVP.md` |
 | Resend transactional email plan | `../delivery/RESEND_TRANSACTIONAL_EMAIL_PLAN.md` |
 | Migration plan | `../delivery/MIGRATION_PLAN.md` |

@@ -1,6 +1,6 @@
 # G3/G4 Vercel And Environment Runbook
 
-Status: Active — G3 complete 2026-07-11; G4 pending separate operator approval
+Status: Active — G3 and G4 Preview complete 2026-07-11; G4 Production pending separate operator approval
 Scope: Step-by-step operator playbook for gate G3 (Vercel project/link) and gate G4 (environment variable writes)
 Runtime impact: None
 Implementation status: Documentation only — no Vercel, env, DNS, or deploy action is performed or authorized by this document; every step is operator-executed under the relevant gate's `proceed`
@@ -84,6 +84,10 @@ Steps:
 4. Verify **by name only**: `vercel env ls <environment>` shows all five names
    in each target environment. Never print values.
 5. Record G4 completion in the Phase B checklist and `CHANGELOG.md`.
+
+G4 Preview execution evidence:
+[`G4_PREVIEW_ENV_EXECUTION_RECORD.md`](./G4_PREVIEW_ENV_EXECUTION_RECORD.md).
+Production values remain unconfigured and require their own operator approval.
 
 ## Abort / rollback
 
