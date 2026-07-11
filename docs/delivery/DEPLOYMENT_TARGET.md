@@ -30,19 +30,20 @@ begins.
 
 ## Internal Pilot Decision
 
-The next live milestone is an authenticated internal pilot at
-`floridarampandliftops.com`.
+The next live milestone is an authenticated internal pilot on an approved
+application host within the `floridarampandliftops.com` domain family.
 
 Domain boundary (clarified by the operator 2026-07-10):
 
 - `floridarampandlift.com` is the **public-facing website / marketing domain**.
-- `floridarampandliftops.com` is the **live ops product domain** — the
+- `floridarampandliftops.com` is the **live ops product domain family** — the
   pseudo-intranet, multi-tenant operational ecosystem. It is the permanent home
   of the ops product, not a temporary or provisional domain.
 - The internal pilot is the **first deployment stage** on
-  `floridarampandliftops.com`; later stages (persistence-backed operations per
-  `LIVE_APP_GAP_CLOSURE_PLAN.md` Phases C–F) ship on the same domain behind
-  their own gates.
+  that domain family; later stages (persistence-backed operations per
+  `LIVE_APP_GAP_CLOSURE_PLAN.md` Phases C–F) remain in the same family behind
+  their own gates. The exact application host is pending the sibling-host
+  ownership decision in `REPO_BOUNDARY_MAP.md`.
 - G1 confirms the final domain and that DNS edit access is available; it does
   **not** authorize DNS changes (those occur under G2, operator-executed).
 
@@ -136,7 +137,7 @@ Clerk production instances require a domain the operator owns, with DNS access
 for CNAME verification. Production publishable keys are domain-bound and do
 not work on `*.vercel.app` domains. Consequences:
 
-- The internal pilot and future production ops domain is
+- The internal pilot and future production ops domain family is
   `floridarampandliftops.com` — **confirmed final by the operator 2026-07-10**
   (Q2 in `PHASE_B_G1_OPEN_QUESTIONS.md`). DNS management and edit-access
   availability were confirmed 2026-07-10 (Q1, provider-free wording).
@@ -144,8 +145,13 @@ not work on `*.vercel.app` domains. Consequences:
   setup.
 - Changing the production domain later regenerates the Clerk publishable key,
   so production env vars must not be set until the domain is final.
-- Production deploy is blocked until the domain is chosen, DNS records are
-  verified, and the Clerk production instance is live on that domain.
+- Finality of the domain family does not assign the application origin. The
+  exact host must be approved without replacing the existing Render-backed
+  apex, `www`, or role subdomains implicitly.
+- Production deploy is blocked until the exact application host/origin is
+  approved, sibling-host ownership is reconciled, that host's DNS records are
+  configured and verified, and the Clerk production instance is live for the
+  canonical domain family.
 
 ## Human Approval Gates
 

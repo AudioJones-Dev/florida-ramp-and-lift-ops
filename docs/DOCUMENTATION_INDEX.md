@@ -96,6 +96,7 @@ Defines how the project ships, evolves, and migrates.
 | G2 execution record | `docs/delivery/G2_EXECUTION_RECORD.md` |
 | G3/G4 Vercel and env runbook | `docs/delivery/G3_G4_VERCEL_ENV_RUNBOOK.md` |
 | Gap trace: pilot to MVP | `docs/delivery/GAP_TRACE_PILOT_TO_MVP.md` |
+| Resend transactional email plan | `docs/delivery/RESEND_TRANSACTIONAL_EMAIL_PLAN.md` |
 | Migration plan | `docs/delivery/MIGRATION_PLAN.md` |
 
 ## Layer 4 Governance

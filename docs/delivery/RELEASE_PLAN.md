@@ -23,6 +23,11 @@ The repo has a mock/manual Next.js MVP scaffold backed by documentation-first ar
 | Phase 4 | Controlled integrations | HubSpot, QuickBooks, email/SMS, PDF, storage, or AI added one at a time with human gates. |
 | Phase 5 | Production hardening | Monitoring, incident response, backup, access review, and release checklist accepted. |
 
+The proposed Resend email integration is governed by
+[`RESEND_TRANSACTIONAL_EMAIL_PLAN.md`](./RESEND_TRANSACTIONAL_EMAIL_PLAN.md).
+That plan reserves `mail.floridarampandliftops.com` but authorizes no Phase 4
+provider or runtime work.
+
 ## Release Gates
 
 Before any production release:
