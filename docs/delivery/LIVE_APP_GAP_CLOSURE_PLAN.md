@@ -133,7 +133,7 @@ sanitized fixtures only, with no persistence and no real data**. This is the
 `DEPLOYMENT_TARGET.md` "next live milestone," not the client-deliverable MVP.
 
 **User-facing outcome.** Internal reviewers sign in with real Clerk auth at an
-approved host in the `floridarampandliftops.com` domain family, land in their
+`ops.floridarampandliftops.com`, land in their
 role dashboards, and navigate the mock surfaces on a real URL. No real
 operational data is present.
 
@@ -166,8 +166,7 @@ separate destructive approval.
 - The external client portal.
 
 **Acceptance criteria.**
-- Real Clerk sign-in works on the approved application host in the
-  `floridarampandliftops.com` domain family; protected routes redirect
+- Real Clerk sign-in works on `ops.floridarampandliftops.com`; protected routes redirect
   unauthenticated users; `/mock-sign-in` remains a labeled preview, not authz.
 - Only sanitized fixture/demo data is present; mock/manual labels visible.
 - Env vars present by name in the target environment; no secret in Git/docs/logs.

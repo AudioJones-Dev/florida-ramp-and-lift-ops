@@ -30,8 +30,8 @@ begins.
 
 ## Internal Pilot Decision
 
-The next live milestone is an authenticated internal pilot on an approved
-application host within the `floridarampandliftops.com` domain family.
+The next live milestone is an authenticated internal pilot at
+`ops.floridarampandliftops.com`.
 
 Domain boundary (clarified by the operator 2026-07-10):
 
@@ -42,8 +42,9 @@ Domain boundary (clarified by the operator 2026-07-10):
 - The internal pilot is the **first deployment stage** on
   that domain family; later stages (persistence-backed operations per
   `LIVE_APP_GAP_CLOSURE_PLAN.md` Phases C–F) remain in the same family behind
-  their own gates. The exact application host is pending the sibling-host
-  ownership decision in `REPO_BOUNDARY_MAP.md`.
+  their own gates. `ops.floridarampandliftops.com` is assigned to this repo;
+  the existing Render-backed apex, `www`, `admin`, `client`, `contractor`, and
+  `platform` hosts remain assigned to their current sibling product.
 - G1 confirms the final domain and that DNS edit access is available; it does
   **not** authorize DNS changes (those occur under G2, operator-executed).
 
@@ -145,13 +146,12 @@ not work on `*.vercel.app` domains. Consequences:
   setup.
 - Changing the production domain later regenerates the Clerk publishable key,
   so production env vars must not be set until the domain is final.
-- Finality of the domain family does not assign the application origin. The
-  exact host must be approved without replacing the existing Render-backed
-  apex, `www`, or role subdomains implicitly.
-- Production deploy is blocked until the exact application host/origin is
-  approved, sibling-host ownership is reconciled, that host's DNS records are
-  configured and verified, and the Clerk production instance is live for the
-  canonical domain family.
+- The approved application origin is `https://ops.floridarampandliftops.com`
+  (operator decision, 2026-07-11). This assignment preserves the existing
+  Render-backed apex, `www`, and role subdomains.
+- Production deploy remains blocked until the `ops` host's DNS record is
+  configured and verified. The Clerk production instance is already verified
+  for the canonical domain family.
 
 ## Human Approval Gates
 
@@ -185,14 +185,17 @@ Explicit operator approval (`proceed`) is required, separately, before each of:
       generated; held only in an approved secret manager at this stage —
       entering values into Vercel env is the env-write gate's separate
       approval.
-- [ ] Auth-path setup partially complete: Clerk sign-in/sign-up paths are
-      configured; fallback redirect env writes remain G4 and production
-      origin/redirect behavior remains a G5 verification item.
+- [x] Clerk provider path setup complete: sign-in/sign-up use `/sign-in` and
+      home uses `/dashboard`. Fallback env writes remain G4 and live redirect
+      behavior remains G5; those later gates do not block G2 closure.
 - [x] Any credential previously exposed in chat or local files of unclear
       provenance is rotated.
-- [ ] `clerk doctor` (or dashboard verification) is clean.
-- [ ] Reconcile ownership of the existing Render-backed apex, `www`, and role
-      subdomains before any G3/G6 Vercel domain attachment.
+- [x] Clerk deployment verification complete (2026-07-11): aggregate state
+      `complete`; DNS, SSL, mail, and OAuth checks complete; zero pending DNS
+      records or OAuth providers.
+- [x] Host ownership reconciled: this repo uses
+      `ops.floridarampandliftops.com`; existing Render-backed apex, `www`,
+      `admin`, `client`, `contractor`, and `platform` hosts are preserved.
 
 ## Vercel Link Checklist (blocked until approved)
 
@@ -230,6 +233,8 @@ Explicit operator approval (`proceed`) is required, separately, before each of:
 - [ ] Ops-domain Terms/Privacy URL plan accepted per
       `docs/legal/LEGAL_PRIVACY_DOCTRINE.md`.
 - [ ] Clerk production checklist complete, including verified domain.
+- [ ] `ops.floridarampandliftops.com` DNS configured and verified without
+      altering existing Render-backed hosts.
 - [ ] Preview deploy verified.
 - [ ] Rollback plan below completed (no longer a placeholder).
 - [ ] Operator issues explicit production `proceed`.

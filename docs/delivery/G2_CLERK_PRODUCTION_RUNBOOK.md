@@ -1,6 +1,6 @@
 # G2 Clerk Production Runbook
 
-Status: Active execution runbook — G2 `proceed` received; domain verified and Clerk paths applied 2026-07-11; OAuth and sibling-host reconciliation pending
+Status: Complete 2026-07-11 — domain, DNS/SSL/mail, Clerk paths, email/password auth scope, and host ownership verified; downstream env/deploy gates remain pending
 Scope: Step-by-step operator playbook for gate G2 (Clerk production setup) on `floridarampandliftops.com`
 Runtime impact: None
 Implementation status: Documentation and execution guide — Clerk and DNS actions are recorded separately in `G2_EXECUTION_RECORD.md`; this document does not authorize additional provider actions, env writes, or deploys

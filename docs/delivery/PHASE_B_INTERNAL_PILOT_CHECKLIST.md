@@ -1,7 +1,7 @@
 # Phase B Internal Pilot Checklist
 
-Status: Active — G0 accepted 2026-07-09; G1 confirmed 2026-07-10; gates G2–G7 pending, each behind its own operator `proceed`
-Scope: Phase B planning checklist for the authenticated internal pilot on an approved host within the `floridarampandliftops.com` domain family
+Status: Active — G0 accepted 2026-07-09; G1 confirmed 2026-07-10; G2 complete 2026-07-11; gates G3–G7 pending, each behind its own operator `proceed`
+Scope: Phase B planning checklist for the authenticated internal pilot at `ops.floridarampandliftops.com`
 Runtime impact: None
 Implementation status: Documentation only — no Clerk, Vercel, DNS, env, or deploy action is performed or authorized by this document
 
@@ -25,12 +25,13 @@ Phase B covers:
 
 - Real Clerk authentication (production instance) replacing shell-only keys.
 - A Vercel project linked to this repo, deploying the existing mock/manual app.
-- An approved application host within the `floridarampandliftops.com` domain
-  family serving the protected pilot — this is the **live ops product domain
-  family** (pseudo-intranet, multi-tenant
+- `ops.floridarampandliftops.com` serving the protected pilot within the **live
+  ops product domain family** (pseudo-intranet, multi-tenant
   operational ecosystem), and the pilot is its **first deployment stage**, not
   a temporary or provisional home (`floridarampandlift.com` remains the public
-  marketing site). The exact host remains pending sibling-host ownership.
+  marketing site). This repo's approved host is
+  `ops.floridarampandliftops.com`; the existing Render-backed hosts remain
+  assigned to the sibling product.
 - Sanitized fixture/demo records only, visibly labeled mock/manual.
 - Preview deploy first, then a production pilot deploy, each separately gated.
 
@@ -144,18 +145,19 @@ generation).
       configuration as `CLERK_SECRET_KEY` and
       `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, verified present by name; values
       never printed or persisted.)
-- [ ] Auth-path setup partially complete (2026-07-11): Clerk uses `/sign-in`
-      for sign-in/sign-up and `/dashboard` as home; G4 fallback redirect env
-      writes and G5 production-origin/redirect verification remain pending.
-- [ ] Production Google OAuth remains pending; Google sign-in stays disabled
-      until dedicated production credentials are configured and verified, or
-      Google is explicitly removed from the accepted auth scope.
+- [x] G2 Clerk path configuration complete (2026-07-11): `/sign-in` for
+      sign-in/sign-up and `/dashboard` as home. G4 fallback env writes and G5
+      live redirect verification remain separately gated.
+- [x] Phase B auth scope reconciled (2026-07-11): email code plus required
+      password enabled; Google OAuth deferred and disabled in both Clerk
+      development and production instances.
 - [x] Unclear-provenance 2026-07-07 Production Secret Key rotated with
       immediate old-key expiration; replacement not persisted; local
       `.env.production.local` deleted; Git history empty (Q3, 2026-07-10).
-- [ ] `clerk doctor` or dashboard verification clean.
-- [ ] Sibling-host ownership reconciled before G3/G6 domain attachment; the
-      existing apex, `www`, and role subdomains must not be displaced.
+- [x] Clerk deployment status complete: DNS, SSL, mail, and OAuth checks green;
+      no pending DNS records or OAuth providers.
+- [x] Sibling-host ownership reconciled: this repo uses `ops`; existing apex,
+      `www`, `admin`, `client`, `contractor`, and `platform` hosts are preserved.
 
 ### G3 — Vercel project / link gate
 
@@ -209,9 +211,11 @@ Owning checklist: `DEPLOYMENT_TARGET.md` → "Production Deploy Checklist".
       DoR/DoD reviewed.
 - [ ] Ops-domain Terms/Privacy plan accepted per the legal doctrine publication
       gate before the pilot circulates beyond tightly controlled internal review.
-- [ ] Exact application host/origin approved, sibling-host ownership reconciled,
-      and that host's DNS records configured and verified.
-- [ ] G2 complete including verified domain; G5 verified.
+- [x] Exact application origin approved:
+      `https://ops.floridarampandliftops.com`; sibling-host ownership reconciled.
+- [ ] `ops` host DNS configured and verified without changing existing hosts.
+- [x] G2 complete (2026-07-11).
+- [ ] G5 verified.
 - [ ] Rollback runbook complete and current (G7 pre-checks done).
 - [ ] Operator issues explicit production `proceed`; deploy runs; result
       verified and logged in [`CHANGELOG.md`](./CHANGELOG.md).
