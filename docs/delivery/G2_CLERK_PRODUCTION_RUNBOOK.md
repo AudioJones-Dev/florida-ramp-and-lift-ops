@@ -1,6 +1,6 @@
 # G2 Clerk Production Runbook
 
-Status: Active execution runbook — G2 `proceed` received; domain verified and Clerk paths applied 2026-07-11; OAuth and sibling-host reconciliation pending
+Status: Complete 2026-07-11 — domain, DNS/SSL/mail, Clerk paths, email/password auth scope, and host ownership verified; downstream env/deploy gates remain pending
 Scope: Step-by-step operator playbook for gate G2 (Clerk production setup) on `floridarampandliftops.com`
 Runtime impact: None
 Implementation status: Documentation and execution guide — Clerk and DNS actions are recorded separately in `G2_EXECUTION_RECORD.md`; this document does not authorize additional provider actions, env writes, or deploys
@@ -108,11 +108,11 @@ Match the repo's env-name contract (`.env.example`; names only):
 
 ## Step 5 — Verify and record (operator, agent may assist read-only)
 
-- [ ] Clerk dashboard shows the production instance healthy: domain verified,
+- [x] Clerk dashboard shows the production instance healthy (2026-07-11): domain verified,
       certificates issued, paths configured (or `clerk doctor` clean, if used).
-- [ ] No keys or record values appear in Git, docs, or chat.
-- [ ] Completion recorded in [`CHANGELOG.md`](./CHANGELOG.md) with the date.
-- [ ] G2 boxes checked in
+- [x] No keys or record values appear in Git, docs, or chat (verified 2026-07-11).
+- [x] Completion recorded in [`CHANGELOG.md`](./CHANGELOG.md) with the date.
+- [x] G2 boxes checked in
       [`PHASE_B_INTERNAL_PILOT_CHECKLIST.md`](./PHASE_B_INTERNAL_PILOT_CHECKLIST.md)
       with dates.
 

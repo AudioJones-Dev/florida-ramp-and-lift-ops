@@ -41,15 +41,16 @@ them. Facts below were verified from local Git remotes/branches on 2026-07-09.
   product on a different branch — coordinate via branches/PRs, not by treating it as
   a different product.
 
-## Open questions (operator to reconcile)
+## Resolved domain boundary
 
-- Domain-name overlap across siblings remains unresolved for deployment. This
-  repo names `floridarampandliftops.com` as the internal-pilot ops domain, while
-  live DNS currently routes the apex, `www`, `admin`, `client`, `contractor`,
-  and `platform` hosts to Render-backed sibling-product surfaces. The five
-  Clerk CNAMEs added in G2 are non-overlapping and verified, but G3/G6 must not
-  attach or replace any existing host until the operator assigns host ownership
-  explicitly. Do not infer ownership from sibling repos.
+- Operator decision (2026-07-11): this repo owns
+  `ops.floridarampandliftops.com` as its application host.
+- Existing Render-backed apex, `www`, `admin`, `client`, `contractor`, and
+  `platform` hosts remain assigned to the sibling contractor-portal product and
+  must not be altered by this repo.
+- Clerk's five supporting CNAMEs remain shared domain infrastructure and are
+  already verified. The `ops` application record itself remains pending its
+  separately gated deployment step.
 
 ## See Also
 

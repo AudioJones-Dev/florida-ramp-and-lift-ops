@@ -50,10 +50,9 @@ The spelling `floridarampandliftsops.com` is not approved. The extra `s` after
 `lift` must not appear in DNS, Resend, links, sender identities, or environment
 configuration.
 
-The canonical application origin remains unresolved while existing sibling
-products occupy the apex and role subdomains. `NEXT_PUBLIC_APP_URL` must use the
-actual approved application origin after that ownership decision; it must not be
-guessed from the email-sending hostname.
+The canonical application origin is
+`https://ops.floridarampandliftops.com`. It is distinct from the Resend sending
+hostname and preserves the existing sibling-owned apex and role subdomains.
 
 ## Approved Sender Identities
 
@@ -80,7 +79,9 @@ implemented.
 
 ## Proposed Environment Contract
 
-Names only; values are never committed or recorded in documentation:
+Secret values remain blank and must never be committed or recorded. Approved
+non-secret configuration values, including sender identities and the public
+application URL, are recorded explicitly:
 
 ```env
 RESEND_API_KEY=
@@ -88,7 +89,7 @@ RESEND_WEBHOOK_SECRET=
 EMAIL_FROM_NOTIFICATIONS="Florida Ramp & Lift Ops <notifications@mail.floridarampandliftops.com>"
 EMAIL_FROM_BILLING="Florida Ramp & Lift Ops Billing <billing@mail.floridarampandliftops.com>"
 EMAIL_FROM_OPERATIONS="Florida Ramp & Lift Ops Operations <operations@mail.floridarampandliftops.com>"
-NEXT_PUBLIC_APP_URL=
+NEXT_PUBLIC_APP_URL=https://ops.floridarampandliftops.com
 ```
 
 The repository's product/environment secret-manager boundary supplies workload
@@ -126,7 +127,7 @@ until the runtime implementation branch is separately approved.
 ### E0 - Plan Acceptance
 
 - Approve this domain and sender contract.
-- Resolve the canonical application hostname separately.
+- Preserve the approved `ops` application hostname and sibling-host boundary.
 - Confirm the first transactional use cases and their human approval owners.
 - Keep all provider and runtime work blocked until Phase 4 is authorized.
 
