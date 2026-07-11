@@ -135,8 +135,11 @@ generation).
 - [x] `pk_live_` / `sk_live_` keys generated and held **only** in an approved
       secret manager — never Git, docs, chat, or shell history. Entering them
       into Vercel env is gate **G4's separate `proceed`**. (Done 2026-07-10/11:
-      new `sk_live` rotated and escrowed directly to Doppler
-      `florida-ramp-and-lift/prd` as `CLERK_SECRET_KEY`; value never printed.)
+      new `sk_live` rotated and the current post-domain-change `pk_live`
+      captured; both escrowed to the approved production secret-manager
+      configuration as `CLERK_SECRET_KEY` and
+      `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, verified present by name; values
+      never printed or persisted.)
 - [ ] Sign-in/sign-up URLs and fallback redirects configured for the domain.
 - [x] Unclear-provenance 2026-07-07 Production Secret Key rotated with
       immediate old-key expiration; replacement not persisted; local
