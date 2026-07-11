@@ -172,7 +172,9 @@ Explicit operator approval (`proceed`) is required, separately, before each of:
 - [ ] Existing Production instance configured for the final ops domain.
 - [ ] DNS records added and verified; Clerk certificates issued.
 - [ ] Production publishable and secret keys (`pk_live_` / `sk_live_`)
-      generated; stored only in Vercel env or approved secret manager.
+      generated; held only in an approved secret manager at this stage —
+      entering values into Vercel env is the env-write gate's separate
+      approval.
 - [ ] Sign-in/sign-up URLs and fallback redirects configured for the
       production domain.
 - [ ] Any credential previously exposed in chat or local files of unclear

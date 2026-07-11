@@ -122,7 +122,8 @@ noise, not delivery dependencies; they are excluded from this trace.
 The shortest dependency-consistent path to the client-deliverable MVP is
 unchanged from the gap-closure plan, now with edge evidence:
 
-1. Finish Phase B execution (T7, with Q3 first). During Phase B,
+1. Finish Phase B execution (T7 — Q3 is complete; G2 proceeds next under its
+   own operator `proceed`). During Phase B,
    **review and redlining of [Persistence Design](../architecture/persistence-design.md)
    may proceed** — it is documentation work with no runtime effect.
 2. **Formal T1 acceptance and Phase C execution begin only after Phase B

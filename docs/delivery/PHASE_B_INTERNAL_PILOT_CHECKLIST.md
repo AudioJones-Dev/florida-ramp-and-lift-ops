@@ -130,8 +130,9 @@ generation).
       instance; deleting/replacing it requires separate explicit approval.
 - [ ] Existing Production instance verified and configured; DNS records added
       and verified; certificates issued.
-- [ ] `pk_live_` / `sk_live_` keys generated and stored **only** in Vercel env
-      or an approved secret manager — never Git, docs, chat, or shell history.
+- [ ] `pk_live_` / `sk_live_` keys generated and held **only** in an approved
+      secret manager — never Git, docs, chat, or shell history. Entering them
+      into Vercel env is gate **G4's separate `proceed`**.
 - [ ] Sign-in/sign-up URLs and fallback redirects configured for the domain.
 - [x] Unclear-provenance 2026-07-07 Production Secret Key rotated with
       immediate old-key expiration; replacement not persisted; local

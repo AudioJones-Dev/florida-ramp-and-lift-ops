@@ -1,6 +1,6 @@
 # Phase B G1 Open Questions
 
-Status: Git Spec-ready draft — answers pending operator input
+Status: Active — Q1–Q3 answered 2026-07-10; Q4–Q7 pending operator input
 Scope: Operator-decision inventory blocking or informing Phase B gates G1–G6
 Runtime impact: None
 Implementation status: Documentation only

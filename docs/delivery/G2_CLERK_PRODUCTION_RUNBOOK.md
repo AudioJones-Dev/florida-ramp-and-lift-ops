@@ -118,10 +118,12 @@ Match the repo's env-name contract (`.env.example`; names only):
 
 ## Abort / rollback
 
-If G2 is aborted mid-way: remove the DNS records added in Step 2, revoke any
-keys generated in Step 4, and delete the production instance if unusable.
-Nothing downstream depends on G2 until G3 (Vercel link) begins, so a clean
-abort has no blast radius beyond the Clerk dashboard and DNS records
+If G2 is aborted mid-way: remove the DNS records added in Step 2 and revoke
+any keys generated in Step 4. **Deleting the production instance — even an
+unusable one — is a destructive action requiring its own separate operator
+approval; it is not covered by the G2 `proceed` or by this abort path** (see
+Step 1). Nothing downstream depends on G2 until G3 (Vercel link) begins, so a
+clean abort has no blast radius beyond the Clerk dashboard and DNS records
 themselves.
 
 ## What G2 authorizes — and does not
