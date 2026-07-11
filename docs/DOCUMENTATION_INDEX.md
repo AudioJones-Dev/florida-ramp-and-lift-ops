@@ -87,6 +87,7 @@ Defines how the project ships, evolves, and migrates.
 | Changelog | `docs/delivery/CHANGELOG.md` |
 | Release plan | `docs/delivery/RELEASE_PLAN.md` |
 | Live app gap-closure plan | `docs/delivery/LIVE_APP_GAP_CLOSURE_PLAN.md` |
+| End-to-end GTM goal-mode execution plan | `docs/delivery/GTM_GOAL_MODE_EXECUTION_PLAN.md` |
 | Phase 2 closure checklist | `docs/delivery/PHASE_2_CLOSURE_CHECKLIST.md` |
 | Phase B internal pilot checklist | `docs/delivery/PHASE_B_INTERNAL_PILOT_CHECKLIST.md` |
 | Pilot verification script | `docs/delivery/PILOT_VERIFICATION_SCRIPT.md` |
