@@ -201,7 +201,7 @@ export const dispatchDemoJobs: DispatchDemoJob[] = [
         summary: "Best commercial fit and the strongest choice for an invite-only or bid-reviewed route.",
         reasons: [
           "Central Florida territory keeps the commercial route practical.",
-          "Best match for WilScot-style coordination and closeout work.",
+          "Best match for modular-site coordination and closeout work.",
           "Good documentation history for invoice-ready packets."
         ]
       },

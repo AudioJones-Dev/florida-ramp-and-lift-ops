@@ -226,12 +226,17 @@ Environment-variable presence is owned by G4 and remains pending.
 - [ ] `npm run typecheck`, `npm run lint`, `npm run build` pass at the deploy SHA.
 - [x] Preview env vars present (2026-07-11; five approved names, Clerk
       development-instance keys only; names-only verification).
+- [ ] Operator confirms fixture names and retained business preview identities
+      do not match the real FRL customer/contractor roster (names-only check;
+      no roster data recorded).
 - [ ] Git integration re-verified disconnected immediately before deployment.
 - [ ] `vercel deploy` (preview) run with operator approval.
 - [ ] Sign-in flow, protected dashboard routes, and `/mock-sign-in` preview
       behavior verified on the preview URL. Expect protected routes to
       redirect to sign-in; if Vercel Deployment Protection returns 401, treat
       that as protection state, not app failure.
+- [ ] S9 post-deploy acceptance confirms mock/demo labeling on pilot-critical
+      surfaces before G5 closes or the Preview is circulated.
 - [ ] Findings recorded in `docs/delivery/CHANGELOG.md`.
 
 ## Production Deploy Checklist (blocked until approved)

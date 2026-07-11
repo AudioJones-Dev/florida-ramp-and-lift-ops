@@ -1,6 +1,6 @@
 # Fixture Sanitization Checklist
 
-Status: Git Spec-ready draft — evidence pending
+Status: Active — automated pre-deploy evidence complete 2026-07-11; operator roster confirmation pending; S9 is post-deploy acceptance
 Scope: Evidence checklist proving fixture/demo data is sanitized before any Phase B deploy gate
 Runtime impact: None
 Implementation status: Documentation only
@@ -13,8 +13,10 @@ The internal pilot may serve **sanitized fixture/demo records only**
 ([`DEPLOYMENT_TARGET.md`](./DEPLOYMENT_TARGET.md) internal-pilot scope;
 [`../legal/LEGAL_PRIVACY_DOCTRINE.md`](../legal/LEGAL_PRIVACY_DOCTRINE.md) data
 classes). This checklist defines what "sanitized" means, where the fixture data
-lives, and the evidence each check must produce. **G5 (preview deploy) is
-blocked until every check row carries recorded evidence.**
+lives, and the evidence each check must produce. **G5 preview creation is
+blocked until S1-S8 and S10 plus their findings are resolved. S9 is verified
+against the resulting Preview URL and must pass before G5 closes; it is not a
+precondition for creating that Preview deployment.**
 
 ## Fixture Source Inventory (from `src/lib/`, verified against the tree)
 
@@ -47,43 +49,47 @@ a dated manual-review note in the Evidence Record below.
 | S6 | No sensitive operational data: disability/medical context, accessibility details tied to a person, safety incidents naming real people | Manual review against the legal doctrine's sensitive-data class |
 | S7 | No credentials, tokens, env values, or internal URLs in fixture data | Grep for `sk_`, `pk_`, `http`, `key`, `token`, `secret` |
 | S8 | Fixture IDs remain visibly non-production (e.g. `job_001` style) and are never promoted to production IDs | Review ID conventions (root `AGENTS.md` mock-data constraint) |
-| S9 | Mock/demo labeling is visible on pilot-critical surfaces at runtime | Covered by [`PILOT_VERIFICATION_SCRIPT.md`](./PILOT_VERIFICATION_SCRIPT.md) Section D — cross-reference the run record |
+| S9 | Post-deploy acceptance: mock/demo labeling is visible on pilot-critical surfaces at runtime | Run [`PILOT_VERIFICATION_SCRIPT.md`](./PILOT_VERIFICATION_SCRIPT.md) Section D against the gated Preview URL and cross-reference the run record before G5 closes |
 | S10 | No data about minors | Manual review (legal doctrine: minors' data not targeted) |
 
 ## Evidence Record
 
-One row per check; all rows must be complete before G5.
+One row per check. S1-S8 and S10 are pre-deploy evidence. S9 is post-deploy
+acceptance evidence and must pass before G5 is marked complete.
 
 | Check | File(s) reviewed | Method | Reviewer | Date | Result |
 |---|---|---|---|---|---|
-| S1 | All `src/lib/*.ts` | Grep email/phone patterns + name-field review | Claude Code (agent) | 2026-07-10 | **Pass (F1 resolved 2026-07-10).** Fixture emails all `@example.com`; phones all fictional `(555)`; names initial-style fictional (`M. Reynolds`, `S. Patel`). Personal Gmail in `src/lib/roles.ts` replaced with `contractor.preview@example.com`; business `@ajdigital.app` preview identities retained per the operator's F1 scoping. |
+| S1 | All `src/lib/*.ts` | Grep email/phone patterns + name-field review | Codex (agent) | 2026-07-11 | **Conditional — automated scan passes; F4 operator confirmation pending.** All known real vendor identity references were replaced with the explicitly fictional `Example Modular Services`; fixture phones use `(555)` and non-business emails use `@example.com`. Personal Gmail remains removed; business `@ajdigital.app` preview identities remain per F1. Operator must confirm `M. Reynolds`, `S. Patel`, and the retained business identities do not match a real FRL customer/contractor roster before deploy. |
 | S2 | `mock-data.ts`, `dispatch-demo.ts` | Grep address/coordinate fields + manual review | Claude Code (agent) | 2026-07-10 | Pass — all site addresses generic (`"Residential site, Tampa area"` style); no street addresses; no coordinates (grep hits were false positives, e.g. "coordination"). |
 | S3 | `mock-data.ts` contractor records | Manual review of names/contacts | Claude Code (agent) | 2026-07-10 | Pass — `Lead Installer A` / `Senior Lead B` / `Helper C`, `@example.com` emails, `(555)` phones; no emergency-contact PII. |
 | S4 | `mock-data.ts`, `dispatch-demo.ts` | Grep money/rate fields + manual review | Claude Code (agent) | 2026-07-10 | **Pass (F2 confirmed 2026-07-10).** Rates are descriptive labels (`"Standard lead split"`, `"Helper hourly"`); amounts are round demo figures (`$2,450`, `$8,900`) tied to fictional parties; operator confirmed demo amounts do not mirror real FRL pricing (F2). |
-| S5 | All `src/lib/*.ts` | Grep file/image/upload references | Claude Code (agent) | 2026-07-10 | Pass — zero file, photo, or upload-path references in fixtures. |
+| S5 | All `src/lib/*.ts` | Grep file/image/upload references | Codex (agent) | 2026-07-11 | Pass — fixtures contain workflow text about required or missing photos, but no actual files, upload paths, URLs, signatures, image payloads, or real artifacts. |
 | S6 | All `src/lib/*.ts` | Grep disability/medical/insurance terms | Claude Code (agent) | 2026-07-10 | Pass — no person-linked sensitive context; no disability/medical/insurance narratives. |
 | S7 | All `src/lib/*.ts` | Grep key/token/secret/URL patterns | Claude Code (agent) | 2026-07-10 | Pass — zero secrets, tokens, keys, or http(s) URLs in fixtures. |
 | S8 | `mock-data.ts`, `dispatch-demo.ts` | Grep ID conventions | Claude Code (agent) | 2026-07-10 | Pass — IDs are visibly non-production (`job_3001`, `lead_001`, `apq-1`). |
-| S9 | Runtime surfaces | Pilot verification run, Section D | — | — | Deferred by design — verified at the G5/G6 run per [`PILOT_VERIFICATION_SCRIPT.md`](./PILOT_VERIFICATION_SCRIPT.md). |
+| S9 | Runtime surfaces | Post-deploy Preview verification, Section D | — | — | Pending post-deploy acceptance — run after the gated Preview exists and before G5 closes; not a pre-deploy prerequisite. |
 | S10 | All `src/lib/*.ts` | Grep minor/child/age terms | Claude Code (agent) | 2026-07-10 | Pass — no minors' data (grep hits were false positives, e.g. "Facilities manager", "stage"). |
 
 ## Findings
 
 | ID | Finding | Location | Recommended resolution | Status |
 |---|---|---|---|---|
-| F1 | Mock login preview accounts used real-looking emails: `dev@ajdigital.app`, `audiojones@ajdigital.app` (business identities), and `bookaudiojones@gmail.com` (**personal Gmail — real personal contact data in a bundle that will deploy publicly**). | `src/lib/roles.ts` (`mockLoginAccounts`) | Resolution taken (operator-directed 2026-07-10, option b): personal Gmail replaced with `contractor.preview@example.com`; business `@ajdigital.app` preview identities retained. | **Resolved 2026-07-10.** No longer blocks S1/G5. With F2 also resolved (2026-07-10), only the S9 run record remains before the sanitization item closes. |
+| F1 | Mock login preview accounts used real-looking emails: `dev@ajdigital.app`, `audiojones@ajdigital.app` (business identities), and `bookaudiojones@gmail.com` (**personal Gmail — real personal contact data in a bundle that will deploy publicly**). | `src/lib/roles.ts` (`mockLoginAccounts`) | Resolution taken (operator-directed 2026-07-10, option b): personal Gmail replaced with `contractor.preview@example.com`; business `@ajdigital.app` preview identities retained. | **Resolved 2026-07-10.** Retained business identities are covered by the F4 roster confirmation. |
 | F2 | Demo invoice amounts (`$2,450` … `$12,400`) look generic but only the operator can confirm they do not mirror real FRL contract pricing. | `src/lib/mock-data.ts` invoices | Operator confirmation recorded 2026-07-10: "Demo invoice/job amounts do not mirror real FRL pricing; confirmed." | **Resolved 2026-07-10.** |
+| F3 | Current fixture data used `WilScot`, a real-company identity, across customer, job, contact, dispatch, invoice, assignment, and scenario text. | `src/lib/mock-data.ts`, `src/lib/dispatch-demo.ts` | Replace every occurrence with the explicitly fictional `Example Modular Services` identity or generic modular-site wording. | **Resolved 2026-07-11.** Repository scan returns zero `WilScot`/`wilscot` occurrences in `src/lib`. |
+| F4 | Agent review cannot prove that initial-style names (`M. Reynolds`, `S. Patel`) or retained `@ajdigital.app` business identities do not coincide with the real FRL customer/contractor roster. | `src/lib/mock-data.ts`, `src/lib/roles.ts` | Operator performs a names-only roster spot-check and records confirmation; no roster data enters Git, docs, or chat. | **Pending — blocks Preview deployment.** |
 
-Agent-review caveat: the agent verified data is *fictional in form*; it cannot
-know FRL's real customer roster. Operator spot-confirmation that no fixture
-name coincides with a real customer/contractor closes that residual risk.
+Agent-review caveat: automated evidence verifies fictional form, not the real
+FRL roster. F4 records the required operator confirmation without placing any
+roster data in the repository.
 
 ## Failure Rule
 
-If any check fails: fix the fixture data on a docs/feat branch (fixture edits
-are `src/lib` changes and count as app-facing — branch and validate
-accordingly), re-run the check, and record the new evidence. Do not proceed to
-G5 with a failing or unevidenced row.
+If S1-S8 or S10 fails: fix the fixture data on a feature branch (fixture edits
+are `src/lib` changes and count as app-facing), re-run the check, and record
+the evidence. Do not create the G5 Preview with a failing pre-deploy check or
+open finding. If S9 fails after deployment, G5 remains incomplete and the
+Preview must not be circulated until labeling is fixed and re-verified.
 
 ## Does Not Authorize
 
