@@ -260,6 +260,11 @@ Policy:
 - Client-facing email drafts require human approval.
 - Invoice release emails require Michael Keegan approval for MVP.
 
+Domain, sender, DNS, credential, and rollout planning for the preferred Resend
+option is defined in
+[`RESEND_TRANSACTIONAL_EMAIL_PLAN.md`](../delivery/RESEND_TRANSACTIONAL_EMAIL_PLAN.md).
+The plan is design-only and does not authorize provider setup or runtime email.
+
 ## Human Approval Gates
 
 Human approval is required before:
