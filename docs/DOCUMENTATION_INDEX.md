@@ -93,6 +93,7 @@ Defines how the project ships, evolves, and migrates.
 | Phase B G1 open questions | `docs/delivery/PHASE_B_G1_OPEN_QUESTIONS.md` |
 | Fixture sanitization checklist | `docs/delivery/FIXTURE_SANITIZATION_CHECKLIST.md` |
 | G2 Clerk production runbook | `docs/delivery/G2_CLERK_PRODUCTION_RUNBOOK.md` |
+| G2 execution record | `docs/delivery/G2_EXECUTION_RECORD.md` |
 | G3/G4 Vercel and env runbook | `docs/delivery/G3_G4_VERCEL_ENV_RUNBOOK.md` |
 | Gap trace: pilot to MVP | `docs/delivery/GAP_TRACE_PILOT_TO_MVP.md` |
 | Migration plan | `docs/delivery/MIGRATION_PLAN.md` |
