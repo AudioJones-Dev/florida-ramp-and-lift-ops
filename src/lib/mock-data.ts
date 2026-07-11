@@ -180,7 +180,7 @@ export const mockCustomers: Customer[] = [
     primaryContactPhone: "(555) 013-0102",
     primaryContactEmail: "mock.commercial@example.com",
     source: "Manual commercial account",
-    notes: "Commercial account placeholder for WillScot-style work."
+    notes: "Commercial account placeholder for modular-site work."
   },
   {
     id: "customer_003",
