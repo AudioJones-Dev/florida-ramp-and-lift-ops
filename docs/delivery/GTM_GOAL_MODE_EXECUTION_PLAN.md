@@ -56,7 +56,7 @@ The client-operational MVP may use real operational data only after the persiste
 | G2 Clerk production configuration | Complete | Continue monitoring only |
 | G3 Vercel project/link | Complete | Re-verify Git integration remains disconnected at G5 |
 | G4 Preview environment names | Complete | Production values remain separately gated |
-| Fixture sanitization | Reconciliation in review | Merge the fictional-identity change and obtain private roster confirmation |
+| Fixture sanitization | Pre-deploy evidence complete 2026-07-11 | Run S9 against the gated Preview before G5 closes |
 | Legal/privacy circulation | Pending | Named reviewer, circulation date, disposition, and approved public URLs when ready |
 | Internal reviewers | Pending | Named reviewer roster and review window |
 | G5 Preview deploy | Not authorized | Complete preflight, then receive explicit deploy approval |
@@ -66,33 +66,37 @@ This snapshot is informative and may drift. Every goal run must re-read the owni
 
 ## End-to-End Goal Sequence
 
-### GTM-0: Reconcile the G5 Baseline
+### GTM-0: Verify the Accepted G5 Baseline
 
 Entry:
 
 - Current `main` and open pull requests are inspected.
-- The fixture-reconciliation diff has passed typecheck, lint, and build.
+- The fixture-sanitization evidence and accepted Phase B boundary are present on
+  `main`.
 
 Agent work:
 
-- Land the fictional fixture identities through review.
-- Reconcile sanitization and Phase B checklist wording.
-- Confirm no real-company fixture identity remains in runtime fixtures.
+- Re-run the fixture scans and confirm no real-company identity remains in
+  runtime fixtures.
+- Confirm S1-S8 and S10 remain complete and S9 remains a post-deploy G5
+  acceptance check.
+- Re-read the Phase B G5 and Deployment Target Preview checklists for drift.
 
 Human gates:
 
-- Confirm privately whether the remaining preview names and retained business preview identities match any real FRL customer or contractor roster entry.
-- Approve the reviewed pull request for merge.
+- None unless refreshed evidence discovers a new fixture or identity finding.
 
 Exit evidence:
 
 - Sanitization checklist has no unresolved pre-deploy fixture finding.
 - Runtime fixture scans are clean.
-- `main` contains the accepted reconciliation.
+- The 2026-07-11 F4 names-only operator confirmation remains recorded without
+  roster contents.
 
 Rollback:
 
-- Revert the reconciliation pull request. No provider state is involved.
+- Revert only a new evidence correction if it proves inaccurate. The accepted
+  fixture reconciliation remains on `main`; no provider state is involved.
 
 ### GTM-1: Close G5 Preflight Blockers
 
@@ -107,6 +111,15 @@ Agent work:
 - Verify Preview environment variable names only.
 - Verify Git integration remains disconnected.
 - Verify the fixture checklist has no pre-deploy blocker.
+- Assemble the Preview-scoped gate evidence required by
+  [`PHASE_B_INTERNAL_PILOT_CHECKLIST.md`](./PHASE_B_INTERNAL_PILOT_CHECKLIST.md)
+  G5 and [`DEPLOYMENT_TARGET.md`](./DEPLOYMENT_TARGET.md) Preview: the accepted
+  fixture-only implementation boundary, current-SHA security/build checks,
+  protected-route and role-surface verification scope, legal circulation
+  disposition, and action-specific human approval. The role boundary is owned
+  by [`role-permission-matrix.md`](../schemas/role-permission-matrix.md) and
+  [`saas-portal-access-model.md`](../architecture/saas-portal-access-model.md);
+  the security baseline is owned by [`SECURITY.md`](../quality/SECURITY.md).
 - Prepare the legal/privacy circulation evidence request.
 - Prepare the internal reviewer list and test-account requirements.
 
@@ -118,7 +131,10 @@ Human gates:
 
 Exit evidence:
 
-- G5 preflight report shows every prerequisite passed.
+- G5 preflight report explicitly records the accepted Preview-scoped evidence
+  for implementation readiness, security, role/access, legal circulation, and
+  human approval. Full readiness gate section 22 remains a G6 Production
+  requirement, as defined by the owning checklists.
 - The exact Preview deploy command is SHA-pinned and ready, but not yet run.
 
 Rollback:
@@ -130,6 +146,12 @@ Rollback:
 Entry:
 
 - GTM-1 complete.
+- [`PHASE_B_INTERNAL_PILOT_CHECKLIST.md`](./PHASE_B_INTERNAL_PILOT_CHECKLIST.md)
+  G5 and [`DEPLOYMENT_TARGET.md`](./DEPLOYMENT_TARGET.md) Preview record the
+  accepted fixture-only implementation boundary, current-SHA security/build
+  checks, protected-route and role-surface verification scope, legal
+  circulation disposition, and required human approvals. Full object-level
+  access implementation is not claimed for this sanitized-fixture Preview.
 - Operator gives an explicit G5 Preview deploy approval for the current SHA.
 
 Agent work:
@@ -218,6 +240,16 @@ Rollback:
 Entry:
 
 - GTM-4 complete.
+- [`implementation-readiness-gate.md`](../architecture/implementation-readiness-gate.md)
+  section 22 is satisfied for the pilot scope, and
+  [`RELEASE_PLAN.md`](./RELEASE_PLAN.md) release gates record accepted
+  DoR/DoD/DoS, security review, role/object-permission boundaries, secret
+  hygiene, and rollback evidence, as required by
+  [`PHASE_B_INTERNAL_PILOT_CHECKLIST.md`](./PHASE_B_INTERNAL_PILOT_CHECKLIST.md)
+  G6 and the [`DEPLOYMENT_TARGET.md`](./DEPLOYMENT_TARGET.md) Production
+  checklist.
+- Legal/public URL disposition and all action-specific human approvals are
+  recorded in the owning G6 evidence.
 - Operator gives explicit G6 production deploy approval for the current SHA.
 
 Agent work:
@@ -496,7 +528,7 @@ Objective: Execute the next eligible Codex-owned work item from
 docs/delivery/GTM_GOAL_MODE_EXECUTION_PLAN.md until its exit evidence is
 complete or a named human gate is reached.
 
-Repository: C:\dev\florida-ramp-and-lift-ops
+Repository: <repository-root>
 
 Before acting, verify the repository identity, remote, branch, worktree, and
 applicable AGENTS.md chain. Re-read the owning source documents and current
@@ -522,7 +554,7 @@ docs/delivery/GTM_GOAL_MODE_EXECUTION_PLAN.md. Keep the gate status, decisions,
 open questions, reviewer/legal asks, dependency map, and acceptance evidence
 current until the next named human gate or Codex execution task is ready.
 
-Repository: C:\dev\florida-ramp-and-lift-ops
+Repository: <repository-root>
 
 Verify repository identity and read the applicable AGENTS.md chain before
 editing. Treat repository and provider evidence as authoritative over chat.
@@ -558,7 +590,8 @@ These prompts are command-neutral. Start each harness's native long-running goal
 
 On a fresh task or after context loss:
 
-1. Verify `C:\dev\florida-ramp-and-lift-ops`, the canonical remote, current branch, worktree, and status.
+1. Verify the current `<repository-root>`, canonical remote, current branch,
+   worktree, and status.
 2. Read the root and nearest `AGENTS.md` files.
 3. Read this plan, the owning phase document, the latest execution record, and open PR state.
 4. Confirm the last checkpoint against Git and provider readback.

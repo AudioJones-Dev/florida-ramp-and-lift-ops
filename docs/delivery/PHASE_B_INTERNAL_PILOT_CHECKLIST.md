@@ -72,13 +72,14 @@ standing constraints:
       (route-grounded, Sections A–E + results record).
 - [ ] Confirm the internal reviewer list for the pilot — tracked as Q5 in
       [`PHASE_B_G1_OPEN_QUESTIONS.md`](./PHASE_B_G1_OPEN_QUESTIONS.md).
-- [ ] Confirm fixture data is sanitized and labeled — evidence recorded
-      2026-07-10 in
+- [x] Confirm fixture data is sanitized and labeled — evidence recorded
+      2026-07-10 and refreshed 2026-07-11 in
       [`FIXTURE_SANITIZATION_CHECKLIST.md`](./FIXTURE_SANITIZATION_CHECKLIST.md):
-      **9 of 10 checks pass; F1 and F2 both resolved 2026-07-10** (F1 personal
-      Gmail removed from `src/lib/roles.ts`; F2 demo-pricing confirmed by the
-      operator). The only remaining evidence is the **S9 run record**, produced
-      at the G5/G6 pilot verification run by design — this item closes then.
+      known real-company fixture references were replaced; automated
+      pre-deploy checks pass and **F4 operator roster confirmation was recorded
+      2026-07-11** without including roster data.
+      **S9 is post-deploy acceptance**, produced against the gated Preview URL
+      before G5 closes; it is not a Preview-creation prerequisite.
 - [ ] Keep `npm run typecheck`, `npm run lint`, `npm run build` green.
 
 None of this authorizes provider actions.
@@ -204,10 +205,15 @@ Owning checklist: `DEPLOYMENT_TARGET.md` → "Preview Deploy Checklist".
       links point at `floridarampandlift.com` unless operator/counsel confirms
       coverage ([`../legal/LEGAL_PRIVACY_DOCTRINE.md`](../legal/LEGAL_PRIVACY_DOCTRINE.md)).
 - [ ] `npm run typecheck`, `npm run lint`, `npm run build` pass at the deploy SHA.
+- [x] Operator confirms fixture names and retained business preview identities
+      do not match the real FRL customer/contractor roster (names-only check;
+      no roster data recorded; confirmed 2026-07-11).
 - [ ] Git integration re-verified disconnected immediately before deployment.
 - [ ] Operator approves; preview deploy runs; sign-in, protected routes, and
       `/mock-sign-in` verified on the preview URL (a Deployment Protection 401
       is protection state, not app failure).
+- [ ] S9 post-deploy acceptance passes: mock/demo labeling remains visible on
+      every pilot-critical surface before G5 closes.
 - [ ] Findings recorded in [`CHANGELOG.md`](./CHANGELOG.md).
 
 ### G6 — Production pilot deploy gate
