@@ -16,7 +16,7 @@ project linkage.
 
 | Check | Evidence |
 |---|---|
-| Team and project | Vercel team `audiojones`; project `florida-ramp-and-lift-ops` (`prj_aj52igaIKfXSHsACLsgbyK5rMgsf`) |
+| Team and project | Vercel team `audiojones`; project `florida-ramp-and-lift-ops`; raw project and organization identifiers remain in the gitignored local link only |
 | Local link | `.vercel/project.json` project and organization identifiers match the live Vercel project |
 | Ignore boundary | `.vercel/project.json` is ignored by the existing `.gitignore` rule `.vercel/`; no `.vercel/` entry appears in Git status |
 | Git integration | Disconnected. The link command unexpectedly connected the GitHub repository; `vercel git disconnect --yes --scope audiojones` immediately removed that connection, and the live project API then returned no Git link |

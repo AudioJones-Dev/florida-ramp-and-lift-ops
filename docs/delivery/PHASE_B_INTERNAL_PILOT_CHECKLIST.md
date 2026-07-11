@@ -171,9 +171,9 @@ all Phase B deploys are gated CLI deployments only.
 - [x] `vercel link --yes --project florida-ramp-and-lift-ops --scope audiojones`
       run by/with the operator; `.vercel/` confirmed gitignored and
       `git status` shows no `.vercel/` entries after linking.
-- [x] Git integration remains disconnected through G6; Phase B preview and
-      production deployments are executed only through their gated CLI
-      commands.
+- [x] Git integration verified disconnected at G3 (2026-07-11). It must remain
+      disconnected through G6 and be re-verified at G5 and G6; Phase B deploys
+      use only their gated CLI commands.
 
 Completed 2026-07-11. Evidence:
 [`G3_EXECUTION_RECORD.md`](./G3_EXECUTION_RECORD.md). The CLI's unexpected
@@ -200,6 +200,7 @@ Owning checklist: `DEPLOYMENT_TARGET.md` → "Preview Deploy Checklist".
       links point at `floridarampandlift.com` unless operator/counsel confirms
       coverage ([`../legal/LEGAL_PRIVACY_DOCTRINE.md`](../legal/LEGAL_PRIVACY_DOCTRINE.md)).
 - [ ] `npm run typecheck`, `npm run lint`, `npm run build` pass at the deploy SHA.
+- [ ] Git integration re-verified disconnected immediately before deployment.
 - [ ] Operator approves; preview deploy runs; sign-in, protected routes, and
       `/mock-sign-in` verified on the preview URL (a Deployment Protection 401
       is protection state, not app failure).
@@ -221,6 +222,7 @@ Owning checklist: `DEPLOYMENT_TARGET.md` → "Production Deploy Checklist".
 - [x] G2 complete (2026-07-11).
 - [ ] G5 verified.
 - [ ] Rollback runbook complete and current (G7 pre-checks done).
+- [ ] Git integration re-verified disconnected immediately before deployment.
 - [ ] Operator issues explicit production `proceed`; deploy runs; result
       verified and logged in [`CHANGELOG.md`](./CHANGELOG.md).
 
