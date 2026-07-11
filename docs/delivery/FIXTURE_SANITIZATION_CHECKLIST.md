@@ -1,6 +1,6 @@
 # Fixture Sanitization Checklist
 
-Status: Active — automated pre-deploy evidence complete 2026-07-11; operator roster confirmation pending; S9 is post-deploy acceptance
+Status: Active — pre-deploy fixture evidence complete 2026-07-11; S9 is post-deploy acceptance
 Scope: Evidence checklist proving fixture/demo data is sanitized before any Phase B deploy gate
 Runtime impact: None
 Implementation status: Documentation only
@@ -59,7 +59,7 @@ acceptance evidence and must pass before G5 is marked complete.
 
 | Check | File(s) reviewed | Method | Reviewer | Date | Result |
 |---|---|---|---|---|---|
-| S1 | All `src/lib/*.ts` | Grep email/phone patterns + name-field review | Codex (agent) | 2026-07-11 | **Conditional — automated scan passes; F4 operator confirmation pending.** All known real vendor identity references were replaced with the explicitly fictional `Example Modular Services`; fixture phones use `(555)` and non-business emails use `@example.com`. Personal Gmail remains removed; business `@ajdigital.app` preview identities remain per F1. Operator must confirm `M. Reynolds`, `S. Patel`, and the retained business identities do not match a real FRL customer/contractor roster before deploy. |
+| S1 | All `src/lib/*.ts` | Grep email/phone patterns + name-field review; private operator roster spot-check | Codex (agent) + operator | 2026-07-11 | **Pass (F4 confirmed 2026-07-11).** All known real vendor identity references were replaced with the explicitly fictional `Example Modular Services`; fixture phones use `(555)` and non-business emails use `@example.com`. Personal Gmail remains removed. The operator confirmed that `M. Reynolds`, `S. Patel`, and the retained `@ajdigital.app` business preview identities do not match any real FRL customer or contractor roster entry. No roster data was recorded. |
 | S2 | `mock-data.ts`, `dispatch-demo.ts` | Grep address/coordinate fields + manual review | Claude Code (agent) | 2026-07-10 | Pass — all site addresses generic (`"Residential site, Tampa area"` style); no street addresses; no coordinates (grep hits were false positives, e.g. "coordination"). |
 | S3 | `mock-data.ts` contractor records | Manual review of names/contacts | Claude Code (agent) | 2026-07-10 | Pass — `Lead Installer A` / `Senior Lead B` / `Helper C`, `@example.com` emails, `(555)` phones; no emergency-contact PII. |
 | S4 | `mock-data.ts`, `dispatch-demo.ts` | Grep money/rate fields + manual review | Claude Code (agent) | 2026-07-10 | **Pass (F2 confirmed 2026-07-10).** Rates are descriptive labels (`"Standard lead split"`, `"Helper hourly"`); amounts are round demo figures (`$2,450`, `$8,900`) tied to fictional parties; operator confirmed demo amounts do not mirror real FRL pricing (F2). |
@@ -77,11 +77,11 @@ acceptance evidence and must pass before G5 is marked complete.
 | F1 | Mock login preview accounts used real-looking emails: `dev@ajdigital.app`, `audiojones@ajdigital.app` (business identities), and `bookaudiojones@gmail.com` (**personal Gmail — real personal contact data in a bundle that will deploy publicly**). | `src/lib/roles.ts` (`mockLoginAccounts`) | Resolution taken (operator-directed 2026-07-10, option b): personal Gmail replaced with `contractor.preview@example.com`; business `@ajdigital.app` preview identities retained. | **Resolved 2026-07-10.** Retained business identities are covered by the F4 roster confirmation. |
 | F2 | Demo invoice amounts (`$2,450` … `$12,400`) look generic but only the operator can confirm they do not mirror real FRL contract pricing. | `src/lib/mock-data.ts` invoices | Operator confirmation recorded 2026-07-10: "Demo invoice/job amounts do not mirror real FRL pricing; confirmed." | **Resolved 2026-07-10.** |
 | F3 | Current fixture data used `WilScot`, a real-company identity, across customer, job, contact, dispatch, invoice, assignment, and scenario text. | `src/lib/mock-data.ts`, `src/lib/dispatch-demo.ts` | Replace every occurrence with the explicitly fictional `Example Modular Services` identity or generic modular-site wording. | **Resolved 2026-07-11.** Repository scan returns zero `WilScot`/`wilscot` occurrences in `src/lib`. |
-| F4 | Agent review cannot prove that initial-style names (`M. Reynolds`, `S. Patel`) or retained `@ajdigital.app` business identities do not coincide with the real FRL customer/contractor roster. | `src/lib/mock-data.ts`, `src/lib/roles.ts` | Operator performs a names-only roster spot-check and records confirmation; no roster data enters Git, docs, or chat. | **Pending — blocks Preview deployment.** |
+| F4 | Agent review cannot prove that initial-style names (`M. Reynolds`, `S. Patel`) or retained `@ajdigital.app` business identities do not coincide with the real FRL customer/contractor roster. | `src/lib/mock-data.ts`, `src/lib/roles.ts` | Operator performed a names-only roster spot-check and confirmed the listed demo identities do not match any real FRL customer or contractor roster entry; no roster data entered Git, docs, or chat. | **Resolved 2026-07-11.** |
 
 Agent-review caveat: automated evidence verifies fictional form, not the real
-FRL roster. F4 records the required operator confirmation without placing any
-roster data in the repository.
+FRL roster. F4 records the operator's names-only confirmation without placing
+any roster data in the repository.
 
 ## Failure Rule
 

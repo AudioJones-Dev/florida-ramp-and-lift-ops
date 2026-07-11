@@ -72,11 +72,12 @@ standing constraints:
       (route-grounded, Sections A–E + results record).
 - [ ] Confirm the internal reviewer list for the pilot — tracked as Q5 in
       [`PHASE_B_G1_OPEN_QUESTIONS.md`](./PHASE_B_G1_OPEN_QUESTIONS.md).
-- [ ] Confirm fixture data is sanitized and labeled — evidence recorded
+- [x] Confirm fixture data is sanitized and labeled — evidence recorded
       2026-07-10 and refreshed 2026-07-11 in
       [`FIXTURE_SANITIZATION_CHECKLIST.md`](./FIXTURE_SANITIZATION_CHECKLIST.md):
       known real-company fixture references were replaced; automated
-      pre-deploy checks pass except **F4 operator roster confirmation**.
+      pre-deploy checks pass and **F4 operator roster confirmation was recorded
+      2026-07-11** without including roster data.
       **S9 is post-deploy acceptance**, produced against the gated Preview URL
       before G5 closes; it is not a Preview-creation prerequisite.
 - [ ] Keep `npm run typecheck`, `npm run lint`, `npm run build` green.
@@ -204,9 +205,9 @@ Owning checklist: `DEPLOYMENT_TARGET.md` → "Preview Deploy Checklist".
       links point at `floridarampandlift.com` unless operator/counsel confirms
       coverage ([`../legal/LEGAL_PRIVACY_DOCTRINE.md`](../legal/LEGAL_PRIVACY_DOCTRINE.md)).
 - [ ] `npm run typecheck`, `npm run lint`, `npm run build` pass at the deploy SHA.
-- [ ] Operator confirms fixture names and retained business preview identities
+- [x] Operator confirms fixture names and retained business preview identities
       do not match the real FRL customer/contractor roster (names-only check;
-      no roster data recorded).
+      no roster data recorded; confirmed 2026-07-11).
 - [ ] Git integration re-verified disconnected immediately before deployment.
 - [ ] Operator approves; preview deploy runs; sign-in, protected routes, and
       `/mock-sign-in` verified on the preview URL (a Deployment Protection 401

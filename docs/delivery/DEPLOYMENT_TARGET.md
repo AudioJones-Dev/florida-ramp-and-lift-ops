@@ -226,9 +226,9 @@ Environment-variable presence is owned by G4 and remains pending.
 - [ ] `npm run typecheck`, `npm run lint`, `npm run build` pass at the deploy SHA.
 - [x] Preview env vars present (2026-07-11; five approved names, Clerk
       development-instance keys only; names-only verification).
-- [ ] Operator confirms fixture names and retained business preview identities
+- [x] Operator confirms fixture names and retained business preview identities
       do not match the real FRL customer/contractor roster (names-only check;
-      no roster data recorded).
+      no roster data recorded; confirmed 2026-07-11).
 - [ ] Git integration re-verified disconnected immediately before deployment.
 - [ ] `vercel deploy` (preview) run with operator approval.
 - [ ] Sign-in flow, protected dashboard routes, and `/mock-sign-in` preview
