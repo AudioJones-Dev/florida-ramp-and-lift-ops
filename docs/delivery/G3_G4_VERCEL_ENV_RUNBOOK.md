@@ -1,6 +1,6 @@
 # G3/G4 Vercel And Environment Runbook
 
-Status: Git Spec-ready draft — pending operator review
+Status: Active — G3 complete 2026-07-11; G4 pending separate operator approval
 Scope: Step-by-step operator playbook for gate G3 (Vercel project/link) and gate G4 (environment variable writes)
 Runtime impact: None
 Implementation status: Documentation only — no Vercel, env, DNS, or deploy action is performed or authorized by this document; every step is operator-executed under the relevant gate's `proceed`
@@ -53,6 +53,11 @@ out of scope for this runbook.
 5. Record G3 completion: check the G3 boxes in
    [`PHASE_B_INTERNAL_PILOT_CHECKLIST.md`](./PHASE_B_INTERNAL_PILOT_CHECKLIST.md)
    with dates.
+
+G3 execution evidence: [`G3_EXECUTION_RECORD.md`](./G3_EXECUTION_RECORD.md).
+The 2026-07-11 CLI link unexpectedly connected the detected GitHub remote; the
+connection was immediately removed with `vercel git disconnect --yes`, and
+the live project was verified to have zero deployments and no Git link.
 
 ## Gate G4 — Environment variable writes (operator)
 

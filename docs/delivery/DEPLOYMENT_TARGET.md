@@ -197,19 +197,20 @@ Explicit operator approval (`proceed`) is required, separately, before each of:
       `ops.floridarampandliftops.com`; existing Render-backed apex, `www`,
       `admin`, `client`, `contractor`, and `platform` hosts are preserved.
 
-## Vercel Link Checklist (blocked until approved)
+## Vercel Link Checklist (G3 complete 2026-07-11)
 
-- [ ] Operator approves new project name `florida-ramp-and-lift-ops`.
-- [ ] `vercel link --yes --project florida-ramp-and-lift-ops --scope audiojones`
+- [x] Operator approves new project name `florida-ramp-and-lift-ops`.
+- [x] `vercel link --yes --project florida-ramp-and-lift-ops --scope audiojones`
       run by operator or with operator present.
-- [ ] `.vercel/` confirmed gitignored before commit.
-- [ ] `git status` shows no `.vercel/` entries after linking.
-- [ ] Git integration remains disconnected through G6; Phase B preview and
+- [x] `.vercel/` confirmed gitignored before commit.
+- [x] `git status` shows no `.vercel/` entries after linking.
+- [x] Git integration remains disconnected through G6; Phase B preview and
       production deployments are executed only through their gated CLI
       commands (accepted G3 default; see
       `G3_G4_VERCEL_ENV_RUNBOOK.md`).
-- [ ] All five env variable names present in the target environment
-      (`vercel env ls <environment>` — names only).
+
+Execution evidence: [`G3_EXECUTION_RECORD.md`](./G3_EXECUTION_RECORD.md).
+Environment-variable presence is owned by G4 and remains pending.
 
 ## Preview Deploy Checklist (blocked until approved)
 

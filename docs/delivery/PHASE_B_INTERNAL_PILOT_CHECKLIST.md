@@ -1,6 +1,6 @@
 # Phase B Internal Pilot Checklist
 
-Status: Active — G0 accepted 2026-07-09; G1 confirmed 2026-07-10; G2 complete 2026-07-11; gates G3–G7 pending, each behind its own operator `proceed`
+Status: Active — G0 accepted 2026-07-09; G1 confirmed 2026-07-10; G2 and G3 complete 2026-07-11; gates G4–G7 pending, each behind its own operator `proceed`
 Scope: Phase B planning checklist for the authenticated internal pilot at `ops.floridarampandliftops.com`
 Runtime impact: None
 Implementation status: Documentation only — no Clerk, Vercel, DNS, env, or deploy action is performed or authorized by this document
@@ -166,14 +166,18 @@ Operator playbook: [`G3_G4_VERCEL_ENV_RUNBOOK.md`](./G3_G4_VERCEL_ENV_RUNBOOK.md
 — accepted G3 default: the Git integration stays **disconnected through G6**;
 all Phase B deploys are gated CLI deployments only.
 
-- [ ] Operator approves creating project `florida-ramp-and-lift-ops` under the
+- [x] Operator approves creating project `florida-ramp-and-lift-ops` under the
       `audiojones` team (new project; do not reuse `floridaplatformliftpros`).
-- [ ] `vercel link --yes --project florida-ramp-and-lift-ops --scope audiojones`
+- [x] `vercel link --yes --project florida-ramp-and-lift-ops --scope audiojones`
       run by/with the operator; `.vercel/` confirmed gitignored and
       `git status` shows no `.vercel/` entries after linking.
-- [ ] Git integration remains disconnected through G6; Phase B preview and
+- [x] Git integration remains disconnected through G6; Phase B preview and
       production deployments are executed only through their gated CLI
       commands.
+
+Completed 2026-07-11. Evidence:
+[`G3_EXECUTION_RECORD.md`](./G3_EXECUTION_RECORD.md). The CLI's unexpected
+Git auto-connect was removed before any deployment was created.
 
 ### G4 — Environment variable write gate
 
