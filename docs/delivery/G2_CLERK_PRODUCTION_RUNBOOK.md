@@ -108,11 +108,11 @@ Match the repo's env-name contract (`.env.example`; names only):
 
 ## Step 5 — Verify and record (operator, agent may assist read-only)
 
-- [ ] Clerk dashboard shows the production instance healthy: domain verified,
+- [x] Clerk dashboard shows the production instance healthy (2026-07-11): domain verified,
       certificates issued, paths configured (or `clerk doctor` clean, if used).
-- [ ] No keys or record values appear in Git, docs, or chat.
-- [ ] Completion recorded in [`CHANGELOG.md`](./CHANGELOG.md) with the date.
-- [ ] G2 boxes checked in
+- [x] No keys or record values appear in Git, docs, or chat (verified 2026-07-11).
+- [x] Completion recorded in [`CHANGELOG.md`](./CHANGELOG.md) with the date.
+- [x] G2 boxes checked in
       [`PHASE_B_INTERNAL_PILOT_CHECKLIST.md`](./PHASE_B_INTERNAL_PILOT_CHECKLIST.md)
       with dates.
 

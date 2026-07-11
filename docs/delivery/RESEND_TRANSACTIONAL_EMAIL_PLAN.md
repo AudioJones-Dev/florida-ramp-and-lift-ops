@@ -79,7 +79,9 @@ implemented.
 
 ## Proposed Environment Contract
 
-Names only; values are never committed or recorded in documentation:
+Secret values remain blank and must never be committed or recorded. Approved
+non-secret configuration values, including sender identities and the public
+application URL, are recorded explicitly:
 
 ```env
 RESEND_API_KEY=

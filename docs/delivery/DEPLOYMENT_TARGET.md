@@ -169,7 +169,7 @@ Explicit operator approval (`proceed`) is required, separately, before each of:
 7. Any production deploy — additionally gated on the implementation readiness
    gate §22 checklist and RELEASE_PLAN release gates.
 
-## Clerk Production Setup Checklist (blocked until approved)
+## Clerk Production Setup Checklist (complete 2026-07-11)
 
 - [x] Production domain chosen and controlled by the operator (Q1/Q2 complete
       2026-07-10; see Production Domain Requirement above).
