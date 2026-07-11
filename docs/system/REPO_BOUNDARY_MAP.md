@@ -43,11 +43,13 @@ them. Facts below were verified from local Git remotes/branches on 2026-07-09.
 
 ## Open questions (operator to reconcile)
 
-- Domain-name overlap across siblings: this repo's
-  `docs/delivery/DEPLOYMENT_TARGET.md` names `floridarampandliftops.com` as the
-  future internal-pilot ops domain. Confirm domain ownership and which product
-  serves which host **before** any deploy/DNS work. Do not infer this from sibling
-  repos.
+- Domain-name overlap across siblings remains unresolved for deployment. This
+  repo names `floridarampandliftops.com` as the internal-pilot ops domain, while
+  live DNS currently routes the apex, `www`, `admin`, `client`, `contractor`,
+  and `platform` hosts to Render-backed sibling-product surfaces. The five
+  Clerk CNAMEs added in G2 are non-overlapping and verified, but G3/G6 must not
+  attach or replace any existing host until the operator assigns host ownership
+  explicitly. Do not infer ownership from sibling repos.
 
 ## See Also
 
