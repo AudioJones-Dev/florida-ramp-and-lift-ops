@@ -145,6 +145,9 @@ generation).
 - [ ] Auth-path setup partially complete (2026-07-11): Clerk uses `/sign-in`
       for sign-in/sign-up and `/dashboard` as home; G4 fallback redirect env
       writes and G5 production-origin/redirect verification remain pending.
+- [ ] Production Google OAuth remains pending; Google sign-in stays disabled
+      until dedicated production credentials are configured and verified, or
+      Google is explicitly removed from the accepted auth scope.
 - [x] Unclear-provenance 2026-07-07 Production Secret Key rotated with
       immediate old-key expiration; replacement not persisted; local
       `.env.production.local` deleted; Git history empty (Q3, 2026-07-10).

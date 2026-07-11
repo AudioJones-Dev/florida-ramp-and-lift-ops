@@ -1,6 +1,6 @@
 # G2 Execution Record
 
-Status: Active — G2 partially executed 2026-07-10/11 under the operator's CLI-first `proceed`; DNS/auth applied and domain verified; production Google OAuth and sibling-host ownership reconciliation pending
+Status: Active — G2 partially executed 2026-07-10/11 under the operator's CLI-first `proceed`; DNS applied and domain verified; Clerk auth paths partial, production Google OAuth pending, and sibling-host ownership unresolved
 Scope: Evidence record for gate G2 (Clerk production configuration) staged execution
 Runtime impact: None (provider configuration only; no repo runtime change)
 Implementation status: Documentation of executed provider actions; names/status only — no secret values recorded anywhere
