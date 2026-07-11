@@ -1,9 +1,9 @@
 # G2 Clerk Production Runbook
 
-Status: Active planning runbook — Q3 complete 2026-07-10; G2 execution pending operator `proceed`
+Status: Active execution runbook — G2 `proceed` received; domain verified and Clerk paths applied 2026-07-11; OAuth and sibling-host reconciliation pending
 Scope: Step-by-step operator playbook for gate G2 (Clerk production setup) on `floridarampandliftops.com`
 Runtime impact: None
-Implementation status: Documentation only — no Clerk, DNS, env, or deploy action is performed or authorized by this document; every step below is operator-executed under the G2 `proceed`
+Implementation status: Documentation and execution guide — Clerk and DNS actions are recorded separately in `G2_EXECUTION_RECORD.md`; this document does not authorize additional provider actions, env writes, or deploys
 
 ## Purpose
 
@@ -22,11 +22,11 @@ operator or with the operator present**.
       edit access available (Q1/Q2 in
       [`PHASE_B_G1_OPEN_QUESTIONS.md`](./PHASE_B_G1_OPEN_QUESTIONS.md)).
 - [x] **Q3 resolved via Step 0 below (2026-07-10).**
-- [ ] Operator has access to the Clerk dashboard account that will own the
+- [x] Operator has access to the Clerk dashboard account that will own the
       production instance, and to DNS management for
       `floridarampandliftops.com`.
-- [ ] Operator issues the explicit **G2 `proceed`** at execution time. This
-      runbook is not that approval.
+- [x] Operator issued the explicit **G2 `proceed`** at execution time
+      (2026-07-10). This runbook was not itself the approval.
 
 ## Step 0 — Q3: credential provenance and rotation (REQUIRED first)
 

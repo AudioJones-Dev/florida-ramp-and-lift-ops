@@ -169,19 +169,24 @@ Explicit operator approval (`proceed`) is required, separately, before each of:
       2026-07-10; see Production Domain Requirement above).
 - [x] Existing Clerk Production instance discovered and matched through a
       names-only Clerk Platform API inventory (Q3, 2026-07-10).
-- [ ] Operator confirms the existing Production instance may be retained and
+- [x] Operator confirms the existing Production instance may be retained and
       configured; deleting/replacing it requires separate explicit approval.
-- [ ] Existing Production instance configured for the final ops domain.
-- [ ] DNS records added and verified; Clerk certificates issued.
-- [ ] Production publishable and secret keys (`pk_live_` / `sk_live_`)
+- [x] Existing Production instance configured for the final ops domain.
+- [x] DNS records added unproxied and publicly resolving (2026-07-11).
+- [x] Clerk dns/ssl/mail verification complete and certificates issued
+      (2026-07-11; zero pending DNS records).
+- [x] Production publishable and secret keys (`pk_live_` / `sk_live_`)
       generated; held only in an approved secret manager at this stage —
       entering values into Vercel env is the env-write gate's separate
       approval.
-- [ ] Sign-in/sign-up URLs and fallback redirects configured for the
-      production domain.
-- [ ] Any credential previously exposed in chat or local files of unclear
+- [ ] Auth-path setup partially complete: Clerk sign-in/sign-up paths are
+      configured; fallback redirect env writes remain G4 and production
+      origin/redirect behavior remains a G5 verification item.
+- [x] Any credential previously exposed in chat or local files of unclear
       provenance is rotated.
 - [ ] `clerk doctor` (or dashboard verification) is clean.
+- [ ] Reconcile ownership of the existing Render-backed apex, `www`, and role
+      subdomains before any G3/G6 Vercel domain attachment.
 
 ## Vercel Link Checklist (blocked until approved)
 
