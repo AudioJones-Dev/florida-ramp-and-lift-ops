@@ -209,6 +209,8 @@ Owning checklist: `DEPLOYMENT_TARGET.md` → "Production Deploy Checklist".
       DoR/DoD reviewed.
 - [ ] Ops-domain Terms/Privacy plan accepted per the legal doctrine publication
       gate before the pilot circulates beyond tightly controlled internal review.
+- [ ] Exact application host/origin approved, sibling-host ownership reconciled,
+      and that host's DNS records configured and verified.
 - [ ] G2 complete including verified domain; G5 verified.
 - [ ] Rollback runbook complete and current (G7 pre-checks done).
 - [ ] Operator issues explicit production `proceed`; deploy runs; result

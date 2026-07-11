@@ -148,8 +148,10 @@ not work on `*.vercel.app` domains. Consequences:
 - Finality of the domain family does not assign the application origin. The
   exact host must be approved without replacing the existing Render-backed
   apex, `www`, or role subdomains implicitly.
-- Production deploy is blocked until the domain is chosen, DNS records are
-  verified, and the Clerk production instance is live on that domain.
+- Production deploy is blocked until the exact application host/origin is
+  approved, sibling-host ownership is reconciled, that host's DNS records are
+  configured and verified, and the Clerk production instance is live for the
+  canonical domain family.
 
 ## Human Approval Gates
 
