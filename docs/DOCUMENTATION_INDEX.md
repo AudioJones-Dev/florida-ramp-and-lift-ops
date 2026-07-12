@@ -1,13 +1,16 @@
 # Documentation Index
 
 Status: Git Spec-ready draft
-Scope: Tier 4 documentation coverage map for the Florida Ramp & Lift Operational Intelligence Platform
+Scope: Tier 4 source-material coverage map for the frozen Florida Ramp & Lift planning/reference repo
 Runtime impact: None
 Implementation status: Documentation only
 
 ## Purpose
 
-This index maps the existing domain-oriented docs tree to the AJ Digital Tier 4 documentation layers without moving accepted Phase 1 material into numbered folders.
+This index maps the preserved domain-oriented docs tree to the AJ Digital Tier 4
+documentation layers without moving accepted Phase 1 material into numbered
+folders. Repository posture is controlled by
+[`governance/SOURCE_REPO_FREEZE.md`](governance/SOURCE_REPO_FREEZE.md).
 
 The repo remains documentation-first. This index does not authorize app scaffolding, live integrations, secrets, customer file storage, SMS/email sending, HubSpot sync, QuickBooks sync, PDF generation, or runtime AI.
 
@@ -82,7 +85,7 @@ Defines how the project ships, evolves, and migrates.
 | Expected artifact | Current source |
 |---|---|
 | Layer entrypoint | `docs/03-DELIVERY/README.md` |
-| Deployment | `docs/delivery/RELEASE_PLAN.md`, `docs/delivery/DEPLOYMENT_TARGET.md`, `docs/architecture/implementation-readiness-gate.md` |
+| Historical deployment planning (frozen) | `docs/delivery/RELEASE_PLAN.md`, `docs/delivery/DEPLOYMENT_TARGET.md`, `docs/architecture/implementation-readiness-gate.md` |
 | Roadmap | `docs/product-roadmaps/` |
 | Changelog | `docs/delivery/CHANGELOG.md` |
 | Release plan | `docs/delivery/RELEASE_PLAN.md` |
@@ -111,6 +114,7 @@ Defines the rules for starting, completing, reviewing, and stabilizing work.
 | Layer entrypoint | `docs/04-GOVERNANCE/README.md` |
 | Project constitution | `AGENTS.md`, `docs/AGENTS.md`, `REPO_IDENTITY.md`, `CLAUDE.md`, `docs/system/` |
 | Repo boundary / anti-confusion map | `REPO_IDENTITY.md`, `CLAUDE.md`, `docs/system/REPO_BOUNDARY_MAP.md` |
+| Source-repo freeze | `docs/governance/SOURCE_REPO_FREEZE.md` |
 | Delegation and autonomy record | `docs/governance/DELEGATION_AND_AUTONOMY.md` |
 | Legal/privacy doctrine | `docs/legal/LEGAL_PRIVACY_DOCTRINE.md` |
 | Definition of Ready | `docs/governance/DEFINITION_OF_READY.md` |

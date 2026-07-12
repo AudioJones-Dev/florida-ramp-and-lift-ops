@@ -36,6 +36,9 @@ Docs are the governing layer for this repo. Treat them as product and architectu
 - `docs/agents/`: future agent role specs.
 - `docs/system/`: repo operating protocols for human/agent collaboration.
 - `docs/governance/`: definitions of ready/done/stable, decision log, risk register, and repo governance artifacts.
+- `docs/governance/SOURCE_REPO_FREEZE.md`: controlling repository posture;
+  freezes runtime/deployment work here and points canonical Tier 4 authority to
+  `FRL-CONTRACTOR-PORTAL`.
 - `docs/legal/`: legal/privacy doctrine, notice requirements, public legal URL requirements, and attorney/operator review gates.
 - `docs/qa/`: readiness reviews and implementation-vs-docs audits.
 - `docs/quality/`: security, observability, testing, and failure-mode planning.

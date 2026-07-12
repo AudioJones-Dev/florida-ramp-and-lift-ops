@@ -95,9 +95,14 @@ This repo uses a DOX-style instruction hierarchy. Agents must read this root fil
 
 ## Mission
 
-This repository is the Florida Ramp & Lift operational intelligence platform for AJ Digital LLC / Audio Jones. The current product posture is a mock/manual MVP scaffold backed by documentation-first architecture.
+This repository is a preserved planning/reference source for Florida Ramp & Lift
+operational intelligence work. It contains a mock/manual MVP scaffold and
+documentation-first architecture, but it is not the canonical Tier 4 runtime.
 
-The repo must not drift into live persistence, auth, HubSpot, QuickBooks, email/SMS, PDF generation, storage, runtime AI, or production automation until the relevant design docs are accepted and a specific implementation branch authorizes the work.
+Runtime development and deployment are frozen here. The canonical AJ Digital
+FieldOps Platform application is `AudioJones-Dev/FRL-CONTRACTOR-PORTAL`, with
+Florida Ramp & Lift as its first tenant. See
+`docs/governance/SOURCE_REPO_FREEZE.md`.
 
 ## Repo Identity / Anti-Confusion
 
@@ -108,8 +113,9 @@ Canonical identity:
 
 - Local path: `C:\dev\florida-ramp-and-lift-ops`
 - Remote `origin`: `https://github.com/AudioJones-Dev/florida-ramp-and-lift-ops.git`
-- Production branch: `main`
-- Product: Florida Ramp & Lift **operational intelligence platform** (Next.js + Clerk mock/manual MVP scaffold)
+- Default/reference branch: `main`
+- Product posture: preserved planning/reference source with a Next.js + Clerk
+  mock/manual scaffold
 
 Identity check (reinforces Required Work Pattern step 1) — run before editing:
 
@@ -124,9 +130,10 @@ STOP if `origin` is not `…florida-ramp-and-lift-ops.git`.
 Do not confuse with — and do not import assumptions from:
 
 - `FRL-CONTRACTOR-PORTAL` (`git@github.com:AudioJones-Dev/FRL-CONTRACTOR-PORTAL.git`,
-  `C:\dev\frl-contractor-portal`) — a **separate** contractor-portal product with a
-  different stack (Supabase / Render, live migrations, storage, deployed domains).
-  None of that exists in this repo.
+  `C:\dev\frl-contractor-portal`) — the **canonical Tier 4 AJ Digital FieldOps
+  Platform application** (Supabase / Render, live migrations, storage, and
+  deployed domains). This repo remains a non-runtime source for controlled
+  reconciliation into that product.
 - `floridaplatformliftpros` (`https://github.com/AudioJones-Dev/floridaplatformliftpros.git`,
   `C:\dev\florida platform lift pros`) — a separate repo.
 
@@ -135,7 +142,10 @@ Full boundary table: `docs/system/REPO_BOUNDARY_MAP.md`. Canonical identity card
 
 ## Source Of Truth
 
-- Product scope: `docs/architecture/mvp-definition.md`
+- Repository posture and freeze: `docs/governance/SOURCE_REPO_FREEZE.md`
+- Canonical live product: `AudioJones-Dev/FRL-CONTRACTOR-PORTAL`
+
+- Historical/source product scope: `docs/architecture/mvp-definition.md`
 - Implementation gate: `docs/architecture/implementation-readiness-gate.md`
 - Auth foundation: `docs/architecture/auth-foundation.md`
 - Persistence design: `docs/architecture/persistence-design.md`
@@ -149,8 +159,13 @@ If these documents conflict, stop and report the contradiction before editing.
 ## Standing Constraints
 
 - Documentation/governance branches may not change app runtime behavior.
+- Do not begin or continue runtime feature work in this repository.
+- Do not deploy this repository or assign a live application hostname to it.
+- Treat Clerk/Vercel plans and execution records as historical source evidence,
+  not current deployment authorization.
 - No package installs or dependency changes unless the branch objective explicitly authorizes them.
-- Clerk user-auth foundation is the current approved auth scaffold. This does not authorize Supabase setup, storage, migrations, live integrations, production deployment, or committed secrets.
+- The Clerk auth shell is retained as historical mock-scaffold code; it is not
+  the canonical platform auth path.
 - No secrets, credentials, customer PDFs, private rate sheets, or sensitive client files.
 - No Firebase packages, config, environment names, or implementation path.
 - No live third-party writes or runtime integrations.
@@ -202,6 +217,8 @@ Use branch names that identify intent:
 - `chore/...` for repo hygiene that does not change product behavior.
 
 Do not merge feature work into a governance-only branch.
+Runtime feature branches are frozen unless a later explicit operator decision
+supersedes `docs/governance/SOURCE_REPO_FREEZE.md`.
 
 ## Validation Commands
 
