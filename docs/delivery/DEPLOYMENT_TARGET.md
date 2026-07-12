@@ -58,8 +58,10 @@ Internal pilot scope:
 
 - Protected mock/manual app scaffold only.
 - Sanitized fixture/demo records only.
-- Legal/privacy doctrine recorded before the ops domain is circulated beyond
-  tightly controlled internal review.
+- Operator-only, non-circulated Preview deployment and verification may occur
+  before Q5/Q6 are complete. The Preview URL must not be shared with any
+  reviewer or third party until the authorized reviewer list and legal
+  circulation disposition are recorded.
 - No real customer data, private rate sheets, production files, or signed
   documents.
 - No persistence, storage, migrations, live integrations, external sends,
@@ -221,8 +223,10 @@ Environment-variable presence is owned by G4 and remains pending.
 ## Preview Deploy Checklist (blocked until approved)
 
 - [x] Link checklist complete (G3, 2026-07-11).
-- [ ] Legal/privacy doctrine accepted; no public Terms/Privacy links point to
-      the marketing site unless operator/counsel confirms coverage.
+- [x] Operator-only, non-circulated Preview posture accepted 2026-07-11. Q5
+      reviewer authorization and Q6 legal approval are not prerequisites for
+      deployment mechanics or operator verification, but both remain hard
+      blockers before the Preview URL is shared with anyone else.
 - [ ] `npm run typecheck`, `npm run lint`, `npm run build` pass at the deploy SHA.
 - [x] Preview env vars present (2026-07-11; five approved names, Clerk
       development-instance keys only; names-only verification).
@@ -238,6 +242,14 @@ Environment-variable presence is owned by G4 and remains pending.
 - [ ] S9 post-deploy acceptance confirms mock/demo labeling on pilot-critical
       surfaces before G5 closes or the Preview is circulated.
 - [ ] Findings recorded in `docs/delivery/CHANGELOG.md`.
+
+Preview circulation hold (does not block operator-only G5 deployment and
+verification):
+
+- [ ] Q5 authorized reviewer list and review window recorded.
+- [ ] Q6 legal reviewer, target date, and approved Terms/Privacy disposition
+      satisfying the circulation gate recorded.
+- [ ] Preview URL circulation authorized only after both Q5 and Q6 pass.
 
 ## Production Deploy Checklist (blocked until approved)
 
