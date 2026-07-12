@@ -146,7 +146,7 @@ Full boundary table: `docs/system/REPO_BOUNDARY_MAP.md`. Canonical identity card
 - Canonical live product: `AudioJones-Dev/FRL-CONTRACTOR-PORTAL`
 
 - Historical/source product scope: `docs/architecture/mvp-definition.md`
-- Implementation gate: `docs/architecture/implementation-readiness-gate.md`
+- Historical implementation gate: `docs/architecture/implementation-readiness-gate.md`
 - Auth foundation: `docs/architecture/auth-foundation.md`
 - Persistence design: `docs/architecture/persistence-design.md`
 - Canonical schema planning: `docs/schemas/canonical-data-schema.md`

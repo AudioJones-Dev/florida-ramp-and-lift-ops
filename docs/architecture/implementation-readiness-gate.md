@@ -1,14 +1,24 @@
 # Implementation Readiness Gate
 
-Status: Git Spec-Ready Draft; reconciled against current mock/manual scaffold
+Status: Historical source gate; runtime progression superseded 2026-07-12
 Owner: AJ Digital LLC / Audio Jones
 Repo: `AudioJones-Dev/florida-ramp-and-lift-ops`
-Scope: Florida Ramp & Lift Operational Intelligence Platform
-Last updated: 2026-07-09
+Scope: Preserved mock-scaffold implementation-readiness source material
+Runtime impact: None
+Implementation status: Historical/non-executable under the source-repo freeze
+Last updated: 2026-07-12
+
+> Current repository posture is controlled by
+> [`../governance/SOURCE_REPO_FREEZE.md`](../governance/SOURCE_REPO_FREEZE.md).
+> Satisfying any gate below cannot authorize runtime work in this repository.
+> Useful criteria must be reconciled into a separately approved specification in
+> `AudioJones-Dev/FRL-CONTRACTOR-PORTAL`.
 
 ## 1. Purpose
 
-This document defines the checkpoint that must be satisfied before the Florida Ramp & Lift repo moves from its current mock/manual scaffold into any new implementation phase.
+This document preserves the checkpoint formerly intended to govern movement
+from the mock/manual scaffold into a new implementation phase. That progression
+is now frozen in this repository.
 
 The repo currently has a mock/manual Next.js MVP scaffold and an approved Clerk user-auth shell recorded in `docs/architecture/auth-foundation.md`. This gate prevents premature persistence, live integrations, secret sprawl, Firebase drift, production auth configuration, and implementation work before the operating model is stable.
 
