@@ -274,7 +274,7 @@ Owning runbook: `DEPLOYMENT_TARGET.md` → "Rollback Runbook".
 | G2 | Clerk production instance + DNS records + live keys | Operator | G1 |
 | G3 | Vercel project creation + repo link | Operator | G0 |
 | G4 | Env var writes (names verified, values never printed) | Operator | G2 (prod keys), G3 |
-| G5 | One operator-only, non-circulated preview deploy + verification | Operator | G3, G4, current-SHA validation, sanitized fixtures, explicit G5 `proceed` |
+| G5 | One operator-only, non-circulated preview deploy + verification | Operator | G3, G4, current-SHA validation, sanitized fixtures, Git integration re-verified disconnected, explicit G5 `proceed` |
 | G6 | One production pilot deploy | Operator | G1–G5, readiness §22, legal gate, G7 pre-checks |
 | G7 | Nothing — verifies rollback readiness | Operator | G5 |
 

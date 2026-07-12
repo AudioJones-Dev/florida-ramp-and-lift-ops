@@ -10,9 +10,11 @@ Implementation status: Documentation only
 This is the planning-only open-questions inventory required by
 [`PHASE_B_INTERNAL_PILOT_CHECKLIST.md`](./PHASE_B_INTERNAL_PILOT_CHECKLIST.md).
 It collects, in one place, every unanswered question from
-[`DEPLOYMENT_TARGET.md`](./DEPLOYMENT_TARGET.md) and the legal doctrine that an
-operator must answer before the corresponding Phase B gate can execute or its
-resulting URL may circulate. Each answer is recorded here as a dated operator
+[`DEPLOYMENT_TARGET.md`](./DEPLOYMENT_TARGET.md) and the legal doctrine. Some
+questions block the corresponding Phase B gate from executing. Q5/Q6 are the
+explicit exception: they may remain unanswered during operator-only G5
+deployment and verification, but both must be answered before the resulting
+Preview URL may circulate. Each answer is recorded here as a dated operator
 statement.
 
 **Recording rule:** an answer written in this file is *data*, not approval.

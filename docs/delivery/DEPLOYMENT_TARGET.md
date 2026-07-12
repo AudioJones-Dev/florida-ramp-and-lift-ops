@@ -251,6 +251,16 @@ verification):
       satisfying the circulation gate recorded.
 - [ ] Preview URL circulation authorized only after both Q5 and Q6 pass.
 
+Private evidence rule while the hold is active:
+
+- The actual Preview URL remains in Vercel provider state and a gitignored
+  private evidence record under `.vercel/`; it is not written to Git, PRs,
+  issues, CI output, or chat.
+- Committed G5 evidence records source SHA, date, operator, and section results
+  with the URL marked `withheld - Q5/Q6 circulation hold`.
+- After Q5/Q6 pass, share the URL only with authorized reviewers through a
+  private channel; do not backfill it into repository history.
+
 ## Production Deploy Checklist (blocked until approved)
 
 - [ ] Implementation readiness gate §22 go/no-go checklist satisfied.

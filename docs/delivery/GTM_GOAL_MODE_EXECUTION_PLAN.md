@@ -57,7 +57,7 @@ The client-operational MVP may use real operational data only after the persiste
 | G3 Vercel project/link | Complete | Re-verify Git integration remains disconnected at G5 |
 | G4 Preview environment names | Complete | Production values remain separately gated |
 | Fixture sanitization | Pre-deploy evidence complete 2026-07-11 | Run S9 against the gated Preview before G5 closes |
-| Legal/privacy circulation | Pending; does not block operator-only Preview verification | Q6 reviewer, target date, approved disposition, and approved public URLs before sharing |
+| Legal/privacy circulation | Pending; does not block operator-only Preview verification | Q6 reviewer, target date, and approved disposition before sharing |
 | Internal reviewers | Pending; does not block operator-only Preview verification | Q5 reviewer roster and review window before sharing |
 | G5 Preview deploy | Not authorized | Complete preflight, then receive explicit deploy approval |
 | Persistence and real data | Design-only/blocked | Readiness review and accepted Phase C implementation plan |
@@ -168,7 +168,10 @@ Entry:
 Agent work:
 
 - Run the approved CLI Preview deployment command.
-- Record the immutable deployment URL and source SHA.
+- Record the immutable deployment URL and source SHA in provider state and the
+  gitignored private G5 evidence record under `.vercel/`. Until Q5/Q6 pass,
+  committed evidence records the SHA/date/results and marks the URL withheld;
+  it never includes the actual URL.
 - Execute `PILOT_VERIFICATION_SCRIPT.md` across authentication and every role surface.
 - Complete S9 as a post-deploy acceptance check.
 - Capture defects with severity, route, expected result, actual result, and evidence.
