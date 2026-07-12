@@ -145,7 +145,11 @@ source material. They are not a roadmap for runtime work in this repository.
 
 ## Doctrine alignment
 
-This repo is governed by the AJ Digital canonical doctrine layer (business memory lives outside this repo). Repo-local operating rules now live in `AGENTS.md`, child `AGENTS.md` files, and `docs/system/`. Tier 1 production repo expectations apply per the Goal Protocol before feature or integration work resumes.
+This repo is governed by the AJ Digital canonical doctrine layer (business
+memory lives outside this repo). Repo-local operating rules live in `AGENTS.md`,
+child `AGENTS.md` files, and `docs/system/`. Feature, integration, and deployment
+work does not resume here unless the operator explicitly supersedes the
+source-repo freeze.
 
 ---
 
@@ -154,4 +158,5 @@ This repo is governed by the AJ Digital canonical doctrine layer (business memor
 - No real customer PDFs or sensitive documents in this repo, ever.
 - No automated final approval of billing, invoicing, or client communication without explicit human review gate.
 - Treat all construction-site work as safety-sensitive — PPE checks and human review are non-negotiable.
-- No Firebase, no cloud infrastructure provisioning outside the approved internal-pilot delivery path, and no production behavior beyond the mock/manual scaffold.
+- No Firebase, cloud infrastructure provisioning, provider setup, preview or
+  production deployment, or production behavior from this repository.

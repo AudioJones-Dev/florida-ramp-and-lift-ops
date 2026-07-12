@@ -20,7 +20,11 @@ This document preserves the checkpoint formerly intended to govern movement
 from the mock/manual scaffold into a new implementation phase. That progression
 is now frozen in this repository.
 
-The repo currently has a mock/manual Next.js MVP scaffold and an approved Clerk user-auth shell recorded in `docs/architecture/auth-foundation.md`. This gate prevents premature persistence, live integrations, secret sprawl, Firebase drift, production auth configuration, and implementation work before the operating model is stable.
+The repository preserves a mock/manual Next.js MVP scaffold and historical
+Clerk/Vercel source material recorded in
+`docs/architecture/auth-foundation.md`. This document is non-authorizing;
+useful readiness criteria must be reconciled into a separately approved
+specification in `AudioJones-Dev/FRL-CONTRACTOR-PORTAL`.
 
 ## 2. Implementation Readiness Doctrine
 
