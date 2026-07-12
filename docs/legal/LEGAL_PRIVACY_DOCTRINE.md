@@ -1,17 +1,23 @@
 # Florida Legal And Privacy Doctrine
 
-Status: Git Spec-ready draft
-Scope: Florida-law legal/privacy doctrine for the Florida Ramp & Lift ops platform and internal pilot
+Status: Preserved planning doctrine; source-repo runtime/pilot frozen 2026-07-12
+Scope: Florida-law legal/privacy source material for canonical-platform reconciliation
 Runtime impact: None
 Implementation status: Documentation only; not legal advice; attorney/operator review is required before public legal-policy publication or real data collection
 
+> Current repository posture is controlled by
+> [`../governance/SOURCE_REPO_FREEZE.md`](../governance/SOURCE_REPO_FREEZE.md).
+> This repo has no live application hostname or upcoming pilot. Any useful legal
+> doctrine must be reconciled and reviewed in the canonical platform repo before
+> publication or use.
+
 ## Purpose
 
-This document defines the legal and privacy doctrine for the
-`florida-ramp-and-lift-ops` platform while the repo moves toward a protected
-internal pilot. It gives agents and operators a conservative source of truth
-for company identity, domain boundaries, privacy posture, Florida-law duties,
-and human approval gates.
+This document preserves legal and privacy source material prepared for the
+former `florida-ramp-and-lift-ops` pilot path. It gives agents and operators a
+conservative planning reference for company identity, domain boundaries,
+privacy posture, Florida-law duties, and human approval gates. It does not
+authorize runtime or delivery work in this repository.
 
 This document does not create Terms of Service, a Privacy Policy, customer
 notices, consent language, or a legal opinion. Those remain attorney-review
@@ -24,8 +30,11 @@ Facts:
 - The legal operator is Florida Ramp and Lift LLC, listed by the Florida
   Division of Corporations as an active Florida limited liability company under
   document number `L21000045624`.
-- The repo's next live milestone is a protected internal pilot for mock/manual
-  operations at `floridarampandliftops.com`.
+- This repository's internal-pilot path is frozen. It owns no live application
+  hostname and has no next deployment milestone.
+- The canonical Tier 4 runtime is `AudioJones-Dev/FRL-CONTRACTOR-PORTAL`; legal
+  material from this doc requires reconciliation and attorney/operator review
+  before use there.
 - `floridarampandlift.com` remains the front-facing marketing site.
 - The internal pilot is not approved to ingest real customer data, customer
   files, private rate sheets, signed documents, payment credentials, live

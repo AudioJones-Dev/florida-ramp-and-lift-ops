@@ -49,3 +49,11 @@ Docs are the governing layer for this repo. Treat them as product and architectu
 ## Documentation Safety
 
 Do not add private vault paths, client files, secrets, or internal credentials to docs. Obsidian references must describe sync/export rules generically or use placeholder examples.
+
+## Child DOX Index
+
+- `delivery/AGENTS.md` governs historical delivery, provider, pilot, release,
+  migration, and deployment-planning records under `docs/delivery/`.
+- `legal/AGENTS.md` governs legal, privacy, notice, and attorney-review doctrine
+  under `docs/legal/`.
+- `product/AGENTS.md` governs product documentation under `docs/product/`.

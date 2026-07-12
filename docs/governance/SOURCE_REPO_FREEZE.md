@@ -91,7 +91,9 @@ Separate explicit operator approval is required before:
 - Root identity and agent-entry documents identify this as a planning/reference
   source.
 - The canonical Tier 4 runtime repository is named consistently.
-- No current document assigns `ops.floridarampandliftops.com` to this repo.
+- No current governing contract assigns `ops.floridarampandliftops.com` to this
+  repo; historical delivery records are explicitly non-executable under the
+  nearest delivery DOX contract.
 - Historical deployment records remain available but are visibly superseded.
 - No runtime, provider, DNS, secret, repository archive, or PR #1 state changes
   occur in the freeze change.
