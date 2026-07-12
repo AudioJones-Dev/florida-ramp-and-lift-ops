@@ -71,7 +71,9 @@ standing constraints:
       [`PILOT_VERIFICATION_SCRIPT.md`](./PILOT_VERIFICATION_SCRIPT.md)
       (route-grounded, Sections A–E + results record).
 - [ ] Confirm the internal reviewer list for the pilot — tracked as Q5 in
-      [`PHASE_B_G1_OPEN_QUESTIONS.md`](./PHASE_B_G1_OPEN_QUESTIONS.md).
+      [`PHASE_B_G1_OPEN_QUESTIONS.md`](./PHASE_B_G1_OPEN_QUESTIONS.md). This is
+      a circulation gate, not a prerequisite for operator-only Preview
+      deployment and verification.
 - [x] Confirm fixture data is sanitized and labeled — evidence recorded
       2026-07-10 and refreshed 2026-07-11 in
       [`FIXTURE_SANITIZATION_CHECKLIST.md`](./FIXTURE_SANITIZATION_CHECKLIST.md):
@@ -201,9 +203,11 @@ Preview evidence:
 Owning checklist: `DEPLOYMENT_TARGET.md` → "Preview Deploy Checklist".
 
 - [x] G3 + G4 complete for the Preview environment (2026-07-11).
-- [ ] Legal/privacy doctrine accepted for pilot circulation; no Terms/Privacy
-      links point at `floridarampandlift.com` unless operator/counsel confirms
-      coverage ([`../legal/LEGAL_PRIVACY_DOCTRINE.md`](../legal/LEGAL_PRIVACY_DOCTRINE.md)).
+- [x] Operator-only, non-circulated Preview posture accepted 2026-07-11. G5
+      deployment and verification may proceed before Q5/Q6 are complete, but
+      the Preview URL must not be shared with any reviewer or third party until
+      both questions are answered and the legal circulation gate is satisfied
+      ([`../legal/LEGAL_PRIVACY_DOCTRINE.md`](../legal/LEGAL_PRIVACY_DOCTRINE.md)).
 - [ ] `npm run typecheck`, `npm run lint`, `npm run build` pass at the deploy SHA.
 - [x] Operator confirms fixture names and retained business preview identities
       do not match the real FRL customer/contractor roster (names-only check;
@@ -215,6 +219,15 @@ Owning checklist: `DEPLOYMENT_TARGET.md` → "Preview Deploy Checklist".
 - [ ] S9 post-deploy acceptance passes: mock/demo labeling remains visible on
       every pilot-critical surface before G5 closes.
 - [ ] Findings recorded in [`CHANGELOG.md`](./CHANGELOG.md).
+
+Preview circulation hold (separate from G5 technical deployment and
+verification):
+
+- [ ] Q5 records the authorized internal reviewer list and review window.
+- [ ] Q6 records the Terms/Privacy reviewer, target date, and approved legal
+      disposition satisfying the circulation gate.
+- [ ] Only after Q5 and Q6 are complete may the Preview URL be shared beyond
+      the operator performing G5 verification.
 
 ### G6 — Production pilot deploy gate
 
@@ -261,7 +274,7 @@ Owning runbook: `DEPLOYMENT_TARGET.md` → "Rollback Runbook".
 | G2 | Clerk production instance + DNS records + live keys | Operator | G1 |
 | G3 | Vercel project creation + repo link | Operator | G0 |
 | G4 | Env var writes (names verified, values never printed) | Operator | G2 (prod keys), G3 |
-| G5 | One preview deploy + verification | Operator | G3, G4, legal circulation gate |
+| G5 | One operator-only, non-circulated preview deploy + verification | Operator | G3, G4, current-SHA validation, sanitized fixtures, Git integration re-verified disconnected, explicit G5 `proceed` |
 | G6 | One production pilot deploy | Operator | G1–G5, readiness §22, legal gate, G7 pre-checks |
 | G7 | Nothing — verifies rollback readiness | Operator | G5 |
 

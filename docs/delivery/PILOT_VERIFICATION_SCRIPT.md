@@ -21,7 +21,11 @@ taken from the actual app tree (`src/app`), not assumed.
   created by the operator (G2), and — for preview — awareness that Vercel
   Deployment Protection may return 401 (protection state, not app failure).
 - Results are recorded in the table at the end and summarized in
-  [`CHANGELOG.md`](./CHANGELOG.md) with URL + SHA + date + reviewer.
+  [`CHANGELOG.md`](./CHANGELOG.md) with SHA + date + reviewer. For an
+  operator-only Preview while Q5/Q6 remain open, keep the actual URL in Vercel
+  provider state and a gitignored private record under `.vercel/`; committed
+  evidence marks the URL `withheld - Q5/Q6 circulation hold`. Never put the
+  withheld URL in Git, PRs, issues, CI output, or chat.
 
 ## Section A — Public and unauthenticated behavior
 
@@ -94,7 +98,12 @@ Any of these results triggers the rollback runbook in
 
 ## Results Record
 
-Copy this table per run; file the completed copy with the CHANGELOG entry.
+Copy this table per run; file the completed copy with the CHANGELOG entry. For
+an operator-only Preview while Q5/Q6 remain open, use
+`withheld - Q5/Q6 circulation hold` in the Deploy URL row and keep the actual
+URL only in the gitignored private `.vercel/` evidence record. After Q5/Q6
+pass, share the URL privately with authorized reviewers; do not backfill it
+into repository history.
 
 | Field | Value |
 |---|---|

@@ -57,8 +57,8 @@ The client-operational MVP may use real operational data only after the persiste
 | G3 Vercel project/link | Complete | Re-verify Git integration remains disconnected at G5 |
 | G4 Preview environment names | Complete | Production values remain separately gated |
 | Fixture sanitization | Pre-deploy evidence complete 2026-07-11 | Run S9 against the gated Preview before G5 closes |
-| Legal/privacy circulation | Pending | Named reviewer, circulation date, disposition, and approved public URLs when ready |
-| Internal reviewers | Pending | Named reviewer roster and review window |
+| Legal/privacy circulation | Pending; does not block operator-only Preview verification | Q6 reviewer, target date, and approved disposition before sharing |
+| Internal reviewers | Pending; does not block operator-only Preview verification | Q5 reviewer roster and review window before sharing |
 | G5 Preview deploy | Not authorized | Complete preflight, then receive explicit deploy approval |
 | Persistence and real data | Design-only/blocked | Readiness review and accepted Phase C implementation plan |
 
@@ -115,9 +115,10 @@ Agent work:
   [`PHASE_B_INTERNAL_PILOT_CHECKLIST.md`](./PHASE_B_INTERNAL_PILOT_CHECKLIST.md)
   G5 and [`DEPLOYMENT_TARGET.md`](./DEPLOYMENT_TARGET.md) Preview: the accepted
   fixture-only implementation boundary, current-SHA security/build checks,
-  protected-route and role-surface verification scope, legal circulation
-  disposition, and action-specific human approval. The role boundary is owned
-  by [`role-permission-matrix.md`](../schemas/role-permission-matrix.md) and
+  protected-route and role-surface verification scope, operator-only
+  non-circulation disposition, and action-specific human approval. The role
+  boundary is owned by
+  [`role-permission-matrix.md`](../schemas/role-permission-matrix.md) and
   [`saas-portal-access-model.md`](../architecture/saas-portal-access-model.md);
   the security baseline is owned by [`SECURITY.md`](../quality/SECURITY.md).
 - Prepare the legal/privacy circulation evidence request.
@@ -125,16 +126,25 @@ Agent work:
 
 Human gates:
 
-- Name the internal reviewers and review window.
 - Create or authorize the Clerk development test users without sharing credentials in Git or chat.
-- Name the legal/privacy reviewer and record circulation disposition.
+- Approve the exact G5 Preview deployment at the current SHA.
+
+Circulation gates, which do not block operator-only deployment and verification:
+
+- Before sharing the Preview URL, name the authorized internal reviewers and
+  review window (Q5).
+- Before sharing the Preview URL, name the legal/privacy reviewer and record
+  the target date and approved disposition satisfying the legal circulation
+  gate (Q6).
 
 Exit evidence:
 
 - G5 preflight report explicitly records the accepted Preview-scoped evidence
-  for implementation readiness, security, role/access, legal circulation, and
-  human approval. Full readiness gate section 22 remains a G6 Production
-  requirement, as defined by the owning checklists.
+  for implementation readiness, security, role/access, operator-only
+  non-circulation, and human approval. Q5/Q6 remain visible as circulation
+  blockers rather than deployment-mechanics blockers. Full readiness gate
+  section 22 remains a G6 Production requirement, as defined by the owning
+  checklists.
 - The exact Preview deploy command is SHA-pinned and ready, but not yet run.
 
 Rollback:
@@ -150,14 +160,18 @@ Entry:
   G5 and [`DEPLOYMENT_TARGET.md`](./DEPLOYMENT_TARGET.md) Preview record the
   accepted fixture-only implementation boundary, current-SHA security/build
   checks, protected-route and role-surface verification scope, legal
-  circulation disposition, and required human approvals. Full object-level
-  access implementation is not claimed for this sanitized-fixture Preview.
+  circulation hold, and required human approvals. Full object-level access
+  implementation is not claimed for this sanitized-fixture Preview. Q5/Q6 may
+  remain open only while the Preview stays operator-only and non-circulated.
 - Operator gives an explicit G5 Preview deploy approval for the current SHA.
 
 Agent work:
 
 - Run the approved CLI Preview deployment command.
-- Record the immutable deployment URL and source SHA.
+- Record the immutable deployment URL and source SHA in provider state and the
+  gitignored private G5 evidence record under `.vercel/`. Until Q5/Q6 pass,
+  committed evidence records the SHA/date/results and marks the URL withheld;
+  it never includes the actual URL.
 - Execute `PILOT_VERIFICATION_SCRIPT.md` across authentication and every role surface.
 - Complete S9 as a post-deploy acceptance check.
 - Capture defects with severity, route, expected result, actual result, and evidence.
@@ -173,6 +187,8 @@ Exit evidence:
 - Mock/demo labels remain visible where required.
 - No unresolved release-blocking defect remains.
 - S9 is recorded for the deployed SHA.
+- The Preview URL remains undisclosed unless Q5 reviewer authorization and Q6
+  legal approval satisfying the circulation gate are both recorded.
 
 Rollback:
 
