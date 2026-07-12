@@ -2,14 +2,22 @@
 
 **Owner:** AJ Digital LLC / Audio Jones
 **Repo:** `AudioJones-Dev/florida-ramp-and-lift-ops`
-**Phase:** Phase 2 — Mock/manual app scaffold on top of the documentation-first foundation
+**Status:** Frozen planning/reference source — no runtime development or deployment
 **Internal system name:** **FLR Dynamic Contractor Billing Engine**
 
 ---
 
 ## Purpose
 
-This repo is the operational intelligence foundation for Florida Ramp & Lift — a real field-operations business handling accessibility installations, ramps, lifts, modular project support, WillScot / Mobile Mini workflows, dispatch, billing, field safety, and crew onboarding.
+This repo preserves the operational-intelligence planning foundation and
+mock/manual scaffold created for Florida Ramp & Lift. It is a source of reviewed
+concepts, workflows, SOPs, schemas, prompts, fixtures, and historical delivery
+evidence.
+
+The canonical Tier 4 application is now
+`AudioJones-Dev/FRL-CONTRACTOR-PORTAL`, the AJ Digital FieldOps Platform with
+Florida Ramp & Lift as its first tenant. See
+[`docs/governance/SOURCE_REPO_FREEZE.md`](docs/governance/SOURCE_REPO_FREEZE.md).
 
 Phase 1 began as a documentation-first foundation. The current repo now includes an initial mock/manual Next.js scaffold for the MVP shell while keeping live integrations, production data, secrets, and database connections out of scope.
 
@@ -23,22 +31,21 @@ The documentation foundation includes:
 - Reusable AI prompts for extraction, dispatch, billing, and safety (`prompts/`)
 - Sanitized sample data illustrating the WillScot intake (`samples/`)
 
-Phase 2+ builds the actual mobile-first PWA, automation layer, and CRM pipeline on top of this scaffold.
+No further runtime build proceeds in this repository. Useful source concepts
+must be reconciled and implemented through separately approved specifications in
+the canonical platform repository.
 
-## Internal pilot delivery posture
+## Deployment freeze
 
-The next live milestone is a protected internal pilot for the mock/manual scaffold, not production operations.
-
-- Target app host: `ops.floridarampandliftops.com` (approved 2026-07-11; DNS and
-  deployment remain separately gated).
-- Domain boundary: `floridarampandlift.com` remains the front-facing marketing site; `floridarampandliftops.com` is the isolated internal operations and client-ops domain family.
-- Deployment target: a new Git-linked Vercel project named `florida-ramp-and-lift-ops`.
-- Pilot data posture: sanitized mock/manual records only; no real customer files, private rate sheets, production persistence, storage, or live integrations.
-- Legal/privacy posture: `docs/legal/LEGAL_PRIVACY_DOCTRINE.md` defines the Florida-law doctrine and keeps ops-domain Terms/Privacy publication behind attorney/operator review.
-- CI and preview deployments are allowed as delivery infrastructure when they preserve the mock/manual boundary.
-- Production operations remain blocked until the implementation readiness gate, rollback plan, persistence/object access, storage, security review, and human approval gates are satisfied.
-
-See `docs/delivery/DEPLOYMENT_TARGET.md` for the gated deployment checklist.
+- This repository owns no production runtime or live application hostname.
+- `ops.floridarampandliftops.com` has no application DNS record and is reserved
+  pending a separate canonical-platform decision.
+- Historical Clerk/Vercel setup and delivery records are retained as evidence,
+  but no preview or production deployment is authorized here.
+- Existing apex, `www`, `admin`, `contractor`, `client`, and `platform` hosts
+  remain owned by the canonical Render-backed platform.
+- No files, Git history, provider state, or existing PRs are removed by the
+  freeze.
 
 ---
 
@@ -68,9 +75,10 @@ See `docs/delivery/DEPLOYMENT_TARGET.md` for the gated deployment checklist.
 
 ---
 
-## Phase 2+ expansion (future, not built here)
+## Historical Phase 2+ planning (not built here)
 
-Documented in `docs/scope/` and `PROJECT_SOURCE.md` for forward planning. Will be built incrementally only after Phase 1 documentation is validated against real field workflows.
+These concepts remain preserved in `docs/scope/` and `PROJECT_SOURCE.md` as
+source material. They are not a roadmap for runtime work in this repository.
 
 | Phase | Focus |
 |---|---|
@@ -137,7 +145,11 @@ Documented in `docs/scope/` and `PROJECT_SOURCE.md` for forward planning. Will b
 
 ## Doctrine alignment
 
-This repo is governed by the AJ Digital canonical doctrine layer (business memory lives outside this repo). Repo-local operating rules now live in `AGENTS.md`, child `AGENTS.md` files, and `docs/system/`. Tier 1 production repo expectations apply per the Goal Protocol before feature or integration work resumes.
+This repo is governed by the AJ Digital canonical doctrine layer (business
+memory lives outside this repo). Repo-local operating rules live in `AGENTS.md`,
+child `AGENTS.md` files, and `docs/system/`. Feature, integration, and deployment
+work does not resume here unless the operator explicitly supersedes the
+source-repo freeze.
 
 ---
 
@@ -146,4 +158,5 @@ This repo is governed by the AJ Digital canonical doctrine layer (business memor
 - No real customer PDFs or sensitive documents in this repo, ever.
 - No automated final approval of billing, invoicing, or client communication without explicit human review gate.
 - Treat all construction-site work as safety-sensitive — PPE checks and human review are non-negotiable.
-- No Firebase, no cloud infrastructure provisioning outside the approved internal-pilot delivery path, and no production behavior beyond the mock/manual scaffold.
+- No Firebase, cloud infrastructure provisioning, provider setup, preview or
+  production deployment, or production behavior from this repository.

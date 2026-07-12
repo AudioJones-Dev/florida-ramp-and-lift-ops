@@ -1,13 +1,16 @@
 # Documentation Index
 
 Status: Git Spec-ready draft
-Scope: Tier 4 documentation coverage map for the Florida Ramp & Lift Operational Intelligence Platform
+Scope: Tier 4 source-material coverage map for the frozen Florida Ramp & Lift planning/reference repo
 Runtime impact: None
 Implementation status: Documentation only
 
 ## Purpose
 
-This index maps the existing domain-oriented docs tree to the AJ Digital Tier 4 documentation layers without moving accepted Phase 1 material into numbered folders.
+This index maps the preserved domain-oriented docs tree to the AJ Digital Tier 4
+documentation layers without moving accepted Phase 1 material into numbered
+folders. Repository posture is controlled by
+[`governance/SOURCE_REPO_FREEZE.md`](governance/SOURCE_REPO_FREEZE.md).
 
 The repo remains documentation-first. This index does not authorize app scaffolding, live integrations, secrets, customer file storage, SMS/email sending, HubSpot sync, QuickBooks sync, PDF generation, or runtime AI.
 
@@ -79,25 +82,30 @@ Defines how the project is tested, secured, monitored, and stabilized.
 
 Defines how the project ships, evolves, and migrates.
 
+All delivery artifacts listed below are historical/non-executable under the
+binding [`delivery/AGENTS.md`](delivery/AGENTS.md) contract. Their names and
+former checklists are preserved for evidence; none grants current deployment,
+provider, hostname, or next-gate authority.
+
 | Expected artifact | Current source |
 |---|---|
 | Layer entrypoint | `docs/03-DELIVERY/README.md` |
-| Deployment | `docs/delivery/RELEASE_PLAN.md`, `docs/delivery/DEPLOYMENT_TARGET.md`, `docs/architecture/implementation-readiness-gate.md` |
+| Historical deployment planning (frozen) | `docs/delivery/RELEASE_PLAN.md`, `docs/delivery/DEPLOYMENT_TARGET.md`, `docs/architecture/implementation-readiness-gate.md` |
 | Roadmap | `docs/product-roadmaps/` |
 | Changelog | `docs/delivery/CHANGELOG.md` |
-| Release plan | `docs/delivery/RELEASE_PLAN.md` |
-| Live app gap-closure plan | `docs/delivery/LIVE_APP_GAP_CLOSURE_PLAN.md` |
-| End-to-end GTM goal-mode execution plan | `docs/delivery/GTM_GOAL_MODE_EXECUTION_PLAN.md` |
-| Phase 2 closure checklist | `docs/delivery/PHASE_2_CLOSURE_CHECKLIST.md` |
-| Phase B internal pilot checklist | `docs/delivery/PHASE_B_INTERNAL_PILOT_CHECKLIST.md` |
-| Pilot verification script | `docs/delivery/PILOT_VERIFICATION_SCRIPT.md` |
-| Phase B G1 open questions | `docs/delivery/PHASE_B_G1_OPEN_QUESTIONS.md` |
+| Historical release plan | `docs/delivery/RELEASE_PLAN.md` |
+| Historical live app gap-closure plan | `docs/delivery/LIVE_APP_GAP_CLOSURE_PLAN.md` |
+| Historical GTM goal-mode execution plan | `docs/delivery/GTM_GOAL_MODE_EXECUTION_PLAN.md` |
+| Historical Phase 2 closure checklist | `docs/delivery/PHASE_2_CLOSURE_CHECKLIST.md` |
+| Historical Phase B internal pilot checklist | `docs/delivery/PHASE_B_INTERNAL_PILOT_CHECKLIST.md` |
+| Historical pilot verification script | `docs/delivery/PILOT_VERIFICATION_SCRIPT.md` |
+| Historical Phase B G1 open questions | `docs/delivery/PHASE_B_G1_OPEN_QUESTIONS.md` |
 | Fixture sanitization checklist | `docs/delivery/FIXTURE_SANITIZATION_CHECKLIST.md` |
-| G2 Clerk production runbook | `docs/delivery/G2_CLERK_PRODUCTION_RUNBOOK.md` |
-| G2 execution record | `docs/delivery/G2_EXECUTION_RECORD.md` |
-| G3/G4 Vercel and env runbook | `docs/delivery/G3_G4_VERCEL_ENV_RUNBOOK.md` |
-| G3 execution record | `docs/delivery/G3_EXECUTION_RECORD.md` |
-| G4 Preview environment execution record | `docs/delivery/G4_PREVIEW_ENV_EXECUTION_RECORD.md` |
+| Historical G2 Clerk production runbook | `docs/delivery/G2_CLERK_PRODUCTION_RUNBOOK.md` |
+| Historical G2 execution record | `docs/delivery/G2_EXECUTION_RECORD.md` |
+| Historical G3/G4 Vercel and env runbook | `docs/delivery/G3_G4_VERCEL_ENV_RUNBOOK.md` |
+| Historical G3 execution record | `docs/delivery/G3_EXECUTION_RECORD.md` |
+| Historical G4 Preview environment execution record | `docs/delivery/G4_PREVIEW_ENV_EXECUTION_RECORD.md` |
 | Gap trace: pilot to MVP | `docs/delivery/GAP_TRACE_PILOT_TO_MVP.md` |
 | Resend transactional email plan | `docs/delivery/RESEND_TRANSACTIONAL_EMAIL_PLAN.md` |
 | Migration plan | `docs/delivery/MIGRATION_PLAN.md` |
@@ -111,6 +119,7 @@ Defines the rules for starting, completing, reviewing, and stabilizing work.
 | Layer entrypoint | `docs/04-GOVERNANCE/README.md` |
 | Project constitution | `AGENTS.md`, `docs/AGENTS.md`, `REPO_IDENTITY.md`, `CLAUDE.md`, `docs/system/` |
 | Repo boundary / anti-confusion map | `REPO_IDENTITY.md`, `CLAUDE.md`, `docs/system/REPO_BOUNDARY_MAP.md` |
+| Source-repo freeze | `docs/governance/SOURCE_REPO_FREEZE.md` |
 | Delegation and autonomy record | `docs/governance/DELEGATION_AND_AUTONOMY.md` |
 | Legal/privacy doctrine | `docs/legal/LEGAL_PRIVACY_DOCTRINE.md` |
 | Definition of Ready | `docs/governance/DEFINITION_OF_READY.md` |
@@ -127,10 +136,10 @@ Converts specs into buildable tasks for Codex, Claude, or other agents.
 | Expected artifact | Current source |
 |---|---|
 | Layer entrypoint | `docs/05-EXECUTION/README.md` |
-| Codex build plan | `docs/architecture/implementation-readiness-gate.md`, future branch-specific plans |
+| Historical Codex build plan | `docs/architecture/implementation-readiness-gate.md`; no runtime branch is authorized here |
 | Claude build plan | Future branch-specific plan; Claude should remain docs/control-room oriented unless explicitly redirected. |
 | Task breakdown | `docs/execution/REQUIREMENTS_TRACEABILITY_MATRIX.md` |
-| Implementation sequence | `docs/architecture/implementation-readiness-gate.md`, `docs/execution/WORKTREE_PLAN.md` |
+| Historical implementation sequence | `docs/architecture/implementation-readiness-gate.md`, `docs/execution/WORKTREE_PLAN.md` |
 | Dependency graph | `docs/reference/DEPENDENCY_MAP.md` |
 | Worktree plan | `docs/execution/WORKTREE_PLAN.md` |
 | Traceability matrix | `docs/execution/REQUIREMENTS_TRACEABILITY_MATRIX.md` |

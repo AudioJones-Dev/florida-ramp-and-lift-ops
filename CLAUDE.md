@@ -19,22 +19,25 @@ Expected identity:
 
 - Path: `C:\dev\florida-ramp-and-lift-ops`
 - Remote `origin`: `https://github.com/AudioJones-Dev/florida-ramp-and-lift-ops.git`
-- Branch: `main` (production)
+- Branch: `main` (default/reference; not production)
 
 **STOP if the `origin` remote is not `florida-ramp-and-lift-ops.git`.** You are in
 the wrong repository. Do not edit. Re-orient to the correct path. See
 `REPO_IDENTITY.md` and `docs/system/REPO_BOUNDARY_MAP.md`.
 
-## Do not import assumptions from other repos
+## Repository freeze and canonical runtime
 
-This is the **ops platform** — a Next.js + Clerk mock/manual MVP scaffold. It is
-**not** the contractor portal.
+This is a preserved planning/reference source with a Next.js + Clerk mock/manual
+MVP scaffold. Runtime development and deployment are frozen here.
 
-- Do **not** assume Supabase runtime, migrations, storage buckets, API clients,
-  Render deploy, or live domains exist here. Those belong to the separate
-  `FRL-CONTRACTOR-PORTAL` product (`C:\dev\frl-contractor-portal`).
+- The canonical Tier 4 application is `FRL-CONTRACTOR-PORTAL`
+  (`C:\dev\frl-contractor-portal`), which owns the Render/Supabase runtime and
+  live application domains.
 - This repo currently has: no Supabase runtime, no migrations, no storage buckets,
   no live integrations, and no production deploy authorization.
+- Do not implement runtime features, deploy, or claim a live hostname from this
+  repository. Use source material only through the canonical reconciliation
+  process.
 - Treat mock data as mock data; do not convert fixture IDs into production truth.
 
 ## Canonical contracts
@@ -43,7 +46,8 @@ This is the **ops platform** — a Next.js + Clerk mock/manual MVP scaffold. It 
   before editing any subtree.
 - `REPO_IDENTITY.md` — canonical identity card.
 - `docs/system/REPO_BOUNDARY_MAP.md` — verified sibling-repo boundary table.
-- `docs/architecture/mvp-definition.md` — product scope.
+- `docs/governance/SOURCE_REPO_FREEZE.md` — controlling repository posture.
+- `docs/architecture/mvp-definition.md` — historical/source product scope.
 
 ## Governance precedence
 

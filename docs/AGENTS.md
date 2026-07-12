@@ -36,6 +36,9 @@ Docs are the governing layer for this repo. Treat them as product and architectu
 - `docs/agents/`: future agent role specs.
 - `docs/system/`: repo operating protocols for human/agent collaboration.
 - `docs/governance/`: definitions of ready/done/stable, decision log, risk register, and repo governance artifacts.
+- `docs/governance/SOURCE_REPO_FREEZE.md`: controlling repository posture;
+  freezes runtime/deployment work here and points canonical Tier 4 authority to
+  `FRL-CONTRACTOR-PORTAL`.
 - `docs/legal/`: legal/privacy doctrine, notice requirements, public legal URL requirements, and attorney/operator review gates.
 - `docs/qa/`: readiness reviews and implementation-vs-docs audits.
 - `docs/quality/`: security, observability, testing, and failure-mode planning.
@@ -46,3 +49,11 @@ Docs are the governing layer for this repo. Treat them as product and architectu
 ## Documentation Safety
 
 Do not add private vault paths, client files, secrets, or internal credentials to docs. Obsidian references must describe sync/export rules generically or use placeholder examples.
+
+## Child DOX Index
+
+- `delivery/AGENTS.md` governs historical delivery, provider, pilot, release,
+  migration, and deployment-planning records under `docs/delivery/`.
+- `legal/AGENTS.md` governs legal, privacy, notice, and attorney-review doctrine
+  under `docs/legal/`.
+- `product/AGENTS.md` governs product documentation under `docs/product/`.

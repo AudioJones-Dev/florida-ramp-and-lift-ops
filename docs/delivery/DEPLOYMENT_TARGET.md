@@ -1,17 +1,22 @@
 # Deployment Target
 
-Status: Git Spec-ready draft
-Scope: Vercel deployment target selection and pre-deploy checklists for the FLR platform app
+Status: Superseded and frozen 2026-07-12
+Scope: Historical Vercel deployment target and pre-deploy planning record
 Runtime impact: None
-Implementation status: Documentation only — no link, env write, deploy, or provider change is performed or authorized by this document
+Implementation status: Historical documentation only — no further link, env write, deploy, or provider change is authorized
+
+> Current controlling decision:
+> [`../governance/SOURCE_REPO_FREEZE.md`](../governance/SOURCE_REPO_FREEZE.md).
+> This repository is a planning/reference source, owns no live application
+> hostname, and must not deploy. The material below is retained as historical
+> evidence and cannot be used as current deployment authority.
 
 ## Purpose
 
-This document records the recommended Vercel deployment target for the
-`florida-ramp-and-lift-ops` app and the gated checklists required before any
-preview or production deployment. It exists so the target decision, approval
-gates, and environment variable contract are explicit before any deploy work
-begins.
+This document preserves the former Vercel deployment target and gated
+checklists for the `florida-ramp-and-lift-ops` mock scaffold. The target was
+superseded when the operator accepted `FRL-CONTRACTOR-PORTAL` as the single
+canonical Tier 4 application. No checklist below remains executable.
 
 ## Current Deployment State (verified 2026-07-11)
 
@@ -34,10 +39,12 @@ begins.
 - `docs/delivery/RELEASE_PLAN.md` places the repo at Phase 2 (mock/manual MVP
   scaffold); production release gates (Phases 3–5) are not met.
 
-## Internal Pilot Decision
+## Historical Internal Pilot Decision (superseded)
 
-The next live milestone is an authenticated internal pilot at
-`ops.floridarampandliftops.com`.
+The former next milestone was an authenticated internal pilot at
+`ops.floridarampandliftops.com`. That assignment is superseded. The hostname has
+no application DNS record and is reserved for a separate canonical-platform
+decision.
 
 Domain boundary (clarified by the operator 2026-07-10):
 
@@ -48,9 +55,11 @@ Domain boundary (clarified by the operator 2026-07-10):
 - The internal pilot is the **first deployment stage** on
   that domain family; later stages (persistence-backed operations per
   `LIVE_APP_GAP_CLOSURE_PLAN.md` Phases C–F) remain in the same family behind
-  their own gates. `ops.floridarampandliftops.com` is assigned to this repo;
-  the existing Render-backed apex, `www`, `admin`, `client`, `contractor`, and
-  `platform` hosts remain assigned to their current sibling product.
+  their own gates. The historical decision assigned
+  `ops.floridarampandliftops.com` to this repo; that assignment is now
+  superseded by the source-repo freeze. The existing Render-backed apex, `www`,
+  `admin`, `client`, `contractor`, and `platform` hosts remain assigned to the
+  canonical platform.
 - G1 confirms the final domain and that DNS edit access is available; it does
   **not** authorize DNS changes (those occur under G2, operator-executed).
 
@@ -72,7 +81,7 @@ internal pilot because the pilot is not allowed to handle real operational data.
 They remain required before production operations, real records, customer files,
 or external integrations.
 
-## Recommended Target
+## Historical Recommended Target (frozen)
 
 Create a new Vercel project named `florida-ramp-and-lift-ops` under the
 `audiojones` team, linked to the `AudioJones-Dev/florida-ramp-and-lift-ops`
@@ -140,7 +149,7 @@ entering them into Vercel environment settings happens at the env-write gate
 (G4) under its own approval. No value may ever appear in Git, docs, chat
 logs, or shell history.
 
-## Production Domain Requirement (hard blocker)
+## Historical Production Domain Requirement (superseded)
 
 Clerk production instances require a domain the operator owns, with DNS access
 for CNAME verification. Production publishable keys are domain-bound and do
@@ -161,7 +170,11 @@ not work on `*.vercel.app` domains. Consequences:
   configured and verified. The Clerk production instance is already verified
   for the canonical domain family.
 
-## Human Approval Gates
+## Historical Human Approval Gates
+
+These gates are retained as evidence only. No `proceed` under this document can
+authorize deployment; the source-repo freeze must first be explicitly
+superseded by the operator.
 
 Explicit operator approval (`proceed`) is required, separately, before each of:
 
@@ -261,7 +274,7 @@ Private evidence rule while the hold is active:
 - After Q5/Q6 pass, share the URL only with authorized reviewers through a
   private channel; do not backfill it into repository history.
 
-## Production Deploy Checklist (blocked until approved)
+## Production Deploy Checklist (permanently frozen under current posture)
 
 - [ ] Implementation readiness gate §22 go/no-go checklist satisfied.
 - [ ] RELEASE_PLAN release gates satisfied (DoR/DoD/DoS, security review,
@@ -356,6 +369,6 @@ operator production approval are complete.
 This document does not authorize deployment, preview or production releases,
 Vercel project creation or linking, environment variable writes, secret
 creation or rotation, live integrations, database migrations, storage setup,
-custom domains, or any change to `floridaplatformliftpros`. Every action above
-requires explicit operator approval per `AGENTS.md` and the AJ Digital OS
-governance kernel.
+custom domains, or any change to `floridaplatformliftpros`. Runtime and
+deployment are frozen by `docs/governance/SOURCE_REPO_FREEZE.md`; explicit
+approval for an unrelated task does not lift that freeze.
